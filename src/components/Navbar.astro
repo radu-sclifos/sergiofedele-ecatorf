@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
 const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
 ---
 
-<header class="site-header">
+<header class:list={["site-header", { "over-hero": isCurrent("/") }]}>
     <nav aria-label="Navigazione principale">
         <a class="brand" href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Sergio Fedele</a>
         <button class="toggle" type="button" aria-controls="site-menu" aria-expanded="false">
@@ -65,6 +65,15 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
 </header>
 
 <script>
+    const overlayHeader = document.querySelector('.site-header.over-hero');
+
+    if (overlayHeader) {
+        const updateHeader = () => overlayHeader.toggleAttribute('data-at-top', window.scrollY <= 0);
+        updateHeader();
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        window.addEventListener('pageshow', updateHeader);
+    }
+
     const toggle = document.querySelector<HTMLButtonElement>('.site-header .toggle');
     const menu = document.getElementById('site-menu');
 
@@ -131,6 +140,21 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
         z-index: 10;
         background: #061a40;
         color: white;
+    }
+
+    .over-hero {
+        position: fixed;
+        inset-inline: 0;
+    }
+
+    .over-hero[data-at-top]:not(:has(.toggle[aria-expanded="true"])) {
+        background: transparent;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .over-hero {
+            transition: background-color 180ms ease;
+        }
     }
 
     nav {
@@ -216,7 +240,22 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
     }
 
     @media (max-width: 64rem) {
-        nav {
+        .over-hero {
+        position: fixed;
+        inset-inline: 0;
+    }
+
+    .over-hero[data-at-top]:not(:has(.toggle[aria-expanded="true"])) {
+        background: transparent;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .over-hero {
+            transition: background-color 180ms ease;
+        }
+    }
+
+    nav {
             flex-wrap: wrap;
         }
 
