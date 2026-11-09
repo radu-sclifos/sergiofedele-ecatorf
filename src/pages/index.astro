@@ -6,6 +6,326 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         title="Sergio Fedele – Ecatorf"
         description="Sergio Fedele: musicista e inventore dell'Ecatorf."
 >
-    <h1>Sergio Fedele</h1>
-    <p>Musicista e inventore dell'Ecatorf.</p>
+    <header class="hero">
+        <img src="/images/home/concertoBologna2.webp" alt="Sergio Fedele suona l’Ecatorf in concerto"
+             fetchpriority="high"/>
+        <div class="hero-title">
+            <h1>Sergio Fedele</h1>
+            <p>Ecatorf</p>
+        </div>
+    </header>
+
+    <div class="overview">
+        <figure class="quotation">
+            <img src="/images/home/Numa_schio_1_zoomed2.webp" alt="Foto dell’Ecatorf a Schio" loading="lazy"/>
+            <blockquote>
+                <p>
+                    Le arti sono una cosa seria soltanto per chi le esercita. Pittura e scultura diventano oggetto di
+                    commercio, ossia gioco monetario, nelle mani dei mercanti e dei collezionisti; letteratura e musica,
+                    nelle mani degli editori e degli impresari, pretesti di distrazione e di passatempo per il pubblico
+                    dei lettori e degli ascoltatori paganti. Le arti hanno un valore metafisico, mentre il mondo fisico
+                    e sociale attribuisce alle arti l’unico valore a cui esso sia sensibile: di svago, di guadagno, di
+                    lavoro.
+                </p>
+            </blockquote>
+            <figcaption>Beniamino Dal Fabbro, <cite>Musica e Verità</cite></figcaption>
+        </figure>
+
+        <article class="instrument">
+            <img src="/images/home/7-Ecatorf-zoomed2.webp" alt="Dettaglio dell’Ecatorf" loading="lazy"/>
+            <h2>Ecatorf</h2>
+            <section>
+                <h3>I</h3>
+                <p>
+                    L’idea dello strumento nasce da un interessante esperimento acustico e organologico: suonare con il
+                    bocchino del clarinetto soprano un trombone a tiro. Come trasformare questo primo curioso connubio
+                    in uno strumento completo in grado di articolare cinque ottave e di avere un escursione di suoni
+                    fondamentali superiore a quella del clarinetto contrabasso, è stato un lungo lavoro di tentativi,
+                    esperimenti, teoria e logica. Dopo undici anni dalla fine della progettazione (che richiese tre
+                    anni) siamo finalmente riusciti a realizzarne un primo prototipo.
+                </p>
+                <p>
+                    Rispetto agli strumenti conosciuti si presenta come un ibrido poiché combina il bocchino e il tubo
+                    cilindrico del clarinetto con la coulisse del trombone e i cilindri a valvola di alcuni ottoni.
+                </p>
+                <p>
+                    L’estensione grave dello strumento supera di due toni e mezzo lo strumento ad ancia più basso di cui
+                    si abbia oggi conoscenza: il clarinetto octocontrabasso costruito in unico esemplare da Leblanc, e
+                    di una decima (o più) le ance più gravi attualmente in commercio (clarinetto contrabasso
+                    discendente, controfagotto discendente, tubax in sib, sax subcontrabasso in sib).
+                </p>
+                <p>
+                    Il nome Ecatorf congiunge insieme una divinità e un personaggio mitico greci, due che di discese
+                    agli
+                    Inferi e di avventurose risalite se ne intendevano: la triforme Ècate e il leggendario Orfeo.
+                </p>
+            </section>
+            <section>
+                <h3>II</h3>
+                <p>Do qui, invece, una sintesi dello strumento in termini, anzitutto, di cifre:</p>
+                <ol>
+                    <li>
+                        È lo strumento a fiato più grave al mondo (per quanto mi risulta, non solo attualmente, da
+                        sempre): FA -1 a 10.9 herz. E non solo a fiato, i grandi organi da chiesa (privi di semitoni per
+                        quanto riguarda le note più gravi) raggiungono il DO a 16.35 herz (32 piedi). Lo stesso riguarda
+                        il raro pianoforte a tastiera estesa: 16.35 herz. Che io sappia esiste un solo organo
+                        attualmente funzionante, in Australia, che raggiunge gli 8 herz. (Quanto alla soglia
+                        dell’udibile – posta intorno ai 16 herz – posso assicurare che, per ora, ho trovato una sola
+                        persona che non udiva suoni sotto il citato DO).
+                    </li>
+                    <li>
+                        Lo strumento a fiato con la più grande estensione ordinaria. 5 ottave (escluse dunque le note
+                        eccezionali: un’altra ottava e mezza). E con la più grande estensione di fondamentali (2 ottave
+                        e una quinta).
+                    </li>
+                    <li>
+                        L’unico strumento ad ancia (che non sia un giocattolo) a coulisse, il che comporta infinite
+                        possibilità <i>enarmoniche</i>.
+                    </li>
+                    <li>
+                        L’unico strumento ad ancia i cui suoni escano tutti dalle campane (con ciò che comporta riguardo
+                        al timbro e alla potenza di suono).
+                    </li>
+                    <li>
+                        Potenza di suono (dicevamo), sottigliezza e varietà timbrica, “spazialità” (tre diverse campane)
+                        pronte a fronteggiare qualsiasi artificio e manipolazione elettronica (una nuova sfida acustica
+                        a quest’ultima).
+                    </li>
+                    <li>
+                        Per quanto riguarda il trattamento dell’onda acustica: ricchissima è la gamma di bicordi,
+                        tricordi e multifonici di ogni tipo, ciò che ci porta ai confini del rumore.
+                    </li>
+                    <li>
+                        L’Arte dei rumori, appunto, di Russolo ritrova qui un sostituto di ben 5 (su 6) dei suoi
+                        “intonarumori”: «1) Rombi, tuoni, scoppi, scrosci, tonfi, boati; 2) fischi, sibili, sbuffi; 3)
+                        bisbiglii, mormorii, borbottii, brusii, gorgoglii; 4) stridori, scricchiolii, fruscii, ronzii,
+                        crepitii, stropiccii, […] 6) gridi, strilli, gemiti, urla, ululati, risate, rantoli, singhiozzi»
+                        (cf. Luigi Russolo, <i>L’arte dei rumori</i>).
+                    </li>
+                </ol>
+            </section>
+            <a class="continue" href="/ecatorf/">Continua a leggere</a>
+        </article>
+
+        <aside class="further-reading" aria-labelledby="further-reading-title">
+            <img src="/images/home/Numa_schio_3.webp" alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
+            <h2 id="further-reading-title">Visita le altre pagine</h2>
+            <ul>
+                <li>Maggiori dettagli sull’<a href="/ecatorf/">Ecatorf</a>, anche in lingua inglese.</li>
+                <li>Le <a href="/biografia/">note biografiche</a> sulla musica, le arti visive e la letteratura.</li>
+                <li>Le <a href="/composizioni/">composizioni</a> pensate per l’Ecatorf, con recensioni e CD.</li>
+                <li><a href="/partitureperecate/">Partiture per Ecate</a>.</li>
+            </ul>
+        </aside>
+    </div>
 </BaseLayout>
+
+<style>
+    .hero {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        place-items: center;
+        min-height: clamp(25rem, 72svh, 52rem);
+        padding: 2rem 1rem;
+        color: white;
+        background: #061a40;
+        text-align: center;
+    }
+
+    .hero img, .hero::after {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero img {
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .hero::after {
+        content: '';
+        background: rgb(6 26 64 / 52%);
+        z-index: -1;
+    }
+
+    .hero-title {
+        font-family: var(--font-ui);
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        line-height: 1.1;
+        margin: 0;
+    }
+
+    .hero p {
+        font-size: clamp(1.3rem, 3vw, 2.2rem);
+        margin: 0.6rem 0 0;
+    }
+
+    .overview {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+        align-items: start;
+        gap: clamp(1.5rem, 4vw, 4rem);
+        max-width: 73rem;
+        padding: clamp(1.25rem, 5vw, 4rem);
+        margin-inline: auto;
+    }
+
+    .overview img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
+
+    .quotation {
+        margin: 0;
+
+        color: #061a40;
+    }
+
+    blockquote {
+        margin: 0;
+        padding: 1.25rem 1.5rem 0;
+    }
+
+    blockquote p {
+        margin: 0;
+    }
+
+    figcaption {
+        padding: 0.75rem 1.5rem 1.25rem;
+    }
+
+    .instrument {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+
+    .instrument h2, .instrument h3, .further-reading h2 {
+        color: #061a40;
+    }
+
+    .instrument h2 {
+        margin-bottom: 0.2rem;
+    }
+
+    .instrument section {
+        line-height: 1.4;
+    }
+
+    .instrument section:first-of-type h3 {
+        margin-top: 0;
+    }
+
+    .instrument section p {
+        margin-block: 0.4rem;
+    }
+
+    .instrument h3 {
+        font-size: 1.17rem;
+        text-align: center;
+    }
+
+    li + li {
+        margin-top: 0.6rem;
+    }
+
+    a {
+        color: #0046b9;
+    }
+
+    .continue {
+        display: inline-block;
+        padding: 0.6rem 1.1rem;
+        border-radius: 2rem;
+        background: #061a40;
+        color: white;
+    }
+
+    .overview img {
+        border-radius: 0.25rem;
+        box-shadow: 0 0.65rem 1.4rem rgb(0 0 0 / 27%);
+    }
+
+    .quotation img {
+        aspect-ratio: 1.9;
+    }
+
+    .instrument > img {
+        aspect-ratio: 1.72;
+    }
+
+    .further-reading > img {
+        aspect-ratio: 1.44;
+    }
+
+    blockquote, figcaption {
+        width: min(100%, 27rem);
+        margin-inline: auto;
+        border-inline: 1px solid #061a40;
+    }
+
+    blockquote {
+        margin-top: 2rem;
+        border-top: 1px solid #061a40;
+    }
+
+    figcaption {
+        border-bottom: 1px solid #061a40;
+    }
+
+    @media (min-width: 60rem) {
+        .overview {
+            grid-template-columns: minmax(0, 1.44fr) minmax(0, 1fr);
+            width: min(80%, 76rem);
+            translate: calc(-1 * clamp(0.75rem, 1.5vw, 1.5rem)) 0;
+            padding-inline: 0;
+            column-gap: clamp(1.5rem, 2.7vw, 2.25rem);
+        }
+
+        .quotation img {
+            margin-inline-start: 16%;
+        }
+
+        blockquote, figcaption {
+            width: 67%;
+            margin-inline-start: 25%;
+        }
+
+        .further-reading h2, .further-reading ul {
+            margin-inline-start: 16%;
+        }
+
+        .instrument > img {
+            position: relative;
+            width: 135%;
+            max-width: none;
+            margin-inline-start: -22%;
+            margin-top: clamp(4rem, 8vw, 7rem);
+            margin-bottom: 2.5rem;
+        }
+
+        .instrument section, .further-reading ul {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .instrument section, blockquote p {
+            text-align: justify;
+        }
+    }
+
+    @media (max-width: 48rem) {
+        .overview {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
