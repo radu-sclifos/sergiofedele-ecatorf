@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import concerto from '../assets/home/concertoBologna2-upscale.png';
+import schioPortrait from '../assets/home/Numa_schio_1_zoomed2.webp';
+import ecatorfDetail from '../assets/home/7-Ecatorf-zoomed2.webp';
+import schioPerformance from '../assets/home/Numa_schio_3.webp';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -7,8 +12,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         description="Sergio Fedele: musicista e inventore dell'Ecatorf."
 >
     <header class="hero">
-        <img src="/images/home/concertoBologna2.webp" alt="Sergio Fedele suona l’Ecatorf in concerto"
-             fetchpriority="high"/>
+        <Image src={concerto}
+               widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < concerto.width).concat(concerto.width)}
+               sizes="100vw" alt="Sergio Fedele suona l’Ecatorf in concerto"
+               priority/>
         <div class="hero-title">
             <h1>Sergio Fedele</h1>
             <p>Ecatorf</p>
@@ -17,7 +24,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="overview">
         <figure class="quotation">
-            <img src="/images/home/Numa_schio_1_zoomed2.webp" alt="Foto dell’Ecatorf a Schio" loading="lazy"/>
+            <Image src={schioPortrait}
+                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPortrait.width).concat(schioPortrait.width)}
+                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw" alt="Foto dell’Ecatorf a Schio"
+                   loading="lazy"/>
             <blockquote>
                 <p>
                     Le arti sono una cosa seria soltanto per chi le esercita. Pittura e scultura diventano oggetto di
@@ -32,7 +42,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </figure>
 
         <article class="instrument">
-            <img src="/images/home/7-Ecatorf-zoomed2.webp" alt="Dettaglio dell’Ecatorf" loading="lazy"/>
+            <Image src={ecatorfDetail}
+                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < ecatorfDetail.width).concat(ecatorfDetail.width)}
+                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 42rem, 43vw" alt="Dettaglio dell’Ecatorf"
+                   loading="lazy"/>
             <h2>Ecatorf</h2>
             <section>
                 <h3>I</h3>
@@ -108,7 +121,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </article>
 
         <aside class="further-reading" aria-labelledby="further-reading-title">
-            <img src="/images/home/Numa_schio_3.webp" alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
+            <Image src={schioPerformance}
+                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPerformance.width).concat(schioPerformance.width)}
+                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw"
+                   alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
             <h2 id="further-reading-title">Visita le altre pagine</h2>
             <ul>
                 <li>Maggiori dettagli sull’<a href="/ecatorf/">Ecatorf</a>, anche in lingua inglese.</li>
