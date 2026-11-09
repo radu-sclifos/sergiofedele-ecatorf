@@ -1,0 +1,27 @@
+:root {
+    --font-body: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    --font-ui: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+nav {
+    font-family: var(--font-ui);
+}
