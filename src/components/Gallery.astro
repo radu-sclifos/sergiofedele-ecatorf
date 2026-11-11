@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    photos: { src: ImageMetadata; alt: string }[];
+}
+
+const {photos} = Astro.props;
+---
+
+<ul class="photo-grid" data-gallery>
+    {photos.map(({src, alt}) => (
+            <li>
+                <a href={src.src} data-pswp-width={src.width} data-pswp-height={src.height} data-cropped="true">
+                    <Image src={src} alt={alt} loading="lazy"
+                           widths={[320, 480, 720, 960].filter((width) => width < src.width).concat(src.width)}
+                           sizes="(max-width: 36rem) 92vw, (min-width: 64rem) 28rem, 46vw"/>
+                </a>
+            </li>
+    ))}
+</ul>
+
+<script>
+    import type PhotoSwipe from 'photoswipe';
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import 'photoswipe/style.css';
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '[data-gallery]',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+        bgClickAction: 'close',
+        imageClickAction: 'zoom',
+        tapAction(this: PhotoSwipe, _point, event) {
+            if ((event.target as Element).classList.contains('pswp__img')) {
+                this.element?.classList.toggle('pswp--ui-visible');
+            } else {
+                this.close();
+            }
+        },
+        closeTitle: 'Chiudi',
+        zoomTitle: 'Ingrandisci',
+        arrowPrevTitle: 'Fotografia precedente',
+        arrowNextTitle: 'Fotografia successiva',
+        errorMsg: 'Impossibile caricare la fotografia.',
+    });
+    lightbox.init();
+</script>
+
+<style>
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-gap: 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .photo-grid img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.25rem 0.8rem rgba(6, 26, 64, 0.22);
+    }
+
+    .photo-grid a {
+        display: block;
+        position: relative;
+        cursor: zoom-in;
+    }
+
+    .photo-grid a::before {
+        content: '';
+        display: block;
+        padding-top: 66.666667%;
+    }
+
+    @media (max-width: 36rem) {
+        .photo-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

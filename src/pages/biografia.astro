@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
 import hero from '../assets/biografia/Numa_schio_1.webp';
 
 const subjects = [
@@ -288,36 +289,11 @@ const albums = [
             {albums.map(({id, label, photos}) => (
                     <section id={id} aria-label={label} data-panel>
                         <h3>{label}</h3>
-                        <ul class="photo-grid">
-                            {photos.map(([file, alt]) => {
-                                const photo = images[`../assets/biografia/${file}`];
-                                return (
-                                        <li>
-                                            <a href={photo.src} data-photo>
-                                                <Image src={photo} alt={alt} loading="lazy"
-                                                       widths={[320, 480, 720, 960].filter((width) => width < photo.width).concat(photo.width)}
-                                                       sizes="(max-width: 36rem) 92vw, (min-width: 64rem) 28rem, 46vw"/>
-                                            </a>
-                                        </li>
-                                );
-                            })}
-                        </ul>
+                        <Gallery photos={photos.map(([file, alt]) => ({ src: images[`../assets/biografia/${file}`], alt }))}/>
                     </section>
             ))}
         </section>
     </div>
-
-    <dialog aria-label="Fotografia ingrandita" id="photo-viewer">
-        <form method="dialog">
-            <button type="submit" autofocus>Chiudi</button>
-        </form>
-        <img alt=""/>
-        <div class="viewer-controls">
-            <button type="button" data-direction="-1">← Precedente</button>
-            <span aria-live="polite"></span>
-            <button type="button" data-direction="1">Successiva →</button>
-        </div>
-    </dialog>
 </BaseLayout>
 
 <script>
@@ -343,43 +319,6 @@ const albums = [
         choices.hidden = false;
         switcher.classList.add('interactive');
     }
-
-    const viewer = document.querySelector<HTMLDialogElement>('#photo-viewer')!;
-    const viewerImage = viewer.querySelector('img')!;
-    const status = viewer.querySelector('span')!;
-    let photos: HTMLAnchorElement[] = [];
-    let current = 0;
-
-    const showPhoto = (index: number) => {
-        current = (index + photos.length) % photos.length;
-        const photo = photos[current];
-        viewerImage.alt = photo.querySelector('img')!.alt;
-        viewerImage.src = photo.href;
-        status.textContent = `${current + 1} / ${photos.length}`;
-    };
-
-    for (const album of document.querySelectorAll('.photo-grid')) {
-        const links = Array.from(album.querySelectorAll<HTMLAnchorElement>('[data-photo]'));
-        links.forEach((link, index) => {
-            link.addEventListener('click', (event) => {
-                if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-
-                event.preventDefault();
-                photos = links;
-                showPhoto(index);
-                viewer.showModal();
-            });
-        });
-    }
-
-    for (const button of viewer.querySelectorAll<HTMLButtonElement>('[data-direction]')) {
-        button.addEventListener('click', () => showPhoto(current + Number(button.dataset.direction)));
-    }
-
-    viewer.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') showPhoto(current - 1);
-        if (event.key === 'ArrowRight') showPhoto(current + 1);
-    });
 </script>
 
 <style>
@@ -605,83 +544,6 @@ const albums = [
 
     .photographs h2 {
         color: #061a40;
-    }
-
-    .photo-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-gap: 1rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .photo-grid img {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0.25rem;
-        box-shadow: 0 0.25rem 0.8rem rgba(6, 26, 64, 0.22);
-    }
-
-    .photo-grid a {
-        display: block;
-        position: relative;
-        cursor: zoom-in;
-    }
-
-    .photo-grid a::before {
-        content: '';
-        display: block;
-        padding-top: 66.666667%;
-    }
-
-    dialog {
-        width: 96vw;
-        max-width: 80rem;
-        max-height: 96vh;
-        padding: 0.75rem;
-        border: 0;
-        border-radius: 0.25rem;
-        background: #061a40;
-        color: white;
-    }
-
-    dialog::backdrop {
-        background: rgba(0, 0, 0, 0.8);
-    }
-
-    dialog form {
-        text-align: right;
-    }
-
-    dialog img {
-        width: 100%;
-        height: 72vh;
-        max-height: 50rem;
-        object-fit: contain;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .viewer-controls {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .viewer-controls > * {
-        margin: 0.25rem;
-    }
-
-    @media (max-width: 36rem) {
-        .photo-grid {
-            grid-template-columns: 1fr;
-        }
     }
 
     @media (min-width: 48rem) {
