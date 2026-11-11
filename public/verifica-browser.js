@@ -142,12 +142,24 @@ function runBrowserCheck() {
     test('Pointer Events (sfogliatore)', function () { return typeof window.PointerEvent === 'function'; });
 
     document.getElementById('technical').textContent =
-        'Verifica browser - revisione 1\n' +
+        'Verifica browser - revisione 2\n' +
         'Browser: ' + identifyBrowser(ua) + '\n' +
         'Chromium dichiarato: ' + (chromium || 'non disponibile') + '\n' +
         'Sistema: ' + identifySystem(ua) + '\n' +
         'Area pagina: ' + window.innerWidth + ' x ' + window.innerHeight + '\n\n' +
         report.join('\n') + '\n\nUser-Agent:\n' + ua;
+    function updateDimensions() {
+        var area = window.innerWidth + ' × ' + window.innerHeight + ' px';
+        var screen = window.screen;
+        document.getElementById('page-size').textContent = area;
+        document.getElementById('screen-size').textContent = screen && screen.width && screen.height
+            ? screen.width + ' × ' + screen.height + ' px'
+            : 'Non disponibile';
+        var technical = document.getElementById('technical');
+        technical.textContent = technical.textContent.replace(/^Area pagina:.*$/m, 'Area pagina: ' + area);
+    }
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
     probes.parentNode.removeChild(probes);
     document.getElementById('state').textContent = 'Verifica completata';
     document.getElementById('state').className = 'yes';
