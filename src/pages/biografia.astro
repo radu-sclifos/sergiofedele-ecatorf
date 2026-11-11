@@ -93,7 +93,7 @@ const albums = [
     <header class="hero">
         <Image src={hero} widths={[480, 768, 1280, 1920].filter((width) => width < hero.width).concat(hero.width)}
                sizes="100vw" alt="" priority/>
-        <h1>Note Biografiche</h1>
+        <h1 class="heading">Note Biografiche</h1>
     </header>
 
     <div class="biography">
@@ -368,7 +368,7 @@ const albums = [
         background: linear-gradient(rgba(6, 26, 64, 0.46), rgba(6, 26, 64, 0.68));
     }
 
-    h1, h2, h3, button {
+    button {
         font-family: var(--font-ui);
     }
 
