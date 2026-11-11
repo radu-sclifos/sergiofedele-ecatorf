@@ -82,13 +82,14 @@ through production minification.
 
 ## Validation
 
-- After CSS changes, run `npm run build` followed by
-  `npm run check:compatibility`, then inspect the production preview on desktop
-  and narrow screens.
+- For routine changes, run only `npm run build` to verify compilation.
+- The user handles visual verification. Do not open or automate browsers,
+  start preview servers, capture screenshots, or run additional checks unless
+  the user explicitly requests them.
 - The compatibility check covers known CSS restrictions in source and generated
   output. It does not replace testing with the intended browser. Current-browser
   viewport emulation changes dimensions, not the age of the rendering engine.
-- After browser identification changes, run
-  `node --test scripts/browser-check.test.mjs`.
+- Browser identification tests are available through
+  `node --test scripts/browser-check.test.mjs` when explicitly requested.
 - Report verification limits accurately, especially when Chromium 79 itself has
   not been used for testing.
