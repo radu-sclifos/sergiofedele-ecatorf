@@ -25,6 +25,36 @@ Open http://localhost:4321 to view the site.
 - `src/styles/` contains global styles.
 - `src/assets/` contains images processed by Astro, and `public/` contains files served as-is.
 
+## Photo galleries
+
+Photo galleries use [PhotoSwipe](https://photoswipe.com/) through the reusable
+`src/components/Gallery.astro` component. Pass an array of objects with an imported
+Astro image as `src` and a descriptive alternative text as `alt`.
+
+```astro
+---
+import Gallery from '../components/Gallery.astro';
+import photo from '../assets/biografia/kwatz1.webp';
+
+const photos = [
+    { src: photo, alt: 'Preparazione di Kwatz!' },
+];
+---
+
+<Gallery photos={photos} />
+```
+
+Each component instance is a separate gallery. Thumbnails remain visible in the
+page, and clicking one opens PhotoSwipe with navigation limited to that gallery.
+Visitors can zoom, navigate with arrows or touch gestures, and close using the
+background, the close button or Escape. Image links also work without JavaScript.
+Astro generates responsive thumbnails, and PhotoSwipe's main module loads when
+the gallery opens.
+
+The biography page uses one instance per four-photo collection. The Vite
+configuration converts PhotoSwipe's `margin-inline-start` declaration to
+`margin-left` for the project's browser compatibility baseline.
+
 ## Browser compatibility
 
 Use a single conservative implementation, with Chromium 79 as the build baseline
@@ -54,3 +84,9 @@ screen dimensions, not the rendering engine's age.
 ## License
 
 The site code is available under the [MIT License](LICENSE). Editorial content, photographs, artwork, and audio and video materials are excluded from the MIT license. All rights in those materials remain with their respective rights holders unless otherwise indicated.
+
+PhotoSwipe is distributed under the MIT license, copyright 2014–2022 Dmitry
+Semenov. Its complete notice is preserved in
+[`public/licenses/photoswipe.txt`](public/licenses/photoswipe.txt), which Astro
+includes in the published site at `/licenses/photoswipe.txt`. Preserve this file
+when distributing the site. See the [upstream license](https://github.com/dimsemenov/PhotoSwipe/blob/master/LICENSE).
