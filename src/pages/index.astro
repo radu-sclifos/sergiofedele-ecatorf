@@ -25,12 +25,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="overview">
         <figure class="quotation">
             <div class="portrait-frame">
-            <Image src={schioPortrait}
-                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPortrait.width).concat(schioPortrait.width)}
-                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw" alt="Foto dell’Ecatorf a Schio"
-                   loading="lazy"/>
+                <Image src={schioPortrait}
+                       widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPortrait.width).concat(schioPortrait.width)}
+                       sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw" alt="Foto dell’Ecatorf a Schio"
+                       loading="lazy"/>
             </div>
-            <blockquote>
+            <blockquote class="body-copy">
                 <p>
                     Le arti sono una cosa seria soltanto per chi le esercita. Pittura e scultura diventano oggetto di
                     commercio, ossia gioco monetario, nelle mani dei mercanti e dei collezionisti; letteratura e musica,
@@ -40,18 +40,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     lavoro.
                 </p>
             </blockquote>
-            <figcaption>Beniamino Dal Fabbro, <cite>Musica e Verità</cite></figcaption>
+            <figcaption class="body-copy">Beniamino Dal Fabbro, <cite>Musica e Verità</cite></figcaption>
         </figure>
 
         <article class="instrument">
             <div class="instrument-frame">
-            <Image src={ecatorfDetail}
-                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < ecatorfDetail.width).concat(ecatorfDetail.width)}
-                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 42rem, 43vw" alt="Dettaglio dell’Ecatorf"
-                   loading="lazy"/>
+                <Image src={ecatorfDetail}
+                       widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < ecatorfDetail.width).concat(ecatorfDetail.width)}
+                       sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 42rem, 43vw" alt="Dettaglio dell’Ecatorf"
+                       loading="lazy"/>
             </div>
             <h2>Ecatorf</h2>
-            <section>
+            <section class="body-copy">
                 <h3>I</h3>
                 <p>
                     L’idea dello strumento nasce da un interessante esperimento acustico e organologico: suonare con il
@@ -77,7 +77,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     Inferi e di avventurose risalite se ne intendevano: la triforme Ècate e il leggendario Orfeo.
                 </p>
             </section>
-            <section>
+            <section class="body-copy">
                 <h3>II</h3>
                 <p>Do qui, invece, una sintesi dello strumento in termini, anzitutto, di cifre:</p>
                 <ol>
@@ -126,13 +126,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <aside class="further-reading" aria-labelledby="further-reading-title">
             <div class="performance-frame">
-            <Image src={schioPerformance}
-                   widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPerformance.width).concat(schioPerformance.width)}
-                   sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw"
-                   alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
+                <Image src={schioPerformance}
+                       widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPerformance.width).concat(schioPerformance.width)}
+                       sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw"
+                       alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
             </div>
             <h2 id="further-reading-title">Visita le altre pagine</h2>
-            <ul>
+            <ul class="body-copy">
                 <li>Maggiori dettagli sull’<a href="/ecatorf/">Ecatorf</a>, anche in lingua inglese.</li>
                 <li>Le <a href="/biografia/">note biografiche</a> sulla musica, le arti visive e la letteratura.</li>
                 <li>Le <a href="/composizioni/">composizioni</a> pensate per l’Ecatorf, con recensioni e CD.</li>
@@ -278,17 +278,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         margin-bottom: 0.2rem;
     }
 
-    .instrument section {
-        line-height: 1.4;
-    }
-
     .instrument section:first-of-type h3 {
         margin-top: 0;
-    }
-
-    .instrument section p {
-        margin-top: 0.4rem;
-        margin-bottom: 0.4rem;
     }
 
     .instrument h3 {
@@ -356,16 +347,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             padding-right: 0;
             grid-column-gap: 2.7vw;
         }
+
         .portrait-frame {
             margin-left: 16%;
         }
+
         blockquote, figcaption {
             width: 67%;
             margin-left: 25%;
         }
+
         .further-reading h2, .further-reading ul {
             margin-left: 16%;
         }
+
         .instrument-frame {
             position: relative;
             width: 123%;
@@ -374,10 +369,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             margin-top: 8vw;
             margin-bottom: 2.5rem;
         }
-        .instrument section, .further-reading ul {
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
+
         .instrument section, blockquote p {
             text-align: justify;
         }
@@ -407,6 +399,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             flex-direction: column;
             align-items: stretch;
         }
+
         .overview > * + * {
             margin-top: var(--overview-gap);
         }

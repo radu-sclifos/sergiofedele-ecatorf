@@ -16,6 +16,15 @@ body {
     margin: 0;
 }
 
+.body-copy {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+}
+
+.body-copy p {
+    margin: 0 0 1rem;
+}
+
 img,
 video {
     display: block;
@@ -29,5 +38,5 @@ nav {
 
 h1, h2, h3, h4, h5, h6, .heading {
     font-family: var(--font-heading);
-    font-weight: 400;
+    font-weight: 500;
 }

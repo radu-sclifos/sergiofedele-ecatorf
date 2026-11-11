@@ -5,9 +5,21 @@ import Gallery from '../components/Gallery.astro';
 import hero from '../assets/biografia/Numa_schio_1.webp';
 
 const subjects = [
-    {id: 'musica', label: 'Musica', icon: 'M9 18V5l12-2v13M9 18a3 2 0 1 1-6 0 3 2 0 1 1 6 0Zm12-2a3 2 0 1 1-6 0 3 2 0 1 1 6 0Z'},
-    {id: 'arti-visive', label: 'Arti visive', icon: 'M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Zm13 0a3 3 0 1 1-6 0 3 3 0 1 1 6 0Z'},
-    {id: 'letteratura', label: 'Letteratura', icon: 'M12 6v15m0-15C9 4 6 4 2 4v15c4 0 7 0 10 2 3-2 6-2 10-2V4c-4 0-7 0-10 2Z'},
+    {
+        id: 'musica',
+        label: 'Musica',
+        icon: 'M9 18V5l12-2v13M9 18a3 2 0 1 1-6 0 3 2 0 1 1 6 0Zm12-2a3 2 0 1 1-6 0 3 2 0 1 1 6 0Z'
+    },
+    {
+        id: 'arti-visive',
+        label: 'Arti visive',
+        icon: 'M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Zm13 0a3 3 0 1 1-6 0 3 3 0 1 1 6 0Z'
+    },
+    {
+        id: 'letteratura',
+        label: 'Letteratura',
+        icon: 'M12 6v15m0-15C9 4 6 4 2 4v15c4 0 7 0 10 2 3-2 6-2 10-2V4c-4 0-7 0-10 2Z'
+    },
 ];
 
 const images = import.meta.glob<ImageMetadata>('../assets/biografia/*.webp', {eager: true, import: 'default'});
@@ -116,7 +128,7 @@ const albums = [
                         </button>
                 ))}
             </div>
-            <section id="musica" aria-label="Musica" data-panel>
+            <section class="body-copy" id="musica" aria-label="Musica" data-panel>
                 <h2>Musica</h2>
                 <p>
                     Dagli anni ’70 studia il clarinetto e la musica da autodidatta o da insegnanti privati.
@@ -207,7 +219,7 @@ const albums = [
                     per solo Ecatorf eseguita e registrata dal vivo al 31° Festival Internazionale di Musica Angelica.
                 </p>
             </section>
-            <section id="arti-visive" aria-label="Arti visive" data-panel>
+            <section class="body-copy" id="arti-visive" aria-label="Arti visive" data-panel>
                 <h2>Arti visive</h2>
                 <p>
                     Nel ’77-’78, frequenta la Scuola Internazionale di grafica di Venezia dove apprende le tecniche
@@ -240,7 +252,7 @@ const albums = [
                     Nel 2011 <a href="/partitureperecate/">Partiture per Ecate</a> viene presentata a Este.
                 </p>
             </section>
-            <section id="letteratura" aria-label="Letteratura" data-panel>
+            <section class="body-copy" id="letteratura" aria-label="Letteratura" data-panel>
                 <h2>Letteratura</h2>
                 <p>
                     Ha pubblicato a suo nome o con lo pseudonimo di <a
@@ -289,7 +301,10 @@ const albums = [
             {albums.map(({id, label, photos}) => (
                     <section id={id} aria-label={label} data-panel>
                         <h3>{label}</h3>
-                        <Gallery photos={photos.map(([file, alt]) => ({ src: images[`../assets/biografia/${file}`], alt }))}/>
+                        <Gallery photos={photos.map(([file, alt]) => ({
+                            src: images[`../assets/biografia/${file}`],
+                            alt
+                        }))}/>
                     </section>
             ))}
         </section>
@@ -512,10 +527,6 @@ const albums = [
     .interactive [data-panel] > h2,
     .interactive [data-panel] > h3 {
         display: none;
-    }
-
-    .notes p {
-        margin: 0 0 0.75rem;
     }
 
     .notes p:last-child {

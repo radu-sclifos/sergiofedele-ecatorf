@@ -31,16 +31,20 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
 const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
 ---
 
-<header class:list={["site-header", { "over-hero": overlay }]}>
+<header class:list={["site-header", {"over-hero": overlay}]}>
     <nav aria-label="Navigazione principale">
-        <a class="brand" href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Sergio Fedele</a>
+        <a class="brand" href="/" aria-current={isCurrent('/') ? 'page' : undefined}>
+            Sergio Fedele
+        </a>
         <button class="toggle" type="button" aria-controls="site-menu" aria-expanded="false">
             <span aria-hidden="true">☰</span> Menu
         </button>
         <ul class="menu" id="site-menu">
             {links.map((link) => (
                     <li>
-                        <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+                        <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+                            {link.label}
+                        </a>
                     </li>
             ))}
             {groups.map(({label, links}) => (
@@ -50,8 +54,9 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
                             <ul class="submenu">
                                 {links.map(({label, href}) => (
                                         <li>
-                                            <a href={href}
-                                               aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
+                                            <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
+                                                {label}
+                                            </a>
                                         </li>
                                 ))}
                             </ul>
@@ -76,7 +81,7 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
     if (overlayHeader) {
         const updateHeader = () => overlayHeader.toggleAttribute('data-scrolled', window.scrollY > 0);
         updateHeader();
-        window.addEventListener('scroll', updateHeader, { passive: true });
+        window.addEventListener('scroll', updateHeader, {passive: true});
         window.addEventListener('pageshow', updateHeader);
     }
 
@@ -267,12 +272,15 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
         nav {
             flex-wrap: wrap;
         }
+
         .toggle.ready {
             display: block;
         }
+
         .toggle.ready[aria-expanded="false"] + .menu {
             display: none;
         }
+
         .menu {
             flex-direction: column;
             align-items: stretch;
@@ -281,6 +289,7 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
             overflow-y: auto;
             padding: 0.2rem;
         }
+
         .submenu {
             position: static;
             margin-left: 1rem;
