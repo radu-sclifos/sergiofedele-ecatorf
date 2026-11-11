@@ -1,0 +1,554 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import hero from '../assets/biografia/Numa_schio_1.webp';
+
+const subjects = [
+    {id: 'musica', label: 'Musica', icon: 'M9 18V5l12-2v13M9 18a3 2 0 1 1-6 0 3 2 0 1 1 6 0Zm12-2a3 2 0 1 1-6 0 3 2 0 1 1 6 0Z'},
+    {id: 'arti-visive', label: 'Arti visive', icon: 'M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Zm13 0a3 3 0 1 1-6 0 3 3 0 1 1 6 0Z'},
+    {id: 'letteratura', label: 'Letteratura', icon: 'M12 6v15m0-15C9 4 6 4 2 4v15c4 0 7 0 10 2 3-2 6-2 10-2V4c-4 0-7 0-10 2Z'},
+];
+
+const images = import.meta.glob<ImageMetadata>('../assets/biografia/*.webp', {eager: true, import: 'default'});
+
+const albums = [
+    {
+        id: 'numa-schio',
+        label: 'Numa Schio',
+        photos: [
+            ['Numa_schio_1_carosello.webp', 'Concerto Numa Schio da lontano con vista completa'],
+            ['Numa_schio_2.webp', 'Concerto Numa Schio vista dall\'alto mentre lo strumento viene suonato'],
+            ['Numa_schio_4.webp', 'Concerto Numa Schio vista da davanti mentre lo strumento viene suonato'],
+            ['Numa_schio_6_reversed_carosello.webp', 'Concerto Numa Schio vista laterale mentre lo strumento viene suonato'],
+        ],
+    },
+    {
+        id: 'foto-ecatorf',
+        label: 'Ecatorf',
+        photos: [
+            ['4-Ecatorf.webp', 'Vista laterale Ecatorf sinistra'],
+            ['3-Ecatorf.webp', 'Vista laterale Ecatorf destra'],
+            ['7-Ecatorf.webp', 'Corpo centrale dell\'Ecatorf da vicino'],
+            ['10-Ecatorf.webp', 'Ecatorf mentre viene suonato'],
+        ],
+    },
+    {
+        id: 'kwatz',
+        label: 'Kwatz!',
+        photos: [
+            ['kwatz1.webp', 'Trio Klang mentre preparano Kwatz!'],
+            ['kwatz2.webp', 'Sergio Fedele mentre suona Kwatz!'],
+            ['kwatz3.webp', 'Trio Klang mentre suonano Kwatz!'],
+            ['kwatz4.webp', 'Trio Klang e Sergio Fedele'],
+        ],
+    },
+    {
+        id: 'rottami',
+        label: 'Rottami',
+        photos: [
+            ['kwatzRottami1.webp', 'Trio Klang e Sergio Fedele mentre raccolgono rottami per preparare Kwatz!'],
+            ['kwatzRottami2.webp', 'Trio Klang e Sergio Fedele mentre raccolgono rottami per preparare Kwatz!'],
+            ['kwatzRottami3.webp', 'Trio Klang e Sergio Fedele mentre raccolgono rottami per preparare Kwatz!'],
+            ['kwatzRottami4.webp', 'Trio Klang e Sergio Fedele mentre raccolgono rottami per preparare Kwatz!'],
+        ],
+    },
+    {
+        id: 'trio-klang',
+        label: 'Trio Klang',
+        photos: [
+            ['trio_Klang1.webp', 'Trio Klang e Sergio Fedele mentre suonano Kwatz! con le partiture per Ecate nello sfondo'],
+            ['trio_Klang2.webp', 'Trio Klang e Sergio Fedele mentre suonano Kwatz! con le partiture per Ecate nello sfondo'],
+            ['trio_Klang3.webp', 'Trio Klang e Sergio Fedele mentre suonano Kwatz! con le partiture per Ecate nello sfondo'],
+            ['trio_Klang4.webp', 'Trio Klang e Sergio Fedele mentre suonano Kwatz! con le partiture per Ecate nello sfondo'],
+        ],
+    },
+    {
+        id: 'percussioni',
+        label: 'Percussioni',
+        photos: [
+            ['percussioni1.webp', 'Sergio Fedele mentre suona delle percussioni'],
+            ['percussioni2.webp', 'Strumenti utilizzati per la realizzazione delle percussioni'],
+            ['percussioni3.webp', 'Percussioni'],
+            ['percussioni4.webp', 'Strumento per le percussioni completo'],
+        ],
+    },
+    {
+        id: 'grandi-partiture',
+        label: 'Grandi Partiture',
+        photos: [
+            ['laGrandePartitura1.webp', 'Le Grandi Partiture'],
+            ['laGrandePartitura2.webp', 'Le Grandi Partiture'],
+            ['laGrandePartitura3.webp', 'Le Grandi Partiture'],
+            ['laGrandePartitura4.webp', 'Le Grandi Partiture'],
+        ],
+    },
+];
+---
+
+<BaseLayout
+        title="Sergio Fedele – Note Biografiche"
+        description="Biografia completa di Sergio Fedele: Musica, Arti visive e Letteratura."
+>
+    <header class="hero">
+        <Image src={hero} widths={[480, 768, 1280, 1920].filter((width) => width < hero.width).concat(hero.width)}
+               sizes="100vw" alt="" priority/>
+        <h1>Note Biografiche</h1>
+    </header>
+
+    <div class="biography">
+        <a class="youtube" href="https://www.youtube.com/channel/UCGsoqMijBRT7i6pK988AK6g" aria-label="Canale YouTube">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+                <path fill="currentColor" fill-rule="evenodd"
+                      d="M5 4h14a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4Zm5 4v8l6-4-6-4Z"/>
+            </svg>
+        </a>
+
+        <article class="notes" data-switcher aria-label="Note biografiche">
+            <div class="choices subject-choices" role="group" aria-label="Ambiti della biografia" hidden>
+                {subjects.map(({id, label, icon}) => (
+                        <button type="button" aria-controls={id} aria-pressed="false">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d={icon}/>
+                            </svg>
+                            {label}
+                        </button>
+                ))}
+            </div>
+            <section id="musica" aria-label="Musica" data-panel>
+                <h2>Musica</h2>
+                <p>
+                    Dagli anni ’70 studia il clarinetto e la musica da autodidatta o da insegnanti privati.
+                    Approfondisce la conoscenza con ascolti e letture della musica colta e del jazz.
+                </p>
+                <p>
+                    Dopo alcune esperienze in altri gruppi costituisce nel ’93 un piccolo ensemble acustico che funziona
+                    come un laboratorio di ricerca, sperimentando vari tipi di partitura aleatoria e l’improvvisazione
+                    radicale con varie formazioni dal solo al quartetto. In questo gruppo hanno suonato Massimo del Rio,
+                    Filippo Tosi, Sergio Cacherano e attualmente Roberto Dani e Aya Shimura.
+                </p>
+                <p>
+                    Dal ’95 al ’96 ha collaborato, in qualità di musicista, ai Seminari-Laboratorio di Danza-Terapia
+                    organizzati dall’IRTE di Milano.
+                </p>
+                <p>
+                    Dal ’95 data la collaborazione con il poeta Marco Munaro con cui ha eseguito varie performance di
+                    poesia e musica.
+                </p>
+                <p>
+                    Dal ’96 al ’98 sono uscite tre musicassette e due cd per Setola di Maiale: Sergio Fedele/Trio Klang
+                    Offerta, 1996; Sergio Fedele/<a href="https://www.setoladimaiale.net/catalogue/view/SM210"
+                                                    target="_blank" rel="noopener">Trio Klang 12 koan – Offerta</a>,
+                    1997 (dal vivo), Sergio Fedele – Stefano Giust <a
+                        href="https://www.setoladimaiale.net/catalogue/view/SM390" target="_blank" rel="noopener">Su ciò
+                    potrei già cantare</a>, 1998; Sergio Fedele <a
+                        href="https://www.setoladimaiale.net/catalogue/view/SM190" target="_blank" rel="noopener">
+                    Cedendo Vincit</a>, 1996-1997. Le ultime tre incisioni sono state riedite da Setola di Maiale nel
+                    2012-2013.
+                </p>
+                <p>
+                    Dal ’98 al 2000 suona con la L.O.I.R. (Libera Orchestra Improvvisatori Riuniti, diretta da Andrea
+                    Bini), un interessante esperimento (che ebbe breve vita) di orchestra di improvvisazione con
+                    musicisti provenienti da generi diversi (dal pop alla classica) provenienti da tutta Italia.
+                </p>
+                <p>
+                    Dal 2000 al 2002 collabora con la scultrice Fiorella Corsi allestendo le musiche per: Fiorella Corsi
+                    Il Naso Museo-Biblioteca “Laboratorio delle Parole e delle Figure” del Parco di Pinocchio a Collodi
+                    (PS), 2000; e Spedale degli Innocenti – Salone Brunelleschi, Firenze, 2001-2002. Vedi il catalogo:
+                    Fiorella Corsi Il Naso Fondazione Nazionale “Carlo Collodi” Roma, 2000 e la brochure della mostra di
+                    Firenze.
+                </p>
+                <p>
+                    Per l’Accademia di Belle arti di Venezia ha tenuto nel 2003 la conferenza Falstaff e la parola
+                    scenica. E, nello stesso anno, una lezione-concerto, con Roberto Dani, nell’ambito delle lezioni sul
+                    futurismo in musica.
+                </p>
+                <p>
+                    Del 2005 è il cd con Roberto Dani: Duo Klang Di una piccola salamandra. Le Chien de mer.
+                </p>
+                <p>
+                    Sempre nel 2005 collabora con Gianandrea Gazzola all’allestimento sonoro della mostra a Roma (al
+                    Colosseo) “<a href="https://www.gianandreagazzola.com/3/11/ilritosegreto.html" target="_blank"
+                                  rel="noopener">Il Rito Segreto</a>” (catalogo Electa 2005).
+                </p>
+                <p>
+                    Dal 2008 al 2012 fa parte del gruppo di musica popolare Tzigal (cd: Barakah 2011).
+                </p>
+                <p>
+                    Nel 2010 ha iniziato la realizzazione – dopo una lunga fase progettuale e con l’aiuto di un
+                    costruttore di strumenti di Monaco – di uno strumento a fiato di nuova concezione.
+                </p>
+                <p>
+                    Dal 2011 fa parte dello Psicogeografico Ensemble (diretto da Andrea Bini) e partecipa alla
+                    registrazione dei cd Shinkansen (2011) e Wabi sabi (2012).
+                </p>
+                <p>
+                    Del 2012 il cd del Sestetto Psicogeografico Wabi Sabi (Yumi Anryu: voce, Andrea Bini: pf, mand.;
+                    Enrico Caimi: bt.; Sergio Fedele: cl., flauti; Nicola Mazzoni: cb.; Davide Negrini: perc.).
+                </p>
+                <p>
+                    Nel 2014 esce il cd <a href="https://www.setoladimaiale.net/catalogue/view/SM2550" target="_blank"
+                                           rel="noopener">Una clamide per due</a>, Duo Klang con Roberto Dani, Setola di
+                    Maiale.
+                </p>
+                <p>
+                    Nel 2015-2016 fonda l’Ensemble di sole percussioni Kwatz! con Enrico Caimi, Roberto Dani e Davide
+                    Negrini. E nel 2016 esce il cd, sempre per Setola di Maiale: <a
+                        href="https://www.setoladimaiale.net/catalogue/view/SM3050" target="_blank" rel="noopener">Kwatz!</a>
+                </p>
+                <p>
+                    Alla fine del 2018 dopo una lunga convalescenza dovuta ai traumi di un incidente stradale riprende
+                    la costruzione dell’Ecatorf, per finirne la costruzione nel febbraio del 2021.
+                </p>
+                <p>
+                    Nel 2022 esce il cd <a href="https://www.setoladimaiale.net/catalogue/view/SM4400" target="_blank"
+                                           rel="noopener">Le melancolie di Tifeo</a>, (Setola di Maiale) composizione
+                    per solo Ecatorf eseguita e registrata dal vivo al 31° Festival Internazionale di Musica Angelica.
+                </p>
+            </section>
+            <section id="arti-visive" aria-label="Arti visive" data-panel>
+                <h2>Arti visive</h2>
+                <p>
+                    Nel ’77-’78, frequenta la Scuola Internazionale di grafica di Venezia dove apprende le tecniche
+                    dell’incisione calcografica e litografica.
+                </p>
+                <p>
+                    Dal ’78 agli anni ottanta svolge l’attività di stampatore calcografo, stampando le opere di numerosi
+                    artisti italiani e stranieri (Licata, Gardenal, Serra, C. Olivotto, Sommacampagna, Jackowski,
+                    Kirnoaga ecc.).
+                </p>
+                <p>
+                    Negli anni ’90 presenta le mostre e le cartelle di incisioni di: Grafici dell’Est, Laszlo Feszt,
+                    Dario Serra, Emilie Tomanova e altri.
+                </p>
+                <p>
+                    Nel 2000-2001 ha curato la catalogazione completa dell’opera scultorea con relativa bibliografia
+                    dello scultore Gino Cortelazzo.
+                </p>
+                <p>
+                    Del 2007 è la prima mostra personale a Este: <a
+                        href="http://www.sergiofedele.it/la_grande_partitura.php?lang=it" target="_blank"
+                        rel="noopener">La grande partitura</a> dove si intrecciano la semiografia musicale alla
+                    letteratura e all’arte visiva.
+                </p>
+                <p>
+                    Del 2010 sono le due personali: all’Oasi Cervara di S. Cristina di Quinto di Treviso: Partiture per
+                    Ecate, e a Paese (TV): Discrete stanze (installazione sonora).
+                </p>
+                <p>
+                    Nel 2011 <a href="/partitureperecate/">Partiture per Ecate</a> viene presentata a Este.
+                </p>
+            </section>
+            <section id="letteratura" aria-label="Letteratura" data-panel>
+                <h2>Letteratura</h2>
+                <p>
+                    Ha pubblicato a suo nome o con lo pseudonimo di <a
+                        href="http://www.sergiofedele.it/sergio_fedele.php?lang=it" target="_blank" rel="noopener">Guido
+                    Carminati</a> alcuni racconti nelle seguenti riviste: “Fermenti” (Anno XXII, n.1, 1992); “Quaderno
+                    autori & scrittura” (1996); “Altroverso” (Anno II, n.4, Giugno 2004); “Altroverso” (Anno II, n.5,
+                    Settembre 2004); "Altroverso" (Anno III, n.8, Giugno 2005).
+                </p>
+                <p>
+                    Nel ’95 ha pubblicato sulla rivista “L’architettura - cronache e storia”, il saggio Le sette
+                    invarianti architettoniche e la letteratura.
+                </p>
+                <p>
+                    Nel ‘99 ha curato il libro a cura di vari autori: Omaggio a Cesare Zavattini Este Cinema
+                    Incontri-Rassegna Internazionale. La Medusa Centro di Cultura.
+                </p>
+                <p>
+                    Dal 2002 al 2009 ha fatto parte della redazione della Associazione Culturale per la Poesia Il Ponte
+                    del Sale.
+                </p>
+                <p>
+                    Nel 2003 è uscito con lo pseudonimo di Guido Carminati il volume <a
+                        href="http://www.sergiofedele.it/il_ponte_del_sale.php?lang=it" target="_blank" rel="noopener">Contar</a>,
+                    Il Ponte del Sale, Rovigo.
+                </p>
+                <p>
+                    Nel 2004 è uscita la brochure Bertolt Brecht Due Apologhi La Medusa Centro di Cultura, Este, con una
+                    mia postfazione.
+                </p>
+                <p>
+                    Nel 2012 viene pubblicata per <a
+                        href="http://www.sergiofedele.it/contar_de_la_catastrophe.php?lang=it" target="_blank"
+                        rel="noopener">Runaeditore, la seconda edizione del Contar</a> con una seconda parte inedita:
+                    Contar de la Catastrophe.
+                </p>
+            </section>
+        </article>
+
+        <section class="photographs" data-switcher aria-labelledby="photographs-title">
+            <h2 id="photographs-title">Fotografie</h2>
+            <div class="choices" role="group" aria-label="Raccolte fotografiche" hidden>
+                {albums.map(({id, label}) => (
+                        <button type="button" aria-controls={id} aria-pressed="false">{label}</button>
+                ))}
+            </div>
+            {albums.map(({id, label, photos}) => (
+                    <section id={id} aria-label={label} data-panel>
+                        <h3>{label}</h3>
+                        <Gallery photos={photos.map(([file, alt]) => ({ src: images[`../assets/biografia/${file}`], alt }))}/>
+                    </section>
+            ))}
+        </section>
+    </div>
+</BaseLayout>
+
+<script>
+    for (const switcher of document.querySelectorAll<HTMLElement>('[data-switcher]')) {
+        const choices = switcher.querySelector<HTMLElement>('.choices')!;
+        const buttons = choices.querySelectorAll('button');
+        const panels = switcher.querySelectorAll<HTMLElement>('[data-panel]');
+
+        const select = (id: string) => {
+            for (const button of buttons) {
+                button.setAttribute('aria-pressed', String(button.getAttribute('aria-controls') === id));
+            }
+            for (const panel of panels) {
+                panel.hidden = panel.id !== id;
+            }
+        };
+
+        for (const button of buttons) {
+            button.addEventListener('click', () => select(button.getAttribute('aria-controls')!));
+        }
+
+        select(panels[0].id);
+        choices.hidden = false;
+        switcher.classList.add('interactive');
+    }
+</script>
+
+<style>
+    .hero {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        min-height: 56vh;
+        padding: 2rem 1rem;
+        background: #061a40;
+        color: white;
+        text-align: center;
+    }
+
+    @media (min-height: 57.142857rem) {
+        .hero {
+            min-height: 32rem;
+        }
+    }
+
+    @media (max-height: 30.357143rem) {
+        .hero {
+            min-height: 17rem;
+        }
+    }
+
+    .hero img, .hero::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero img {
+        z-index: -2;
+        object-fit: cover;
+    }
+
+    .hero::after {
+        content: '';
+        z-index: -1;
+        background: linear-gradient(rgba(6, 26, 64, 0.46), rgba(6, 26, 64, 0.68));
+    }
+
+    h1, h2, h3, button {
+        font-family: var(--font-ui);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 6vw;
+        line-height: 1.15;
+    }
+
+    @media (min-width: 58.333333rem) {
+        h1 {
+            font-size: 3.5rem;
+        }
+    }
+
+    @media (max-width: 33.333333rem) {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .biography {
+        position: relative;
+        max-width: 72rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3.5rem 1rem 4rem;
+    }
+
+    .youtube {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background: #061a40;
+        color: white;
+        box-shadow: 0 0.25rem 0.8rem rgba(6, 26, 64, 0.25);
+    }
+
+    .notes {
+        --notes-gutter: 4vw;
+        border-radius: 0.25rem;
+        padding: var(--notes-gutter);
+        padding-top: 2vw;
+        box-shadow: 0 0.25rem 1.2rem rgba(6, 26, 64, 0.14);
+    }
+
+    @media (min-width: 50rem) {
+        .notes {
+            padding-top: 1rem;
+        }
+    }
+
+    @media (max-width: 25rem) {
+        .notes {
+            padding-top: 0.5rem;
+        }
+    }
+
+    @media (min-width: 50rem) {
+        .notes {
+            --notes-gutter: 2rem;
+        }
+    }
+
+    @media (max-width: 25rem) {
+        .notes {
+            --notes-gutter: 1rem;
+        }
+    }
+
+    .choices:not([hidden]) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    button {
+        padding: 0.55rem 0.95rem;
+        border: 1px solid #aab4c1;
+        border-radius: 999px;
+        background: white;
+        color: #061a40;
+        cursor: pointer;
+    }
+
+    .choices button {
+        margin: 0.25rem;
+    }
+
+    button:hover {
+        border-color: #061a40;
+    }
+
+    button[aria-pressed="true"] {
+        border-color: #061a40;
+        background: #061a40;
+        color: white;
+        box-shadow: 0 2px 8px rgba(0, 70, 185, 0.3);
+    }
+
+    .subject-choices:not([hidden]) {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-gap: var(--notes-gutter);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .subject-choices button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .subject-choices button svg {
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+    }
+
+    .subject-choices button[aria-pressed="true"] {
+        font-weight: 700;
+    }
+
+    @media (max-width: 48rem) {
+        .subject-choices:not([hidden]) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .interactive [data-panel] > h2,
+    .interactive [data-panel] > h3 {
+        display: none;
+    }
+
+    .notes p {
+        margin: 0 0 0.75rem;
+    }
+
+    .notes p:last-child {
+        margin-bottom: 0;
+    }
+
+    .notes a {
+        color: #0046b9;
+    }
+
+    .photographs {
+        max-width: 58rem;
+        margin: 2.5rem auto 0;
+        text-align: center;
+    }
+
+    .photographs::before {
+        content: '';
+        display: block;
+        width: 3.75rem;
+        height: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #0046b9;
+    }
+
+    .photographs h2 {
+        color: #061a40;
+    }
+
+    @media (min-width: 48rem) {
+        .notes p {
+            text-align: justify;
+        }
+    }
+</style>

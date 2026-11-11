@@ -7,9 +7,10 @@ interface Props {
     title: string;
     description: string;
     lang?: 'it' | 'en';
+    overlayNavbar?: boolean;
 }
 
-const {title, description, lang = 'it'} = Astro.props;
+const {title, description, lang = 'it', overlayNavbar = true} = Astro.props;
 ---
 
 <!doctype html>
@@ -27,7 +28,7 @@ const {title, description, lang = 'it'} = Astro.props;
 
 <body>
 
-<Navbar />
+<Navbar overlay={overlayNavbar} />
 
 <main>
     <slot/>
