@@ -37,8 +37,12 @@ links that load a complete page; there is no client-side router.
 The menu also includes links to pages whose migration is still pending.
 On the Ecatorf page, Translation switches the Italian and English descriptions
 and illustrations without changing the URL. Italian remains available without
-JavaScript. Progettazione currently contains a placeholder; its gallery library
-has not been selected yet.
+JavaScript. Progettazione presents the original 26 pages in 13 fixed pairs,
+preserving blank and repeated pages. Arrows move between pairs in a circular
+carousel. Clicking a pair opens PhotoSwipe across the viewport, with the same
+pair navigation, zoom and keyboard controls. Closing the viewer preserves the
+selected pair in the page. The preview fits the viewport's width and height;
+without JavaScript, the images are displayed in sequence.
 
 ## Project structure
 

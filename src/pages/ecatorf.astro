@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DesignCarousel from '../components/DesignCarousel.astro';
+import { designPages } from '../data/ecatorf-design';
 import hero from '../assets/ecatorf/numa-schio.webp';
 import detail from '../assets/ecatorf/dettaglio-ecatorf.webp';
 import instrument from '../assets/ecatorf/ecatorf.webp';
@@ -74,7 +76,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         <div class="right-column">
             <div class="instrument-photo photo">
                 <Image src={instrument} widths={widths(instrument)} sizes="(max-width: 48rem) 100vw, 510px"
-                       alt="Vista laterale dell’Ecatorf e delle sue tre campane" loading="lazy"/>
+                       alt="Vista laterale dell’Ecatorf e delle sue tre campane" loading="lazy" decoding="async"/>
             </div>
             <div class="technical-description">
                 <div class="body-copy" data-language="it">
@@ -184,7 +186,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         </div>
         <div class="detail-photo photo">
             <Image src={detail} widths={widths(detail)} sizes="(max-width: 48rem) 100vw, 510px"
-                   alt="Dettaglio della doppia coulisse e delle chiavi dell’Ecatorf" loading="lazy"/>
+                   alt="Dettaglio della doppia coulisse e delle chiavi dell’Ecatorf" loading="lazy" decoding="async"/>
         </div>
         <div class="video">
             <iframe src="https://www.youtube-nocookie.com/embed/IZ7kZjdvGnY?color=white"
@@ -198,10 +200,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
             <span data-language="it">Progettazione</span>
             <span data-language="en" lang="en" hidden>Design</span>
         </h2>
-        <div class="placeholder">
-            <p data-language="it">Sezione in preparazione.</p>
-            <p data-language="en" lang="en" hidden>Section in preparation.</p>
-        </div>
+        <DesignCarousel pages={designPages} />
     </section>
 </BaseLayout>
 
@@ -216,6 +215,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
             button.textContent = english ? 'Traduzione' : 'Translation';
             button.setAttribute('aria-label', english ? 'Leggi in italiano' : 'Read in English');
             button.setAttribute('aria-pressed', String(english));
+            document.dispatchEvent(new CustomEvent('ecatorf:languagechange'));
         });
     }
 </script>
@@ -405,17 +405,6 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
     .design h2 {
         font-weight: 700;
         margin-bottom: 1.5rem;
-    }
-
-    .placeholder {
-        border: 2px solid rgba(6, 26, 64, 0.8);
-        background: rgba(2, 20, 54, 0.06);
-        padding: 3rem 1rem;
-    }
-
-    .placeholder p {
-        margin: 0;
-        color: #061a40;
     }
 
     @media (max-width: 62rem) {

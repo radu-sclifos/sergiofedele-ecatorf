@@ -13,8 +13,15 @@ for project setup, commands, routes and current migration status.
   15 px text (in rem), a 1.65 line height and paragraph spacing. Keep alignment
   and page-specific layout rules local; avoid overriding the shared typography.
   Do not apply this class to navigation, buttons or the entire HTML body.
-- Leave Ecatorf's Progettazione section as a placeholder until the user supplies
-  the intended library and requests its implementation.
+- Progettazione uses `DesignCarousel.astro` with PhotoSwipe for the fullscreen
+  viewer. Preserve all 26 pages in `src/data/ecatorf-design.ts`, including
+  repeated and blank pages, in their original 13 pairs. Always show two pages
+  together: arrows advance 1–2 → 3–4, including in fullscreen. Keep the pair
+  selected on closing the viewer. Fit the preview to viewport width and height,
+  with clearly visible arrows and no extra image links or page index.
+  Preserve PhotoSwipe's thumbnail zoom transition and translucent backdrop;
+  leave the space between fullscreen pages transparent, without a connecting
+  background strip.
 
 ## Browser compatibility
 
