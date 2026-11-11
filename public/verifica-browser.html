@@ -16,6 +16,7 @@
         .identity { margin: 16px 0; }
         .identity p { margin: 5px 0; }
         #chromium { font-size: 23px; font-weight: bold; }
+        .identity .page-size { margin-top: 12px; padding: 10px; border: 2px solid #2457a8; background: #eaf1ff; font-size: 22px; font-weight: bold; }
         #state { font-weight: bold; }
         .pending { color: #725000; }
         table { width: 100%; border-collapse: collapse; font-size: 16px; }
@@ -40,7 +41,7 @@
             td:last-child { width: 115px; }
         }
     </style>
-    <script src="/verifica-browser.js" defer></script>
+    <script src="/verifica-browser.js?v=2" defer></script>
 </head>
 <body>
 <main>
@@ -52,19 +53,19 @@
         <p><strong>Browser:</strong> <span id="browser">In attesa</span></p>
         <p id="chromium">Motore Chromium: in attesa</p>
         <p><strong>Sistema:</strong> <span id="system">In attesa</span></p>
-        <p class="note">Versioni dichiarate dal browser: possono essere abbreviate o alterate. I controlli sotto verificano separatamente le funzionalità.</p>
+        <p class="page-size">Area pagina: <span id="page-size">In attesa</span></p>
+        <p><strong>Schermo dichiarato:</strong> <span id="screen-size">In attesa</span></p>
     </div>
     <h2>Risultati della verifica</h2>
     <table>
         <thead><tr><th scope="col">Funzionalità</th><th scope="col">Risultato</th></tr></thead>
         <tbody id="results"><tr><td colspan="2">In attesa dei controlli…</td></tr></tbody>
     </table>
-    <p class="note">«Sì» indica il superamento di questo controllo, non la compatibilità completa del sito. Altezza, proporzioni, spaziatura e spostamento sono misurati; gli altri controlli verificano sintassi riconosciuta o API disponibili.</p>
     <details>
         <summary>Informazioni aggiuntive per Radu</summary>
         <pre id="technical">In attesa</pre>
     </details>
-    <p class="note">Verifica browser · revisione 1</p>
+    <p class="note">Verifica browser · revisione 2</p>
     <p><a href="/">Torna al sito</a></p>
 </main>
 <div id="probes" aria-hidden="true"></div>

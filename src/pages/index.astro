@@ -17,8 +17,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                sizes="100vw" alt="Sergio Fedele suona l’Ecatorf in concerto"
                priority/>
         <div class="hero-title">
-            <h1>Sergio Fedele</h1>
-            <p>Ecatorf</p>
+            <h1 class="heading">Sergio Fedele</h1>
+            <p class="heading">Ecatorf</p>
         </div>
     </header>
 
@@ -179,43 +179,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         z-index: -1;
     }
 
-    .hero-title {
-        font-family: var(--font-ui);
-    }
-
     .hero h1 {
-        font-size: 7vw;
-        line-height: 1.1;
-        margin: 0;
-    }
-
-    @media (min-width: 71.428571rem) {
-        .hero h1 {
-            font-size: 5rem;
-        }
-    }
-
-    @media (max-width: 35.714286rem) {
-        .hero h1 {
-            font-size: 2.5rem;
-        }
+        font-size: 3.0625rem;
+        line-height: 1.15;
+        margin: 0 0 1.875rem;
     }
 
     .hero p {
-        font-size: 3vw;
-        margin: 0.6rem 0 0;
-    }
-
-    @media (min-width: 73.333333rem) {
-        .hero p {
-            font-size: 2.2rem;
-        }
-    }
-
-    @media (max-width: 43.333333rem) {
-        .hero p {
-            font-size: 1.3rem;
-        }
+        font-size: 2.1875rem;
+        line-height: 1.2;
+        margin: 0 0 1.875rem;
     }
 
     .overview {
