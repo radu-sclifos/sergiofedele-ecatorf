@@ -9,6 +9,8 @@ for project setup, commands, routes and current migration status.
   editorial content, typography, colors and overall composition. Keep visual
   improvements modest; do not introduce a redesign without a user request.
 - Reuse shared components and `BaseLayout.astro` for page structure.
+- Use the global `page-title` class for primary page headings; keep their size
+  and line height centralized instead of overriding them per page.
 - Use the global `body-copy` class on editorial text containers. It defines
   15 px text (in rem), a 1.65 line height and paragraph spacing. Keep alignment
   and page-specific layout rules local; avoid overriding the shared typography.
