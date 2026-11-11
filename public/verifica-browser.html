@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Verifica del browser · Sergio Fedele</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 20px 14px; background: #f2f4f8; color: #15233a; font: 18px/1.4 Arial, sans-serif; }
+        main { max-width: 800px; margin: 0 auto; padding: 22px; border: 1px solid #cbd3df; border-radius: 8px; background: white; }
+        h1 { margin: 0 0 10px; font-size: 28px; }
+        h2 { margin: 20px 0 8px; font-size: 21px; }
+        p { margin: 8px 0; }
+        .instructions { padding: 12px; background: #eaf1ff; border-left: 4px solid #2457a8; }
+        .identity { margin: 16px 0; }
+        .identity p { margin: 5px 0; }
+        #chromium { font-size: 23px; font-weight: bold; }
+        #state { font-weight: bold; }
+        .pending { color: #725000; }
+        table { width: 100%; border-collapse: collapse; font-size: 16px; }
+        th, td { padding: 6px 8px; border-bottom: 1px solid #dce1e9; text-align: left; }
+        th { background: #f2f4f8; }
+        td:last-child { width: 155px; font-weight: bold; }
+        .yes { color: #16642f; }
+        .no { color: #98331e; }
+        .unknown { color: #725000; }
+        .note { color: #46546b; font-size: 14px; }
+        details { margin-top: 16px; }
+        summary { cursor: pointer; }
+        pre { white-space: pre-wrap; word-wrap: break-word; font-size: 13px; }
+        a { color: #174f9b; }
+        :focus { outline: 2px solid #2457a8; outline-offset: 3px; }
+        #probes { position: absolute; left: -10000px; top: 0; visibility: hidden; width: 300px; }
+        @media (max-width: 480px) {
+            body { padding: 10px; font-size: 16px; }
+            main { padding: 14px; }
+            h1 { font-size: 23px; }
+            th, td { padding: 6px 4px; font-size: 14px; }
+            td:last-child { width: 115px; }
+        }
+    </style>
+    <script src="/verifica-browser.js" defer></script>
+</head>
+<body>
+<main>
+    <h1>Una verifica per il sito</h1>
+    <p class="instructions">Ciao Sergio! Aspetta che compaia <strong>«Verifica completata»</strong>, poi fotografa questa pagina e mandami la foto. Se non entra tutta, fai due foto scorrendo un po’ verso il basso.</p>
+    <p id="state" class="pending" role="status">Verifica in attesa. Se questo messaggio rimane, mandami comunque una foto.</p>
+    <noscript><p>Il browser ha JavaScript disattivato. Mandami una foto di questa schermata e della pagina opera://about.</p></noscript>
+    <div class="identity" aria-label="Informazioni del browser">
+        <p><strong>Browser:</strong> <span id="browser">In attesa</span></p>
+        <p id="chromium">Motore Chromium: in attesa</p>
+        <p><strong>Sistema:</strong> <span id="system">In attesa</span></p>
+        <p class="note">Versioni dichiarate dal browser: possono essere abbreviate o alterate. I controlli sotto verificano separatamente le funzionalità.</p>
+    </div>
+    <h2>Risultati della verifica</h2>
+    <table>
+        <thead><tr><th scope="col">Funzionalità</th><th scope="col">Risultato</th></tr></thead>
+        <tbody id="results"><tr><td colspan="2">In attesa dei controlli…</td></tr></tbody>
+    </table>
+    <p class="note">«Sì» indica il superamento di questo controllo, non la compatibilità completa del sito. Altezza, proporzioni, spaziatura e spostamento sono misurati; gli altri controlli verificano sintassi riconosciuta o API disponibili.</p>
+    <details>
+        <summary>Informazioni aggiuntive per Radu</summary>
+        <pre id="technical">In attesa</pre>
+    </details>
+    <p class="note">Verifica browser · revisione 1</p>
+    <p><a href="/">Torna al sito</a></p>
+</main>
+<div id="probes" aria-hidden="true"></div>
+</body>
+</html>

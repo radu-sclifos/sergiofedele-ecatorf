@@ -57,6 +57,25 @@ configuration converts PhotoSwipe's `margin-inline-start` declaration to
 
 ## Browser compatibility
 
+### Browser diagnostics
+
+`/verifica-browser.html` is a standalone page for a visitor to photograph. It
+shows the browser's declared version and OS, plus individual CSS and API checks.
+It does not infer an exact Chromium version from feature support, and it cannot
+distinguish Windows 10 from Windows 11 using their shared User-Agent token.
+Results are displayed locally; the page does not submit them anywhere.
+
+The page lives in `public/` so Astro copies it unchanged. Its classic ES5 script
+applies experimental CSS only inside temporary probes at runtime: neither build
+transpilation nor fallback CSS can accidentally make an unsupported test pass.
+Flexbox gap, aspect ratio, viewport heights, clamp and translate use layout
+measurements; the remaining checks detect syntax or API availability. These are
+focused diagnostics, not full rendering tests for the website or its libraries.
+
+Check browser identification with `node --test scripts/browser-check.test.mjs`.
+
+### Site policy
+
 Use a single conservative implementation, with Chromium 79 as the build baseline
 for older Chromium-based Opera. This is a development target, not a claim that
 every older Opera version or every browser has been tested. Internet Explorer and
