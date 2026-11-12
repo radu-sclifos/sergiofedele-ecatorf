@@ -159,7 +159,19 @@
     .compositions .row > .col-md-2, .compositions .row > .col-md-3,
     .compositions .row > .col-md-4, .compositions .row > .col-md-6,
     .compositions .row > .col-md-8 { grid-column: span 12; }
-    .compositions .row > .col-md-3.text-center { grid-column: span 6; }
+    .compositions .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 18rem;
+        min-height: 3rem;
+        text-align: center;
+    }
+    .compositions .translation {
+        min-height: 2.75rem;
+        padding: 0.5rem 0.75rem;
+    }
     .compositions p { text-align: left; }
     .compositions .score-list a, .compositions .unavailable-score { display: block; }
     .compositions .score-list .year { display: block; margin-left: 0; }
