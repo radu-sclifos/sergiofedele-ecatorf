@@ -99,7 +99,11 @@
 }
 .compositions .review-heading .translation { flex-shrink: 0; margin-left: 1rem; }
 .compositions .review > p:last-child { margin-bottom: 0; }
-.compositions .review + h4 { margin-top: 2rem; }
+.compositions .review-notices-title {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #b8c3d2;
+}
 .compositions p { text-align: justify; }
 .compositions a { color: #062e69; overflow-wrap: break-word; }
 .compositions .action {
