@@ -37,24 +37,28 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
             control.addEventListener('keydown', () => control.classList.remove('pointer-focus'));
             control.addEventListener('blur', () => control.classList.remove('pointer-focus'));
         });
+
         const buttons = Array.from(composition.querySelectorAll<HTMLButtonElement>('[data-select]'));
         const panels = Array.from(composition.querySelectorAll<HTMLElement>('[data-panel]'));
         const selected: Record<string, string> = {};
+
         for (const button of buttons) {
             const group = button.dataset.select!;
             button.hidden = false;
             const controlled = panels.filter(panel => panel.dataset.panel === group && panel.dataset.value === button.dataset.value);
-            for (const panel of controlled) panel.id = `composition-${index}-panel-${panels.indexOf(panel)}`;
-            if (controlled.length) button.setAttribute('aria-controls', controlled.map(panel => panel.id).join(' '));
+
+            for (const panel of controlled) {
+                panel.id = `composition-${index}-panel-${panels.indexOf(panel)}`;
+            }
+
+            if (controlled.length) {
+                button.setAttribute('aria-controls', controlled.map(panel => panel.id).join(' '));
+            }
+
             button.addEventListener('click', () => {
                 selected[group] = button.dataset.value!;
                 update();
             });
-        }
-
-        function update() {
-            for (const panel of panels) panel.hidden = selected[panel.dataset.panel!] !== panel.dataset.value;
-            for (const button of buttons) button.setAttribute('aria-pressed', String(selected[button.dataset.select!] === button.dataset.value));
         }
 
         update();
@@ -64,23 +68,37 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
             const texts = Array.from(composition.querySelectorAll<HTMLElement>('[data-translation]'))
                 .filter(text => text.dataset.translation === button.dataset.translate);
             let translated = false;
+
             texts.forEach((text, textIndex) => {
                 text.id = `composition-${index}-translation-${translationIndex}-${textIndex}`;
             });
             button.setAttribute('aria-controls', texts.map(text => text.id).join(' '));
-
-            function updateTranslation() {
-                for (const text of texts) text.hidden = (text.dataset.original === 'true') === translated;
-                button.setAttribute('aria-pressed', String(translated));
-                if (label) label.textContent = translated ? 'Originale' : 'Traduzione';
-            }
-
             button.hidden = false;
             updateTranslation();
             button.addEventListener('click', () => {
                 translated = !translated;
                 updateTranslation();
             });
+
+            function updateTranslation() {
+                for (const text of texts) {
+                    text.hidden = (text.dataset.original === 'true') === translated;
+                }
+                button.setAttribute('aria-pressed', String(translated));
+                if (label) {
+                    label.textContent = translated ? 'Originale' : 'Traduzione';
+                }
+            }
         });
+
+        function update() {
+            for (const panel of panels) {
+                panel.hidden = selected[panel.dataset.panel!] !== panel.dataset.value;
+            }
+
+            for (const button of buttons) {
+                button.setAttribute('aria-pressed', String(selected[button.dataset.select!] === button.dataset.value));
+            }
+        }
     });
 </script>
