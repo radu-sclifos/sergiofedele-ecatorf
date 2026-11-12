@@ -33,6 +33,7 @@ links that load a complete page; there is no client-side router.
 | `src/pages/index.astro` | `/` | Introduction to Sergio and the instrument. |
 | `src/pages/biografia.astro` | `/biografia/` | Music, visual arts, literature and photo galleries. |
 | `src/pages/ecatorf.astro` | `/ecatorf/` | Technical descriptions, photographs, range illustrations and video. |
+| `src/pages/composizioni.astro` | `/composizioni/` | Solo, Trio and PsicoGeografico compositions, scores, CD covers, reviews and translations. |
 | `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
 | `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
 
@@ -83,6 +84,11 @@ thumbnails, zoom, arrow and touch navigation, and keyboard controls. The main
 PhotoSwipe module loads when a gallery opens; image links also work without
 JavaScript.
 
+CD covers on Composizioni use `src/components/composizioni/CoverImage.astro`:
+each cover opens its own single-image PhotoSwipe viewer, with thumbnail zoom,
+a translucent backdrop and closing on a backdrop click, without navigation to
+other covers. The image link remains available without JavaScript.
+
 ## Browser support and diagnostics
 
 Chromium 79 is the current compatibility target for older Chromium-based browsers.
@@ -110,3 +116,4 @@ loads only when its characters are needed. Vite fingerprints the font URLs for
 cache invalidation when the files change. Montserrat is distributed under the
 SIL Open Font License 1.1, included in
 [`public/licenses/montserrat.txt`](public/licenses/montserrat.txt).
+

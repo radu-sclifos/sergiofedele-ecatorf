@@ -1,0 +1,552 @@
+---
+import CoverImage from './CoverImage.astro';
+import ActionIcon from './ActionIcon.astro';
+const images = import.meta.glob<ImageMetadata>('../../assets/composizioni/*.webp', { eager: true, import: 'default' });
+const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => [path.slice(path.lastIndexOf('/') + 1), image]));
+---
+<section aria-labelledby="trio-title">
+<h2 id="trio-title">Ecatorf Trio</h2>
+
+
+<details class="composition">
+<summary><h3>Presentazione</h3></summary>
+<div class="composition-content">
+<div class="row">
+<div class="col-md-6 text-center">
+<button class="action" type="button" data-select="language" data-value="1" hidden><ActionIcon name="language" /><span class="button-label">Italiano</span></button>
+</div>
+<div class="col-md-6 text-center">
+<button class="action" type="button" data-select="language" data-value="2" hidden><ActionIcon name="language" /><span class="button-label">English</span></button>
+</div>
+<div class="description body-copy" data-panel="language" data-value="1">
+<p class="body-copy">
+<b>Ecatorf</b><br>
+Lo strumento a fiato che da nome al Trio è il frutto di lunghi anni di studio, progettazione e
+costruzione. È uno strumento subcontrabbasso che scende una decima sotto il controfagotto (o
+sotto l’ultima nota del pianoforte). Esiste al momento in un unico prototipo, ed è stato presentato
+la
+prima volta al 31° Festival Internazionale di Musica Angelica a Bologna nel 2021. Venne eseguita
+in solo la composizione Le melancolie di Tifeo. Il cd omonimo (uscito l’anno successivo a cura di
+Stefano Giust per Setola di Maiale SM4400), che riporta la registrazione del concerto, è stato
+segnalato tra i migliori cd dal vivo prodotti nel 2022 dalla rivista The New York City Jazz Record
+(cfr. n. 249, January 2023, p. 23).<br>
+L’anatomia e la fisiologia dell’ecatorf congiungono le caratteristiche dei legni (ancia e bocchino
+da clarinetto contrabbasso) con quella degli ottoni (suoni uscenti tutti dalla campana, coulisse,
+valvole a chiavi): da qui nasce l’idea del Trio dove ai clarinetti si affiancano il trombone e la
+tuba,
+strumenti che diedero vita alla prima ibridazione.
+</p>
+<p class="body-copy">
+<b>Paesaggio e viaggio acustico</b><br>
+L’ambito subcontrabbasso è una zona della nostra percezione inedita, difficilmente si ascoltano
+suoni – tanto meno acustici e non manipolati elettronicamente – sotto l’ultimo tasto del pianoforte
+comune (27.5 hz.). La soglia dell’udibile, comunemente delimitata tra i 16 e i 20 herz, è confutata
+dall’ecatorf che scende sotto gli 11 herz; semplicemente non ci sono strumenti che navighino a
+quelle profondità, perciò tali limiti sono convenzionali. La musica contemporanea già da un secolo
+ha eliminato un’altra convenzione ‒ estetica questa e non fisiologico-acustica – quella che separa
+il suono dal rumore.<br>
+È dunque una formazione non solo spostata nella zona grave dello spettro acustico, ma che
+presenta più di un’ottava nella zona più ombrosa e abissale del suono. La ricerca timbrica e
+spettrale, enfatizzata dal multistrumentismo, riconduce la musica alla sua matrice ancestrale ossia
+il <b>suono</b> e il <b>silenzio</b>.
+</p>
+<p class="body-copy">
+<b>Soglie</b><br>
+«A me non interessa arrivare al pubblico», ebbe a dire Edgard Varèse in un’intervista: «quanto
+piuttosto <b>arrivare a certi fenomeni acustico-musicali</b>; in altre parole, ciò che voglio
+arrivare a
+fare <b>è perturbare l’atmosfera</b>, perché, <b>dopotutto, il suono è solo una perturbazione
+atmosferica</b>.»
+</p>
+<div class="row">
+<div class="col-md-2 text-center">
+<p class="body-copy"><b>Sergio Fedele</b></p>
+<p class="body-copy"><b>Francesco Bucci</b></p>
+<p class="body-copy"><b>Piero Bittolo Bon</b></p>
+</div>
+<div class="col-md-3 text-center">
+<p class="body-copy">Ecatorf, clarinetti, flauti</p>
+<p class="body-copy">trombone, tuba</p>
+<p class="body-copy">clarinetti, flauti</p>
+</div>
+<div class="col-md-6 text-center">
+<p class="body-copy">sergiofedele-ecatorf.it</p>
+<p class="body-copy"><a href="https://francescobucci.bandcamp.com" target="_blank" rel="noopener">francescobucci.bandcamp.com</a>,
+<a href="https://www.facebook.com/bucci.francesco.1" target="_blank" rel="noopener">facebook.com/bucci.francesco.1</a>
+</p>
+<p class="body-copy"><a href="https://pierobittolobon.bandcamp.com"
+target="_blank" rel="noopener">pierobittolobon.bandcamp.com</a></p>
+</div>
+</div>
+</div>
+<div class="description body-copy" data-panel="language" data-value="2" lang="en">
+<p class="body-copy">
+<b>Ecatorf</b><br>
+The Ecatorf, the wind instrument that gives its name to the Trio, is the result of many
+years of study, design, and construction. It is a sub-contrabass instrument that goes
+a tenth below the contrabassoon (or below the last note of the piano). It currently in a
+single prototype, and was presented for the first time at the 31 st International Music
+Festival in Bologna in 2021.The composition Le melancolie di Tifeo was performed in solo.
+The CD of the same name (released the following year by Stefano Giust for Setola di
+Maiale SM4400) which features a recording of the concert, was rated as one of the best
+live CDs of 2022 on «The New York City Jazz Record», (see issue 249, January 2023, p.
+23).<br>
+The anatomy and physiology of the ecatorf combine the characteristics of woodwinds
+(reed and mouthpiece of a contrabass clarinet) with those of brass instruments (sounds all
+coming from the bell, slide, keyed valves): this is where the idea of the Trio was born,
+where the clarinets are joined by the trombone and the tuba, instruments that gave rise to
+the first hybridization.
+</p>
+<p class="body-copy">
+<b>Landscape and acoustic journey</b><br>
+The sub-doublebass range is a new area of our perception; it's rare to hear
+sounds—much less acoustic and non-electronically manipulated—below the lowest key on
+a standard piano (27.5 Hz). The threshold of hearing, commonly defined as 16 to 20 Hz, is
+contradicted by the ecatorf, which descends below 11 Hz (F: hz. 10. 9); there are simply
+no instruments that navigate at those depths, so these limits are conventional.
+Contemporary music has already eliminated another convention—an aesthetic one, not a
+physiological or acoustic one—that separates sound from noise for a century.<br>
+It is therefore a group that not only moves into the lower reaches of the acoustic
+spectrum, but also presents more than an octave into the darkest and most abysmal
+region of sound. The exploration of timbre and the sound spectrum, emphasized by the
+multi-instrumentation, brings the music back to its ancestral matrix: <b>sound</b> and
+<b>silence</b>.
+</p>
+<p class="body-copy">
+<b>Thresholds</b><br>
+“I'm not interested in reaching the audience," Edgard Varèse said in an interview, "but
+rather in reaching certain acoustic-musical phenomena; in other words, what I want to
+achieve is to disturb the atmosphere, because, after all, sound is only an atmospheric
+disturbance."
+</p>
+<div class="row">
+<div class="col-md-2 text-center">
+<p class="body-copy"><b>Sergio Fedele</b></p>
+<p class="body-copy"><b>Francesco Bucci</b></p>
+<p class="body-copy"><b>Piero Bittolo Bon</b></p>
+</div>
+<div class="col-md-3 text-center">
+<p class="body-copy">Ecatorf, clarinets, flutes</p>
+<p class="body-copy">trombone, tuba</p>
+<p class="body-copy">clarinets, flutes</p>
+</div>
+<div class="col-md-6 text-center">
+<p class="body-copy">sergiofedele-ecatorf.it</p>
+<p class="body-copy"><a href="https://francescobucci.bandcamp.com" target="_blank" rel="noopener">francescobucci.bandcamp.com</a>,
+<a href="https://www.facebook.com/bucci.francesco.1" target="_blank" rel="noopener">facebook.com/bucci.francesco.1</a>
+</p>
+<p class="body-copy"><a href="https://pierobittolobon.bandcamp.com"
+target="_blank" rel="noopener">pierobittolobon.bandcamp.com</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</details>
+
+<details class="composition">
+<summary><h3>Partiture</h3></summary>
+<div class="composition-content">
+<ul class="score-list body-copy">
+<li>
+<a href="/partiture/trio/mimesisecertamen.pdf" target="_blank" rel="noopener">
+<span class="title">Mimesis e certamen</span>
+<span class="year">(2023)</span>
+</a>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Serie ancestrali III Esitazioni</span>
+<span class="year">(2023)</span>
+</span>
+</li>
+<li>
+<a href="/partiture/trio/tropoisyringosaulesai.pdf" target="_blank" rel="noopener">
+<span class="title">Selve domestiche I Tropoi syringos aulesai</span>
+<span class="year">(2023–24)</span>
+</a>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Selve domestiche II Wild Whistle Tones</span>
+<span class="year">(2023–24)</span>
+</span>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Soglie I Il terzo suono</span>
+<span class="year">(2023–24)</span>
+</span>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Ruaḥ</span>
+<span class="year">(2023–24)</span>
+</span>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Benthos</span>
+<span class="year">(2023–25)</span>
+</span>
+</li>
+<li>
+<span class="unavailable-score">
+<span class="title">Round Midnight (arrangiamento)</span>
+<span class="year">(2023–25)</span>
+</span>
+</li>
+</ul>
+</div>
+</details>
+
+<details class="composition">
+<summary><h3>CD e Recensioni</h3></summary>
+<div class="composition-content">
+<div class="row">
+<div class="col-md-12 text-center">
+<h4 class="album-title">Benthos</h4>
+</div>
+</div>
+<div class="row" >
+
+<div class="col-md-6 text-center">
+<button class="action" type="button" data-select="benthos" data-value="cd" hidden><ActionIcon name="cd" /><span class="button-label">CD</span></button>
+</div>
+<div class="col-md-6 text-center">
+<button class="action" type="button" data-select="benthos" data-value="recensioni" hidden><ActionIcon name="review" /><span class="button-label">Recensioni</span></button>
+</div>
+<div class="col-md-12 text-center" data-panel="benthos" data-value="cd">
+
+<CoverImage src={covers["benthos.webp"]} alt="Copertina CD di Benthos" wide />
+</div>
+<div class="description body-copy" data-panel="benthos" data-value="recensioni">
+<p class="body-copy">
+<b>Ettore Garzia - <a
+href="https://www.percorsimusicali.eu/2025/09/29/improvvisazioni-orientate-metalli-psicogeografie/"
+target="_blank" rel="noopener">Percorsi musicali</a> (29 Settembre 2025):</b><br>
+Un tentativo, invece, di creare un valore aggiunto timbrico arriva
+da Benthos, dell’Ecatorf Trio, piccola formazione che Sergio Fedele ha messo
+in piedi con Piero Bittolo Bon e Francesco Bucci. Il benthos è quell’area
+organica che si trova nei fondali degli ambienti acquatici, con tante specie
+animali che la popolano e che si differenziano per distribuzione e quantità a
+seconda della profondità del fondale, delle temperature e dell’ossigeno che si
+trova a certe profondità, perciò la musica è pensata per una sorta di
+simulazione introspettiva di questi ambienti, dove ogni strumento ha una sua
+dinamica e si incontra in omogeneità o contrasto sui registri altrui
+provocando la sensazione di una comunità acquatica in virtuale movimento;
+l’ecatorf è l’invenzione strumentale di Sergio che in questo progetto è anche
+la principale risorsa su cui agire, istituendo un confronto ampio nei dintorni
+della stessa gamma timbrica [i registri di clarinetto nonché del flauto basso
+(suonati da Bittolo Bon) e quelli di tuba e trombone (suonati da Bucci)], nel
+tentativo di generare nuovi spazi sonori nell’affiancamento dell’ecatorf con
+gli strumenti da cui ha attinto la sua fisiologia (le ance e i bocchini del
+clarinetto contrabbasso, le chiavi, la campana e la coulisse di trombone e
+tuba), senza dimenticare combinazioni meno frequenti tra registri alti e bassi
+che si verificano quando Fedele si adopera su clarinetto contra alto, flauto,
+ottavino e rombo.<br>
+Benthos si sviluppa in 10 pezzi, è impostata nella chimica della libera
+interpretazione, dove sotto la patina di differenti dinamiche sonore (l’ecatorf
+a volte ‘pulsa’ come uno stantuffo, a volte ‘strappa’ o ‘mitraglia’) c’è spesso
+anche un ‘moto’ lineare, linee di comunicazione che impongono una
+revisione dello scenario timbrico, non esaustivo e consono all’apertura di una
+sostanza addirittura idiomatica: sotto questo punto di vista è da acclarare lo
+schema utilizzato per la Round Midnight di Monk, dove la melodia è
+riconoscibile ma inoltrata in una zona di sigilli scuri. Ma ciò che colpisce
+dopo approfondito ascolto è la bravura dei musicisti, la loro apertura al gesto,
+che è accettazione e consapevolezza dell’esperienza improvvisativa unica che
+si sta percorrendo. Un tour di gratifica erga omnes.
+</p>
+<p class="body-copy">
+<b>Ben Taffijn - <a
+href="https://www.nieuwenoten.nl/duo-psicogeografico-iskra-ecatorf-trio-benthos-cd-recensie/"
+target="_blank" rel="noopener">Neuwe Noten</a> (4 ottobre 2025):
+<button class="translation" type="button" data-translate="neuwenoten" hidden><ActionIcon name="language" /><span class="button-label">Traduzione</span></button></b><br>
+<span data-translation="neuwenoten" data-original="true" lang="nl">
+Het Ecatorf Trio specialiseert zich in lage klanken, van diverse instrumenten, dat blijkt al
+direct uit het titelstuk van ‘Benthos’, waarin we de drie musici op ingenieuze wijze een vrij
+duistere klankwereld horen creëren, maar spannend is het zonder meer. Bucci opent
+‘Mimesis e certamen’ met prachtige bewegingen op trombone. Dan volgen de twee
+rietblazers en ontstaat er wederom een boeiend geheel. Bijzonder van klank zijn de twee
+delen ‘Selve domestiche’: ‘Tropoi syringos aulesai’ en ‘Wild Whistle Tones’, de enige twee
+stukken waarin het hoog overheerst. We horen Fedele hier op een piccolo, Bittolo Bon op
+de altklarinet, respectievelijk de basfluit en Bucci op de tuba. Naast de nodige
+gecomponeerde stukken, waaronder een wel heel bijzondere versie van Thelonious
+Monks ‘Around Midnight’, bevat het album een drietal improvisaties. Mooi in die eerste is
+de constellatie van contra-altklarinet, basfluit en trombone. Als een scheepshoorn klinkt de
+tuba van Bucci aan het begin van ‘Il terzo suono’, een krachtige drone vormend. Verderop
+voegt Bittolo Bon zich erbij op basfluit, terwijl Fedele op fluit een vederlichte melodie
+speelt. En dan volgt, met afstand, de meest bijzondere versie van ‘Roud Midnight’ die u
+ooit hoorde! Fedele op zijn ecatorf, Bittolo Bon op de basklarinet en Bucci op trombone.
+Het laag maakt dit tot één van de meest weemoedige versies van deze klassieker. Een
+aanrader! Dat geldt overigens ook voor ‘Ruah’, een compositie van Fedele. Met name het
+zeer verstilde begin is prachtig. Verderop loopt de dynamiek op, samen met de ritmiek en
+de spanning.
+</span>
+<span data-translation="neuwenoten" data-original="false" lang="it">
+L’Ecatorf Trio è specializzato nei toni gravi, provenienti da vari strumenti,
+come è immediatamente evidente nel brano che dà il titolo a "Benthos", in
+cui sentiamo i tre musicisti creare ingegnosamente un paesaggio sonoro
+piuttosto cupo, ma certamente emozionante. Bucci apre "Mimesis e
+certamen" con splendidi movimenti al trombone. Poi seguono i due strumenti
+ad ancia, e ancora una volta emerge un insieme accattivante. I due
+movimenti di "Selve domestiche" sono particolarmente sonori: "Tropoi
+syringos aulesai" e "Wild Whistle Tones", gli unici due brani in cui
+predominano le note acute. Qui sentiamo Fedele all'ottavino, Bittolo Bon
+rispettivamente al clarinetto alto e al flauto basso, e Bucci alla tuba.
+Oltre ai brani composti, tra cui una versione molto speciale di "Around
+Midnight" di Thelonious Monk, l'album contiene tre improvvisazioni. La
+prima è splendidamente composta dalla combinazione di clarinetto contra
+alto, flauto basso e trombone. <br>
+La tuba di Bucci suona come la sirena di una
+nave all'inizio de "Il terzo suono", creando un potente bordone. Più avanti,
+Bittolo Bon si unisce al flauto basso, mentre Fedele suona una melodia
+leggera al flauto. E poi segue, di gran lunga, la versione più straordinaria di
+"Around Midnight" che abbiate mai sentito! Fedele all'ecatorf, Bittolo Bon
+al clarinetto basso e Bucci al trombone. Il basso rende questa una delle
+versioni più malinconiche di questo classico. Altamente raccomandato! Lo
+stesso vale per "Ruah", una composizione di Fedele. L'apertura molto
+tranquilla è particolarmente bella. Più avanti, la dinamica aumenta, insieme al
+ritmo e alla tensione.
+</span>
+</p>
+<p class="body-copy">
+<b>Patrick Bruneel - <a
+href="https://luminousdash.be/internationaal/ecatorf-trio-benthos-setola-di-maiale/"
+target="_blank" rel="noopener">Luminous Dash</a> (12 ottobre 2025):
+<button class="translation" type="button" data-translate="luminousdash" hidden><ActionIcon name="language" /><span class="button-label">Traduzione</span></button></b><br>
+<span data-translation="luminousdash" data-original="true" lang="nl">
+Francesco Bucci kennen we hier ten huize vooral van zijn band Ottone Pesante. Hij
+speelt er trombone, terwijl zijn kompanen trompet en drums spelen en qua genre noemen
+ze het zelf brassmetal. Blaasinstrumenten en metal dus, en het werkt, zeker live is de
+band overdonderend goed.<br>
+Bucci beperkt zich echter niet tot dit trio. Hij duikt in allerlei constellaties en
+samenwerkingen op in een heel divers muzikaal palet. Het Ecatorf Trio, genoemd naar de
+ecatorf die wordt bespeeld door Sergio Fedele. Het instrument is een uniek, door Fedele
+gemaakt instrument, deels contrabas maar met het mondstuk van een klarinet en nog wat
+andere veranderingen waardoor heel lage frequenties kunnen worden gehaald. Fedele
+bespeelt verder ook gewone klarinetten en fluiten, net als Piero Bittolo Bon. Bucci blaast
+dan weer de ziel uit zijn lijf met zijn vertrouwde trombone en tuba.
+Drie blaasinstrumenten dus die samen een wel heel bevreemdende klankenwereld
+oproepen op het debuut Benthos.<br>
+Het is uiteraard niet zo evident om een album te maken met alleen blaasinstrumenten,
+het boeiend en gevarieerd te houden en tevens niet het standaardpubliek aan te boren dat
+wel van een streepje jazz houdt, want dit is het geenszins. Het is improviseren en
+experimenteren met klanken en vooral ook met de stilte tussen de klanken.<br>
+Dat het trio heel wat in zijn mars heeft bewijzen ze met een zeer originele versie van de
+oerklassieker Round Midnight. Niet zo eenvoudig te coveren maar ze doen het wel en
+dat op een zeer eigenzinnige manier. Het is net die eigenzinnigheid die dit tot een mooi
+staaltje van interessante avant-garde maakt.
+</span>
+<span data-translation="luminousdash" data-original="false" lang="it">
+Conosciamo Francesco Bucci qui da noi principalmente per la sua band
+Ottone Pesante. Lui suona il trombone, mentre i suoi partner suonano
+tromba e batteria, e lo chiamano brass metal. Strumenti a fiato e metal, e
+funziona; la band è particolarmente impressionante dal vivo.<br>
+Bucci non si limita a questo trio, tuttavia. Si esibisce in ogni sorta di
+costellazioni e collaborazioni, spaziando in una tavolozza musicale molto
+varia. L'Ecatorf Trio, che prende il nome dall'ecatorf suonato da Sergio
+Fedele, è uno strumento unico realizzato da Fedele, in parte contrabbasso
+ma con un bocchino per clarinetto e alcune altre modifiche che consentono
+frequenze molto basse. Fedele suona anche clarinetti e flauti tradizionali,
+come Piero Bittolo Bon. Bucci, d'altra parte, dà voce alla sua anima con i
+suoi fidati trombone e tuba. Tre strumenti a fiato, quindi, che insieme evocano
+un paesaggio sonoro davvero insolito nell'album di debutto, Benthos. Certo,
+non è facile creare un album con soli strumenti a fiato, mantenerlo
+interessante e vario, ed evitare di attrarre il tipico pubblico che apprezza un
+tocco di jazz, perché non è affatto quello. Si tratta di improvvisare e
+sperimentare con i suoni, e soprattutto con il silenzio tra di essi. Il trio
+dimostra di avere molto da offrire con una versione estremamente originale
+del classico "Round Midnight". Non è una cover facile, ma ci riescono, e lo
+fanno in un modo davvero unico. È proprio questa idiosincrasia che rende
+questo brano un bellissimo esempio di avanguardia accattivante.
+</span>
+</p>
+<p class="body-copy">
+<b>Frans de Waard - <a
+href="https://www.vitalweekly.net/number-1500/"
+target="_blank" rel="noopener">Vital Weekly</a> (27 Settembre 2025):</b><br>
+…The other is the sophomore release of the Ecatorf Trio, featuring Sergio
+Fedele, Piero Bittolo Bon, and Francesco Bucci. This one delves even more
+into the lower regions, featuring, besides the ectomorf, a tuba in F, which is
+the smallest of the bass tubas, as well as several low clarinets. Again,
+excellent stuff with atmospheric work and some pyrotechnics thrown in for
+good measure. And I still want to try that ecatorf. See issue 1340 for more
+info on the instrument. (MDS)
+</p>
+<p class="body-copy">
+<b>Georges Tonla Briquet - <a
+href="https://www.jazzhalo.be/reviews/cdlpk7-reviews/various/setola-di-maiale-special-sergio-fedele/"
+target="_blank" rel="noopener">Jazz'Halo</a>:
+<button class="translation" type="button" data-translate="jazzhaloBenthos" hidden><ActionIcon name="language" /><span class="button-label">Traduzione</span></button></b><br>
+<span data-translation="jazzhaloBenthos" data-original="true" lang="nl">
+Drie recente releases op het snijpunt van avant-garde en improvisatie bij het Italiaanse
+label dat alsmaar verder grenzen durft te verleggen. Centrale figuur is Sergio Fedele. <br>
+Het trio haalde zijn naam bij het gelijknamig experimenteel windinstrument. Het grote
+voordeel hiervan is een breed gamma van lage tonen ergens tussen riet- en
+koperblaasinstrumenten. De heren (Sergio Fedele, Piero Bittolo Bon, Francesco Bucci)
+hanteren hun overig instrumentarium (klarinetten, fluiten, tuba, trombone) op zowel
+gekende als meer onorthodoxe wijze.<br>
+Zo horen we in openingstrack ‘Benthos’ industriële geluiden die lijken op drilboren,
+vertrekkende stoomboten en rollend materieel. De handleiding voor een traditioneel
+gebruik werd duidelijk achterwege gelaten. Het daaropvolgende duet tussen trombone en
+klarinet in ‘Mimesis e certamen’ klinkt alvast veel toegankelijker. Ook de zachte blaas- en
+windgeluiden van ‘Wild Whistle Tones’ zijn eerder laagdrempelig, althans in de context.
+Knap hoe ze de juxtapositie van hogere fluittonen en de lage registers van tuba uitwerken
+tot een zacht golvend geheel (‘Il terzo suono’). En probeer maar eens ‘Round Midnight’ te
+herkennen in hun versie.<br>
+Op de hoes wordt in detail vermeld wie wanneer welk instrument “bespeelt”. Een trip in
+een onderwereld waar stilte enkel doorbroken wordt door de laagst mogelijke bastonen.
+Helemaal naar de geest van Edgard Varèse die eveneens op zoek ging naar de meest
+extreme akoestische effecten.
+</span>
+<span data-translation="jazzhaloBenthos" data-original="false" lang="it">
+Tre recenti uscite all'incrocio tra avanguardia e improvvisazione dall'etichetta
+italiana che continua a spingersi oltre i confini. Sergio Fedele ne è il
+protagonista.<br>
+Il trio prende il nome dall'omonimo strumento a fiato sperimentale. Il suo
+grande vantaggio è un'ampia gamma di note gravi, a metà strada tra l'ancia e
+l'ottone. Il trio (Sergio Fedele, Piero Bittolo Bon, Francesco Bucci) utilizza gli
+altri strumenti (clarinetti, flauti, tuba, trombone) in modi sia familiari che
+inconsueti.<br>
+Nel brano di apertura, "Benthos", sentiamo suoni industriali che ricordano
+martelli pneumatici, battelli a vapore in partenza e materiale rotabile. Il
+manuale dell'uso tradizionale è stato chiaramente omesso. Il successivo
+duetto tra trombone e clarinetto in "Mimesis e certamen" suona molto più
+accessibile. Anche i morbidi suoni di fiati e ottoni di "Wild Whistle Tones"
+sono più accessibili, almeno nel contesto. È impressionante come venga
+sviluppata la giustapposizione dei toni più acuti del flauto con i registri più
+gravi della tuba in un insieme dolcemente ondulato ("Il terzo suono"). E
+provate a riconoscere "Round Midnight" nella loro versione.<br>
+Nella copertina si spiega chi suona quale strumento e quando. Un viaggio in
+un mondo sotterraneo dove il silenzio è rotto solo dalle note più basse
+possibili. Completamente nello spirito di Edgard Varèse, che ricercava anche
+gli effetti acustici più estremi.
+</span>
+</p>
+<p class="body-copy">
+<b> Nazim Comunale - <a href="https://www.blowupmagazine.com/prod/blow-up-330-novembre-2025.asp"
+target="_blank" rel="noopener">Blow Up #330</a> (Novembre 2025):</b><br>
+Avevamo già incontrato l’ecatorf in un disco in solo di Sergio Fedele: si tratta di uno
+subcontrabbasso, capace di scendere sotto l’ultima nota del pianoforte, attualmente
+esistente in un unico prototipo, presentato per la prima volta ad Angelica a Bologna nel
+2021. Via di mezzo tra legni (ancia e bocchino da clarinetto contrabbasso) e ottoni (suoni
+che fuoriescono tutti da campana, coulisse, valvole e chiavi), in metà dei brani si unisce a
+tuba o trombone (Francesco Bucci) e ai clarinetti (alto e basso) di Piero Bittolo Bon, anche
+al flauto basso. L’impasto timbrico degli strumenti, la scrittura, l’abilità nell’improvvisare
+rendono il disco un unicum, ben rappresentato dalla versione di Round Midnight di
+Thelonious Monk. Un bel viaggio nell’ombra e negli abissi, a un passo dal silenzio.
+</p>
+<p class="body-copy">
+<b>Vasco Viviani - <a href="https://www.thenewnoise.it/ecatorf-trio-benthos"
+target="_blank" rel="noopener">The New Noise</a> (17 Novembre 2025):</b><br>
+Benthos è un titolo che ci porta fin da subito nelle più grandi profondità marine, e
+in effetti il concetto di profondità è centrale in questo nuovo trio creato da Sergio
+Fedele, Piero Bittolo Bon e Francesco Bucci.<br>
+Il primo è l’inventore dell’ecatorf, lo strumento a fiato più grave del mondo, un
+aerofono ad ancia semplice e a tubo cilindrico. Lungi dall’essere una semplice
+dimostrazione di inventiva, lo strumento si cala in un trio assieme alle tube e ai
+tromboni di Francesco Bucci (che abbiamo conosciuto bene con gli Ottone
+Pesante), e ai clarinetti e al flauto basso di Piero Bittolo Bon (il cui curriculum su
+Discogs è sbalorditivo per l’enorme quantità di suono emesso tramite le sue
+ance).<br>
+A fuoriuscire dai loro polmoni sono scambi e brani che parlano direttamente al
+nostro stomaco, tagliando del tutto le connessioni con il nostro cervello. Del
+resto, a guidare da sempre è la vibrazione, e il trio riesce a giocarci,
+direzionandola e incassandola in giorni espressivi e incisivi.<br>
+Si gioca su finezze acute e lontane in “Wild Whistle Times”, ad esempio, dove
+fiati e fenditure prendono il sopravvento, mentre altrove il percorso di
+conoscenza reciproca è più esplicito e guardingo, classico, come nella prima
+delle tre improvvisazioni incluse in Benthos.<br>
+I tre sono letteralmente imbattibili quando sfruttano i toni bassi, come ne “Il
+Terzo Suono”, il centro del lavoro, dove sembrano trovare perfettamente le
+misure reciproche, andando sempre più in profondità. Ogni respiro in “Ruah” è
+un passo in più in un tunnel, quasi si stesse carotando il suolo, mentre nella
+seconda improvvisazione si valica l’Oriente con grida da b-movies.<br>
+La sensazione, durante l’ascolto, è quella di un percorso che sembra essere
+ancora all’inizio, un percorso dalle possibilità enormi. Benthos è stato uno
+sguardo al fondale, ma siamo certi che risalendo in superficie l’ondata sarà
+enorme e toccherà farci i conti seriamente.<br>
+Un disco che soddisferà amanti della sperimentazione, strumentisti, accademici,
+amanti dei fiati e dei limiti. Da ascoltare ad altissimo volume.
+</p>
+<p class="body-copy">
+<b>Jean-Michel Van Schouwburg - <a
+href="https://orynx.bandcamp.com"
+target="_blank" rel="noopener">Orynx</a>:
+<button class="translation" type="button" data-translate="VanOrynx" hidden><ActionIcon name="language" /><span class="button-label">Traduzione</span></button></b><br>
+<span data-translation="VanOrynx" data-original="true" lang="fr">
+Ce n’est pas la première fois que j’aborde un enregistrement avec cet instrument
+prototype, l’Ecatorf (cfr le Melancolie di Tifeo) . Il s’agit d’un hybride d’un instrument de
+souffle à anches avec une anche et une embouchure identique à la clarinette contrebasse
+et d’un instrument à vent type trombone trompette avec coulisse, pistons et pavillon.
+L'Ecatorf descend plus bas que la note la plus grave du piano (27,5 Hz) à la limite de
+l’audible (approx.16 Hz) tout en allant un poil plus grave que 11 Hz. C’est l’unique
+exemplaire existant et Sergio Fedele en est l’actuel spécialiste. Il s’est adjoint le
+clarinettiste Piero Bittolo Bon et le tromboniste – tubiste Francesco Bucci. Ci-dessous le
+détail : Sergio Fedele, ecatorf, contra alto clarinet, flute, piccolo, rhombus
+Piero Bittolo Bon, bass clarinet, alto clarinet, bass flute,
+Francesco Bucci : tuba in F, trombone<br>
+Fort heureusement, si cet extraordinaire instrument aux sonorités et capacités
+polymorphes est au centre de cet album, les trois musiciens jouent d’un large panorama
+sonore qui met très bien en valeur les spécificités de l’Ecatorf. Celui-ci intervint dans cinq
+morceaux sur dix dont une version aérienne de Round Midnight, la seule incursion dans
+l’univers du jazz per se de l’album. Ces cinq pièces totalisent 22 :67 soit la majorité du
+temps d’enregistrement. Benthos lui-même illustre parfaitement cette musique ultra-
+grave de notes tenues et de soubresauts – clapotis borborygmiques. Mimesis est un beau
+canon trombone – ecatorf autour d’un thème par-dessus lequel la clarinette alto joue en
+boucle spiralée alors que les deux autres dérivent vers le sonore.On trouve ici un
+remarquable choix de pièces élégamment calibrées et visitant différents types de
+paysages sonores comme les sifflements gazouillis de Wild Whistle Tones. Ou le trio fragile
+et concerté d'Improvvisazione 1 pour trombone clarinette basse et flute basse. Avec Il
+Terzo suono c'est au tour du tuba de tenir un drone grave planant allégé par les souffles
+intermittants des deux flûtes dont une basse. Cette idée est exploitée dans l'introduction à
+Round Midnight avec l'ecatorf, la clarinette basse et le trombone égrenant subtilement des
+éléments mélodiques de cette composition iconique de Thelonious Monk tout en flottant
+dans l'espace sonore. C'est sans doute une des versions la plus étonnamment cool de cet
+hymne à la nuit. Les permutations et métamorphoses de ce trio absolument atypique
+finissent par rendre l'entreprise fascinante. Bref, avec cet ecatorf trio, on entend des
+artistes donner le meilleur d'eux - mêmes dans un projet original qui sublime leurs talents
+individuels. Formidable...
+</span>
+<span data-translation="VanOrynx" data-original="false" lang="it">
+Non è la prima volta che parlo di questo strumento prototipo, l'Ecatorf (vedi Melancolie di
+Tifeo). È un ibrido tra uno strumento ad ancia, con ancia e bocchino identici a quelli del
+clarinetto contrabbasso, e uno strumento a tazza tipo trombone-tromba con coulisse,
+valvole e campana. L'Ecatorf scende sotto la nota più bassa del pianoforte (27,5 Hz) fino
+al limite dell'udibilità (circa 16 Hz), scendendo anche leggermente sotto gli 11 Hz. Questo
+è l'unico esemplare esistente e Sergio Fedele ne è l'attuale specialista.<br>
+A lui si sono uniti il clarinettista Piero Bittolo Bon e il trombonista/tubista Francesco Bucci.
+La formazione è la seguente: Sergio Fedele, ecatorf, clarinetto contra alto, flauto, ottavino,
+rombo; Piero Bittolo Bon, clarinetto basso, clarinetto alto, flauto basso; Francesco Bucci,
+tuba in Fa, trombone. Fortunatamente, sebbene questo straordinario strumento con i suoi
+suoni e le sue capacità polimorfiche sia centrale in questo album, i tre musicisti suonano
+un'ampia tavolozza sonora che mette in risalto magnificamente le caratteristiche uniche
+dell'ecatorf. È presente in cinque delle dieci tracce, inclusa una versione eterea di "Round
+Midnight", l'unica incursione dell'album nel regno del jazz in senso stretto.<br>
+Questi cinque brani totalizzano 22:67, rappresentando la maggior parte del tempo di
+registrazione. Lo stesso Benthos illustra perfettamente questa musica ultra-grave, fatta di
+note sostenute e improvvise esplosioni – increspature borborigmiche. Mimesis è un
+bellissimo canone per trombone ed ecatorf costruito attorno a un tema su cui il clarinetto
+alto suona in un loop a spirale, mentre gli altri due strumenti scivolano verso le sonorità
+gravi. Qui troviamo una notevole selezione di brani elegantemente calibrati che esplorano
+diversi tipi di paesaggi sonori, come i fischi gorgheggianti di Wild Whistle Tones, o il fragile
+e concertato trio di Improvvisazione 1 per trombone, clarinetto basso e flauto basso. Con Il
+Terzo suono, è il turno della tuba di sostenere un bordone basso e slanciato, alleggerito
+dai respiri intermittenti dei due flauti, uno dei quali è un basso.<br>
+Questa idea viene esplorata nell'introduzione di Round Midnight, con l'ecatorf, il clarinetto
+basso e il trombone che intrecciano sottilmente elementi melodici dell'iconica
+composizione di Thelonious Monk, fluttuando nello spazio sonoro. È senza dubbio una
+delle versioni più sorprendentemente belle di questo inno alla notte. Le permutazioni e le
+metamorfosi di questo trio assolutamente atipico rendono l'impresa affascinante. In breve,
+con questo ecatorf trio, sentiamo gli artisti dare il massimo in un progetto originale che
+esalta i loro talenti individuali. Fantastico...
+</span>
+</p>
+</div>
+</div>
+</div>
+</details>
+
+
+</section>
