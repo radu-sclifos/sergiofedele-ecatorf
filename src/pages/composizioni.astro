@@ -11,16 +11,21 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
 ---
 
 <BaseLayout title="Sergio Fedele – Composizioni e CD"
-    description="Le composizioni di Sergio Fedele: Ecatorf solo, Ecatorf Trio e PsicoGeografico Ensemble. Partiture, presentazioni, CD e recensioni.">
+            description="Le composizioni di Sergio Fedele: Ecatorf solo, Ecatorf Trio e PsicoGeografico Ensemble. Partiture, presentazioni, CD e recensioni.">
+
     <header class="compositions-hero">
-        <Image src={hero} widths={widths} sizes="100vw" alt="" format="webp" quality={90} priority />
-        <h1 class="page-title">Composizioni e CD</h1>
+        <Image src={hero} widths={widths} sizes="100vw" alt="" format="webp" quality={90} priority/>
+        <h1 class="page-title">
+            Composizioni e CD
+        </h1>
     </header>
+
     <div class="compositions">
-        <Solo />
-        <Trio />
-        <Psicogeografico />
+        <Solo/>
+        <Trio/>
+        <Psicogeografico/>
     </div>
+
 </BaseLayout>
 
 <script>
@@ -46,10 +51,12 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
                 update();
             });
         }
+
         function update() {
             for (const panel of panels) panel.hidden = selected[panel.dataset.panel!] !== panel.dataset.value;
             for (const button of buttons) button.setAttribute('aria-pressed', String(selected[button.dataset.select!] === button.dataset.value));
         }
+
         update();
 
         composition.querySelectorAll<HTMLButtonElement>('[data-translate]').forEach((button, translationIndex) => {
@@ -57,13 +64,17 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
             const texts = Array.from(composition.querySelectorAll<HTMLElement>('[data-translation]'))
                 .filter(text => text.dataset.translation === button.dataset.translate);
             let translated = false;
-            texts.forEach((text, textIndex) => { text.id = `composition-${index}-translation-${translationIndex}-${textIndex}`; });
+            texts.forEach((text, textIndex) => {
+                text.id = `composition-${index}-translation-${translationIndex}-${textIndex}`;
+            });
             button.setAttribute('aria-controls', texts.map(text => text.id).join(' '));
+
             function updateTranslation() {
                 for (const text of texts) text.hidden = (text.dataset.original === 'true') === translated;
                 button.setAttribute('aria-pressed', String(translated));
                 if (label) label.textContent = translated ? 'Originale' : 'Traduzione';
             }
+
             button.hidden = false;
             updateTranslation();
             button.addEventListener('click', () => {

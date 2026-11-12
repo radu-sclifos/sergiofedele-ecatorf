@@ -78,6 +78,28 @@
 .compositions .text-center { text-align: center; }
 .compositions .spirali-score-action { align-self: center; }
 .compositions .description { margin-top: 1.5rem; }
+.compositions .review + .review {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d8dee7;
+}
+.compositions .review-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+.compositions .review-heading:last-child { margin-bottom: 0; }
+.compositions .review-source {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    color: #061a40;
+    text-align: left;
+}
+.compositions .review-heading .translation { flex-shrink: 0; margin-left: 1rem; }
+.compositions .review > p:last-child { margin-bottom: 0; }
+.compositions .review + h4 { margin-top: 2rem; }
 .compositions p { text-align: justify; }
 .compositions a { color: #062e69; overflow-wrap: break-word; }
 .compositions .action {
@@ -132,6 +154,8 @@
 .compositions [hidden] { display: none !important; }
 
 @media (max-width: 48rem) {
+    .compositions .review-heading { display: block; }
+    .compositions .review-heading .translation { margin: 0.625rem 0 0; }
     .compositions { padding: 1.5rem 1.25rem 2.5rem; }
     .compositions summary { padding-left: 0.75rem; }
     .compositions .composition-content { padding: 1.25rem 0.75rem; }

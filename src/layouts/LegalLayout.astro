@@ -5,14 +5,14 @@ interface Props {
     title: string;
     description: string;
 }
-const { title, description } = Astro.props;
+const {title, description} = Astro.props;
 ---
 
 <BaseLayout title={`${title} – Sergio Fedele`} description={description} overlayNavbar={false}>
     <article class="legal-page body-copy" data-privacy-page>
         <h1 class="page-title">{title}</h1>
         <p class="updated">Ultimo aggiornamento: 12 novembre 2026</p>
-        <slot />
+        <slot/>
     </article>
 </BaseLayout>
 
@@ -23,18 +23,32 @@ const { title, description } = Astro.props;
         padding: 3rem 1.25rem 4rem;
         color: #1f344e;
     }
-    .updated { margin-top: 1rem; color: #536277; }
-    .legal-page :global(h2) { margin: 2rem 0 0.75rem; font-size: 1.5rem; }
-    .legal-page :global(a) { color: #002364; }
+
+    .updated {
+        margin-top: 1rem;
+        color: #536277;
+    }
+
+    .legal-page :global(h2) {
+        margin: 2rem 0 0.75rem;
+        font-size: 1.5rem;
+    }
+
+    .legal-page :global(a) {
+        color: #002364;
+    }
+
     .legal-page :global(a:focus), .legal-page :global(button:focus) {
         outline: 2px solid #062e69;
         outline-offset: 3px;
     }
+
     .legal-page :global(.draft-notice) {
         border-left: 3px solid #8798ae;
         padding: 0.875rem 1rem;
         background: #f1f4f8;
     }
+
     .legal-page :global(button) {
         padding: 0.625rem 0.875rem;
         border: 1px solid #8798ae;
@@ -44,14 +58,29 @@ const { title, description } = Astro.props;
         font: inherit;
         cursor: pointer;
     }
-    .legal-page :global(button:hover) { background: #dfe7f0; }
+
+    .legal-page :global(button:hover) {
+        background: #dfe7f0;
+    }
+
     .legal-page :global(th), .legal-page :global(td) {
         padding: 0.75rem;
         border: 1px solid #c7cfda;
         text-align: left;
         vertical-align: top;
     }
-    .legal-page :global(table) { width: 100%; border-collapse: collapse; }
-    .legal-page :global(.table-scroll) { overflow-x: auto; margin-bottom: 1rem; }
-    .legal-page :global(code) { overflow-wrap: break-word; }
+
+    .legal-page :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .legal-page :global(.table-scroll) {
+        overflow-x: auto;
+        margin-bottom: 1rem;
+    }
+
+    .legal-page :global(code) {
+        overflow-wrap: break-word;
+    }
 </style>

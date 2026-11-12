@@ -1,8 +1,11 @@
 import type { ImageMetadata } from 'astro';
 
-const images = import.meta.glob<ImageMetadata>('../assets/ecatorf/progettazione/*.webp', { eager: true, import: 'default' });
+const images = import.meta.glob<ImageMetadata>('../assets/ecatorf/progettazione/*.webp', {
+    eager: true,
+    import: 'default'
+});
 
-// Preserve every leaf of the original spreads, including blank and repeated pages.
+// Preserve every leaf of the original spreads (including blank and repeated pages)
 const sequence = [
     {
         "file": "0.webp",
@@ -110,7 +113,7 @@ const sequence = [
     }
 ];
 
-export const designPages = sequence.map(({ file, alt }) => ({
+export const designPages = sequence.map(({file, alt}) => ({
     src: images[`../assets/ecatorf/progettazione/${file}`],
     alt,
 }));
