@@ -1,0 +1,55 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Cookie" description="Cookie, memoria tecnica e preferenze per i video YouTube nel sito di Sergio Fedele.">
+    <p>Questa pagina descrive le memorie utilizzate dal sito e la scelta relativa al video YouTube.
+        Per titolare, contatti, diritti e altri trattamenti consulta l’<a href="/privacy/">informativa privacy</a>,
+        attualmente predisposta come bozza da verificare prima della pubblicazione.</p>
+
+    <h2>Cosa utilizziamo</h2>
+    <p>I cookie sono piccoli file memorizzati dal browser. Anche strumenti diversi, come il localStorage,
+        possono conservare informazioni sul dispositivo. Il codice del sito non imposta cookie propri:
+        usa una sola voce di localStorage per ricordare il consenso o il rifiuto a YouTube.</p>
+    <div class="table-scroll">
+        <table>
+            <caption>Memoria tecnica gestita dal sito</caption>
+            <thead><tr><th scope="col">Nome e tipo</th><th scope="col">Scopo</th><th scope="col">Durata</th></tr></thead>
+            <tbody><tr>
+                <td><code>ecatorf-cookie-consent</code><br/>localStorage</td>
+                <td>Scelta YouTube, versione dell’informativa tecnica, data della scelta e scadenza.
+                    Nessun identificativo personale viene generato o inviato al titolare da questo meccanismo.</td>
+                <td>Sei mesi dalla scelta. Alla scadenza la preferenza non viene più applicata
+                    e viene rimossa al successivo controllo del sito.</td>
+            </tr></tbody>
+        </table>
+    </div>
+    <p>Questa memoria è necessaria a rispettare la scelta e non richiede consenso per finalità di profilazione.
+        I font sono ospitati localmente; non sono integrati strumenti di analytics o marketing del titolare.</p>
+
+    <h2>YouTube: servizio facoltativo</h2>
+    <p>Prima dell’accettazione e dopo il rifiuto, il riquadro del video mostra soltanto testo e pulsanti locali.
+        Non contiene un player o un’anteprima remota e non invia richieste a YouTube.
+        Accettando autorizzi il caricamento del player dal dominio <code>youtube-nocookie.com</code>.</p>
+    <p>La modalità di privacy avanzata limita la personalizzazione descritta da Google, ma non significa
+        assenza di trattamento dei dati. Il player può ricevere dati tecnici e utilizzare cookie o
+        altre memorie in relazione al funzionamento del servizio e alle interazioni con il video.
+        Nomi, durata e utilizzo possono dipendere dalle funzionalità del player, dall’account Google e dalle impostazioni del browser:
+        consulta le <a href="https://policies.google.com/technologies/cookies?hl=it" rel="noreferrer">informazioni di Google sui cookie</a>
+        e la <a href="https://support.google.com/youtube/answer/171780?hl=it" rel="noreferrer">documentazione del player</a>.</p>
+
+    <h2>Come scegliere e cambiare idea</h2>
+    <p>Nel pannello puoi accettare YouTube oppure rifiutarlo. Chiudere il pannello iniziale con la X
+        o con il tasto Esc mantiene YouTube bloccato e memorizza il rifiuto. Scorrere la pagina o seguire
+        altri collegamenti non costituisce consenso. La navigazione resta disponibile in ogni caso.</p>
+    <p>Il pulsante Cookie in basso a sinistra e i collegamenti nel footer permettono di riaprire le preferenze.
+        Rifiutare dopo aver accettato rimuove il player dalla pagina e blocca i successivi caricamenti del servizio.
+        La revoca non cancella i dati già ricevuti da Google né eventuali cookie del fornitore:
+        per questi puoi usare le impostazioni del browser e del tuo account Google.</p>
+    <p>La scelta vale per questo browser e questa origine del sito; non si estende ad altri dispositivi o domini.
+        Viene richiesta nuovamente dopo sei mesi, se elimini la memoria del browser o se cambiano significativamente
+        i servizi e la relativa versione del consenso. Se il browser impedisce la memorizzazione,
+        la scelta vale solo nella pagina corrente. Se JavaScript è disattivato, il player resta bloccato;
+        rimane disponibile il collegamento per guardare il video direttamente su YouTube.</p>
+    <button type="button" data-cookie-settings hidden>Modifica le preferenze cookie</button>
+</LegalLayout>

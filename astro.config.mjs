@@ -5,9 +5,10 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     vite: {
         plugins: [{
-            name: 'photoswipe-compatible-spacing',
+            name: 'compatible-vendor-styles',
             transform(code, id) {
-                if (id.replaceAll('\\', '/').endsWith('/photoswipe/dist/photoswipe.css')) {
+                const file = id.replaceAll('\\', '/');
+                if (file.endsWith('/photoswipe/dist/photoswipe.css')) {
                     // Keep vendor spacing within the project's Chromium 79 CSS baseline
                     return code.replaceAll('margin-inline-start:', 'margin-left:');
                 }
