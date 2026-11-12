@@ -63,7 +63,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         const pageLabel = (index: number) => `${english() ? 'Pages' : 'Pagine'} ${index * 2 + 1}–${index * 2 + 2} ${english() ? 'of' : 'di'} ${spreads.length * 2}`;
 
         function showPair(index: number) {
-            current = (index + spreads.length) % spreads.length;
+            current = Math.max(0, Math.min(index, spreads.length - 1));
             spreads.forEach((spread, i) => {
                 spread.hidden = i !== current;
                 spread.setAttribute('aria-label', `${english() ? 'Enlarge pages' : 'Ingrandisci pagine'} ${i * 2 + 1}–${i * 2 + 2}`);
@@ -71,6 +71,8 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
             status.textContent = pageLabel(current);
             previous.setAttribute('aria-label', english() ? 'Previous pair' : 'Coppia precedente');
             next.setAttribute('aria-label', english() ? 'Next pair' : 'Coppia successiva');
+            previous.disabled = current === 0;
+            next.disabled = current === spreads.length - 1;
         }
 
         // Each PhotoSwipe slide is a complete original pair (fullscreen too)
@@ -92,6 +94,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         const lightbox = new PhotoSwipeLightbox({
             pswpModule: () => import('photoswipe'),
             mainClass: 'design-lightbox',
+            loop: false,
             showHideAnimationType: 'zoom',
             thumbSelector: '.spread-pages',
             padding: {top: 60, bottom: 24, left: 60, right: 60},
@@ -121,7 +124,11 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         lightbox.on('contentAppend', ({content}) => content.removePlaceholder());
         const setOpeningControls = (disabled: boolean) => {
             for (const arrow of lightbox.pswp?.element?.querySelectorAll<HTMLButtonElement>('.pswp__button--arrow') || []) {
-                arrow.disabled = disabled;
+                const pswp = lightbox.pswp!;
+                const atBoundary = arrow.classList.contains('pswp__button--arrow--prev')
+                    ? pswp.currIndex === 0
+                    : pswp.currIndex === pswp.getNumItems() - 1;
+                arrow.disabled = disabled || atBoundary;
             }
         };
         lightbox.on('openingAnimationStart', () => setOpeningControls(true));
@@ -252,6 +259,12 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         background: #061a40;
     }
 
+    .carousel-arrow:disabled, .carousel-arrow:disabled:hover {
+        background: rgba(6, 26, 64, 0.88);
+        opacity: 0.35;
+        cursor: default;
+    }
+
     .previous {
         left: 8px;
     }
@@ -308,6 +321,13 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         background: #061a40;
         border: 1px solid white;
         opacity: 1;
+    }
+
+    :global(.design-lightbox .pswp__button--arrow:disabled) {
+        background: rgba(6, 26, 64, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        opacity: 0.35;
+        cursor: default;
     }
 
     :global(.design-lightbox .pswp__button--arrow--prev) {
