@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+    wide?: boolean;
+}
+
+const { src, alt, wide = false } = Astro.props;
+const widths = (wide ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 800])
+    .filter(width => width < src.width).concat(src.width);
+---
+
+<div class:list={['cover-viewer', { 'cover-viewer-wide': wide }]} data-cover-viewer>
+    <a href={src.src} data-pswp-width={src.width} data-pswp-height={src.height}>
+        <Image src={src} alt={alt} class:list={['cd-cover', { 'cd-cover-wide': wide }]}
+            widths={widths} sizes={wide ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 48rem) 90vw, 480px'}
+            loading="lazy" />
+    </a>
+</div>
+
+<script>
+    import type PhotoSwipe from 'photoswipe';
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import 'photoswipe/style.css';
+
+    // Each wrapper is a separate one-image gallery, never a site-wide collection.
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '[data-cover-viewer]',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+        showHideAnimationType: 'zoom',
+        bgOpacity: 0.8,
+        bgClickAction: 'close',
+        imageClickAction: 'zoom',
+        tapAction(this: PhotoSwipe, _point, event) {
+            if ((event.target as Element).classList.contains('pswp__img')) {
+                this.element?.classList.toggle('pswp--ui-visible');
+            } else {
+                this.close();
+            }
+        },
+        loop: false,
+        counter: false,
+        arrowPrev: false,
+        arrowNext: false,
+        closeTitle: 'Chiudi',
+        zoomTitle: 'Ingrandisci',
+        errorMsg: 'Impossibile caricare la copertina.',
+    });
+    lightbox.init();
+</script>
+
+<style>
+    .cover-viewer { width: 100%; max-width: 30rem; margin: 0 auto; }
+    .cover-viewer-wide { max-width: none; }
+    .cover-viewer a { display: block; cursor: zoom-in; }
+</style>

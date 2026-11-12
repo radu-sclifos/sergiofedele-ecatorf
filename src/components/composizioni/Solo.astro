@@ -1,0 +1,681 @@
+---
+import CoverImage from './CoverImage.astro';
+import ActionIcon from './ActionIcon.astro';
+
+const images = import.meta.glob<ImageMetadata>('../../assets/composizioni/*.webp', {eager: true, import: 'default'});
+const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => [path.slice(path.lastIndexOf('/') + 1), image]));
+---
+
+<section aria-labelledby="solo-title">
+    <h2 id="solo-title">Ecatorf solo</h2>
+
+    <details class="composition">
+        <summary>
+            <h3>Le Melancolie di Tifeo (2021)</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <button class="action" type="button" disabled>
+                        <ActionIcon name="score"/>
+                        <span class="button-label">Partitura</span>
+                    </button>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="action" type="button" data-select="tifeo" data-value="1" hidden>
+                        <ActionIcon name="presentation"/>
+                        <span class="button-label">Presentazione</span>
+                    </button>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="action" type="button" data-select="tifeo" data-value="2" hidden>
+                        <ActionIcon name="review"/>
+                        <span class="button-label">Recensioni</span>
+                    </button>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="action" type="button" data-select="tifeo" data-value="3" hidden>
+                        <ActionIcon name="cd"/>
+                        <span class="button-label">CD</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="description body-copy" data-panel="tifeo" data-value="1">
+                <p class="body-copy">
+                    <b>Spirali. Tre studi per Ecatorf</b><br>
+                    Le Melancolie sono la prima vera e propria composizione per ecatorf. Un antecedente
+                    è rappresentato da Spirali. Tre studi per Ecatorf, una composizione su rotolo.<br>
+                    Scritta nel 2010, ben undici anni prima che lo strumento fosse realizzato, la
+                    composizione si basava sul progetto dell’ecatorf allora già completato, ma
+                    certamente non poteva essere del tutto consapevole di tutte le risorse e i limiti
+                    dello strumento. Essa venne esposta in un paio di mostre personali dal titolo
+                    Partiture per Ecate. Si trattava di una raccolta di paraventi – dei telai in legno
+                    racchiudevano su entrambi i lati degli inchiostri su carta, eseguiti con pennelli
+                    cinesi da calligrafia – di varie dimensioni, dedicati alla dea lunare: essi
+                    avrebbero dovuto rappresentare il contesto, una specie di labirinto nel cuore del
+                    quale avrebbe dovuto trovarsi lo strumento, l’ecatorf appunto. Ma i paraventi furono
+                    allestiti ed esposti mentre dello strumento, nel 2010, non esisteva che una valvola
+                    mal funzionante. Così ci furono le due mostre ma prive del loro cuore sonoro.
+                </p>
+                <p class="body-copy">
+                    <b>Tifeo</b><br>
+                    Tifeo, il figlio di Gea e di Tartaro, il gigante policefalo e ofiomorfo. Il Tifeo
+                    dai molteplici inauditi suoni “solo agli dei decifrabili” di cui canta Esiodo,
+                    “suoni che destano meraviglia”. Il Tifeo della Tifonia: i primi due canti che
+                    introducono le monumentali Dionisiache di Nonno di Panopoli – ingannato da Zeus
+                    attraverso gli ammalianti suoni della siringa di Cadmo. Mostruoso gigante che si
+                    trasforma, nell’ebbro languore della musica, in un giovinetto acerbo e
+                    innamorato.<br>
+                    Tifeo, l’ultimo grande antagonista di Zeus e degli dei olimpici. L’ultimo alfiere
+                    delle divinità ancestrali, dei Giganti: «the personification of the elemental
+                    forces», come dice West nel suo commento alla Teogonia. Quanto al retroterra
+                    sociale: «a livello politico i Giganti sono i barbari, in ambito religioso sono gli
+                    eretici per i Cristiani, e gli stessi Cristiani per i pagani.» Così Daria Gigli
+                    Piccardi. E risulta rivelativa, a questo riguardo, l’etimologia dall’accadico
+                    rintracciata da Giovanni Semerano: «Τυφωεύς, Τυφώς […] La base originaria del nome
+                    corrisponde ad accad. tebûtum, tību (insurrezione, ‘Aufkommen: v. Wind, Unwetter, v.
+                    Himmelsrichtungen; Aufstehen, Angriff’) tabā’u (insorgere, ‘sich erheben,
+                    aufstehen’) » Il seguito della voce scopre un altro aspetto di Tifeo che ci
+                    interessa, la tellurica profondità (verrà seppellito da Zeus sotto l’Etna, che da
+                    allora erutterà ogni tanto fiamme tifoniche…): «cfr. tebû, ass. tabā’u, tabā’um
+                    (sprofondare, ‘untertauchen; in die Tiefe gehen: Strömung’).»<br>
+                    Tifeo è Dio, uomo e animale insieme, come i Titani in generale rappresenta: «il
+                    tempo primordiale in cui ancora dei e uomini sedevano alla stessa tavola e non si
+                    era ancora prodotta quella separazione fra sfera umana e divina che troverà il suo
+                    naturale compimento nelle nozze di Cadmo e Armonia.»
+                </p>
+                <p class="body-copy">
+                    <b>Le Melancolie di Tifeo</b><br>
+                    Le Melancolie di Tifeo sono state composte nel 2021, dopo pochi mesi dalla fine
+                    della costruzione dello strumento, su invito del 31° Festival Internazionale di
+                    Musica “Angelica”.<br>
+                    La prima presentazione pubblica dell’ecatorf ha così coinciso con la prima delle
+                    Melancolie. Questo fatto aiuterà a capire la natura della composizione.<br>
+                </p>
+                <ol>
+                    <li data-number="I">Dal soffio al suono</li>
+                    <li data-number="II">Di Gamma, di Beta e un frustulo di Alfa</li>
+                    <li data-number="III">2/3, 3/4 (ierogamie subbasse e subcontra)</li>
+                    <li data-number="IV">Free Slap</li>
+                    <li data-number="Va">Melancolie di Tifeo prime</li>
+                    <li data-number="Vb">Melancolie di Tifeo seconde</li>
+                </ol>
+                <p class="body-copy">
+                    Ecco la descrizione di ogni singola sezione.
+                </p>
+                <p class="body-copy">
+                    <b>Dal soffio al suono</b><br>
+                    Dal soffio al suono è, come dice il titolo, un percorso che potremmo definire di
+                    iniziazione al suono. L’aria insufflata nei lunghi tubi dello strumento (la parte
+                    più estesa supera, a coulisse aperta, i sei metri e mezzo) si trasforma gradualmente
+                    sino ad approdare, alla fine, all’onda sonora vera e propria.<br>
+                    D’altra parte esso si presenta come uno studio sui suoni afoni: con questa
+                    espressione contraddittoria e paradossale si indicano, in realtà, vari tipi di
+                    insufflazione (si può leggerne la nomenclatura nella legenda della partitura) non
+                    generanti un’onda sonora vera e propria. Dalle campane escono dei suoni di varia
+                    natura.<br>
+                    La sezione inizia con un soffio esterno al bocchino, che colpendo l’interstizio che
+                    separa il bordo di quest’ultimo dall’ancia provoca un leggero sibilo. Assumendo poi
+                    un’imboccatura ortodossa – e percorrendo i vari registri dello strumento – si
+                    emettono soffi articolati in varia modalità di emissione; sino a veicolare
+                    inspirazione ed espirazione nello strumento stesso. Come se lo strumento respirasse.<br>
+                    Da qui cominciano ad emergere i primi suoni, ancora soffusi – suoni ombra – ancora
+                    ovattatati e circonfusi dal soffio. Infine ecco comparire i suoni veri e propri –
+                    come le prime sillabe decifrabili di un infante ‒.
+                </p>
+                <p class="body-copy">
+                    <b>Di Gamma, di Beta e un frustulo di Alfa</b><br>
+                    Il titolo si riferisce alle onde cerebrali. I suoni fondamentali dell’ecatorf
+                    corrispondono proprio alle onde gamma (γ) e alle onde beta (β), toccando anche,
+                    negli estremi gravi, le alfa (α).<br>
+                    Le onde gamma, che a livello neuronale presiedono al collegamento del tempo con lo
+                    spazio e alle funzioni della memoria e della coscienza, indicano le frequenze che,
+                    pressappoco, vanno dai 60 ai 34 herz. Esse corrispondono all’ottava di fondamentali
+                    “più acuta” dell’ecatorf: ossia dal DO¹ a 65.4 hz. al DO⁰ a 32.7.<br>
+                    Le onde beta, predisposte allo stato di attenzione e all’attività cognitiva vanno
+                    (sempre orientativamente) dai 33 ai 13 hz. Nell’ecatorf si tratta dei fondamentali
+                    che vanno dal succitato DO⁰ a 32.7 al LA -¹ a 13.7 hz.<br>
+                    Infine le onde alfa corrispondono allo stato di dormiveglia o meditazione leggera e
+                    vanno dai 12 hz. circa ai 7 hz. circa. L’ultima nota attualmente dell’ecatorf è il
+                    LAb-¹ a 12.9 hz.; ma, a breve, è previsto l’ampliamento della sua estensione di tre
+                    semitoni aggiuntivi: arrivando al FA-¹ a 10.9 hz.<br>
+                    La sezione si snoda nell’esposizione della gamma completa dei fondamentali dello
+                    strumento (2 ottave e una terza), con articolazioni e glissandi ascendenti e
+                    discendenti. Un particolare rilievo hanno le escursioni dinamiche. La
+                    differenziazione spaziale del suono è esaltata nell’ecatorf dalle 3 campane. Esse
+                    sono posizionate in tre luoghi distinti, la loro conformazione – oltre che la
+                    differente altezza del suono dei diversi registri a cui sono preposte – è anch’essa
+                    diversa così da donare tre diversi timbri.<br>
+                    Questa caratteristica – unica tra i fiati – si può enfatizzare grazie proprio alla
+                    dinamica. Il mutamento timbrico ottenuto attraverso le escursioni di intensità è
+                    nell’ecatorf – parliamo soprattutto dei fondamentali – notevolissimo.<br>
+                    Un altro procedimento esaltante la spazialità del suono è l’effetto eco. Questo si
+                    può ottenere combinando l’escursione dinamica con il glissando di coulisse. Un altro
+                    procedimento virtuosistico dell’effetto eco è l’escursione dinamica combinata al
+                    glissando di rotore (di cui parleremo, per un altro tipo di effetto, anche più
+                    oltre).<br>
+                </p>
+                <p class="body-copy">
+                    <b>2/3, 3/4 (ierogamie subbasse e subcontra)</b><br>
+                    La sezione è divisa in tre parti ed è uno studio sugli intervalli di quinta e di
+                    quarta dello strumento. La stessa struttura dell’ecatorf combina nei suoi snodi
+                    essenziali: coulisse chiusa – coulisse tutta aperta, passaggi di valvola,
+                    dodicesime; un intersecarsi di quinte e di quarte.<br>
+                    Così ecco svilupparsi nella prima parte un tracciato che è nello stesso tempo un
+                    viaggio di discesa agli inferi subcontrabassi dello strumento – attraverso le
+                    diverse 5ᵉ (e una 4ᵃ finale) – e una risalita ai fondamentali più alti – attraverso
+                    4ᵉ e 5ᵉ ‒. Il percorso viene eseguito tre volte con variazioni: dinamiche,
+                    timbriche, ritmiche, agogiche.<br>
+                    Nella parte centrale, ai fondamentali si alternano gli armonici di 12ᵃ. Le
+                    dodicesime – armonico privilegiato dei tubi cilindrici ad ancia semplice come il
+                    clarinetto – non sono altro che quinte spostate di un ottava.<br>
+                    La parte finale riprende il “tema” ripetuto due volte, con l’inizio della terza
+                    tronco. Anche qui con variazioni.<br>
+                    Il termine ierogamia: matrimonio sacro, allude – non senza una pacata ironia –
+                    all’aura di cosmica sacralità che, dai pitagorici a Keplero (e oltre), ha spesso
+                    contraddistinto l’intervallo di quinta e quello (inverso e complementare
+                    nell’ottava) di quarta. Ma pur con questa leggera ironia di cui dicevamo, si tratta
+                    di un omaggio a questo intervallo fondante la tonalità e su cui tanto si elucubrò in
+                    passato. L’abuso e la scontatezza di questi intervalli a cui il nostro orecchio è
+                    assuefatto, è contraddetto dalle inusuali frequenze a cui è condotto l’ascolto.
+                    Quinte e quarte sono la conferma del conosciuto che affiora dallo sconosciuto
+                    percettivo degli infrabassi.<br>
+                </p>
+                <p class="body-copy">
+                    <b>Free Slap</b><br>
+                    Lo slap tongue è una tecnica che dagli archi (contrabbassi sopra tutti) è approdata
+                    ai fiati – alle ance semplici: clarinetti e sassofoni – a cominciare dagli anni ’20
+                    e ’30 del Novecento, nelle inesauste sperimentazioni espressive del jazz delle
+                    origini. Stomp Evans, ad esempio, sassofonista contralto, non era un grande
+                    improvvisatore ma è da ricordare come tra i primi riconosciuti virtuosi di questa
+                    tecnica.<br>
+                    Lo slap consiste in un colpo di lingua sull’ancia, uno schiocco dove prevale
+                    l’elemento percussivo e ritmico su quello vibratorio e propriamente sonoro, in
+                    realtà in tal modo si blocca ‒ si stoppa ‒ la vibrazione dell’ancia.<br>
+                    Allo slap, in questa breve sezione, si aggiunge spesso un breve glissando con l’uso
+                    dei portavoce, in tal modo al suono percussivo si aggiunge un lieve fischio o
+                    leggero ululato degli armonici.<br>
+                    ‒ Con Free Slap ‒ che è un ludico breve intermezzo, si conclude la prima parte della
+                    composizione, divisa da una pausa ‒ lunga a piacere ‒ dalla seconda e ultima che
+                    comprende Melancolie prime e seconde.<br>
+                </p>
+                <p class="body-copy">
+                    <b>Melancolie di Tifeo prime</b><br>
+                    Una premessa organologica. Ricordiamo che lo strumento è a bocchino e ad ancia, non
+                    a tazza come negli ottoni, e l’ottenimento degli armonici è coadiuvato dai portavoce
+                    come nei legni. L’ecatorf possiede ben quattro portavoce necessari a produrre gli
+                    armonici nei vari registri: secondo i vari percorsi organati dalle valvole e in base
+                    alle diverse escursioni della coulisse. Questa esuberanza, per così dire, di
+                    portavoce consente di ottenere non solo le 12ᵉ, ma anche le 17ᵉ, in una gamma –
+                    ordinaria – di raccordo completa a partire dai fondamentali, inedita per uno
+                    strumento a fiato: ben 4 ottave e una quinta giusta. Oltre a questi armonici è
+                    possibile ottenerne altri più acuti – che oltrepassano l’estensione ordinaria –
+                    specialmente le 21ᵉ. Sono inoltre possibili variazioni timbriche e microtoniche con
+                    l’uso combinato e alternato dei suddetti portavoce.<br>
+                    Veniamo ora al commento della sezione.<br>
+                    Melancolie di Tifeo prime è una meditazione sul suono e con tale spirito deve essere
+                    eseguita.<br>
+                    Un uso non esclusivo ma calcolato della respirazione continua o circolare (come
+                    viene comunemente anche se forse impropriamente definita), è di grande aiuto in
+                    questo caso, poiché consente di non spezzare il raccoglimento interiore sul suono e
+                    le sue variazioni.<br>
+                    Melancolie prime esplora le risorse multifoniche dello strumento. Dal fondamentale
+                    sgorga l’armonico e da quest’ultimo, che funge ora da pedale, fluttuano a loro volta
+                    uno o più armonici, dando vita a bicordi, tricordi, tetracordi… un esercizio di
+                    micropolifonia eterea.<br>
+                    L’ampia gamma dei fondamentali a cui sempre si ritorna – sprofondando in un grembo
+                    materno o approdando a un porto sicuro – è immaginata come un forno alchemico –
+                    l’Athanor – da cui sgorgano come metalli nobili o riforgiati le lame degli armonici.<br>
+                </p>
+                <p class="body-copy">
+                    <b>Melancolie di Tifeo seconde</b><br>
+                    Nelle Melancolie seconde si affrontano un altro genere di multifonici che presentano
+                    un impasto timbrico diverso dal precedente; essi comprendono: suoni differenziali,
+                    suoni rotti, battimenti e infrasuoni di combinazione.<br>
+                    Chi conosce i multifonici prodotti dai legni sa che ne esistono di vari tipi. Essi
+                    rappresentano uno dei tanti preziosi risultati della ricerca di nuovi suoni acustici
+                    sviluppata nella seconda metà del Novecento nell’ambito degli strumenti a fiato
+                    tradizionali.<br>
+                    Il multifonico è in realtà un paradosso. Si tratta di un accordo, ossia di una
+                    polifonia, prodotta da uno strumento omofono. Naturalmente, essendo prodotto da
+                    un’unica canna, tale accordo avrà delle caratteristiche peculiari che lo
+                    distingueranno da quello di uno strumento polifonico, come, restando tra i fiati,
+                    può esserlo una cornamusa, la quale è dotata di più canne indipendenti.<br>
+                    Nel multifonico si mettono in evidenza il fondamentale e uno o più armonici. Oppure
+                    un armonico insieme a uno o più armonici più acuti. Si possono distinguere per
+                    comodità due tipi estremi di multifonici. Non entriamo qui nel merito della natura
+                    intervallare di tale accordi. Il primo presenta un accordo nitido – quasi da
+                    strumento polifonico – dove sono sufficientemente leggibili i singoli suoni. Il
+                    secondo accordo invece presenta un ruvido impasto timbrico – quasi un cluster – dove
+                    sono distinguibili i vari suoni solo attraverso uno spettrogramma. Tra queste due
+                    categorie estreme esistono innumerevoli possibilità intermedie.<br>
+                    Mentre nelle Melancolie prime prevale il primo tipo, in questo studio prevale il
+                    secondo.<br>
+                    L’enfatizzazione di questi suoni viene portata all’estremo dal glissando di coulisse
+                    combinato con il glissando di rotore il quale crea, questa volta, un vero e proprio
+                    cluster.<br>
+                    A questi due tipi di multifonico si aggiungono acutissimi, frullati e un terzo tipo
+                    di multifonico, quello prodotto inserendo la voce (con più modalità). Nella legenda
+                    della partitura si potranno leggere i vari procedimenti adottati.<br>
+                </p>
+            </div>
+
+            <div class="description body-copy" data-panel="tifeo" data-value="2">
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source"><b>One the best live albums 2022: <a
+                                href="/partiture/TNYCJR2023.pdf" target="_blank" rel="noopener">The New York City Jazz
+                            Record</a>; January 2023, p. 23</b></p>
+                    </header>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source"><b>Daniel Barbiero - <a
+                                href="https://avantmusicnews.com/2022/07/21/amn-reviews-sergio-fedele-le-melancholie-di-tifeo-setola-di-maiale-sm4400/"
+                                target="_blank" rel="noopener">Avant Music News</a> (21 Luglio 2022):</b>
+                        </p>
+                        <button class="translation" type="button" data-translate="avantmusic" hidden>
+                            <ActionIcon name="language"/>
+                            <span class="button-label">Traduzione</span>
+                        </button>
+                    </header>
+                    <p>
+                        <span data-translation="avantmusic" data-original="true" lang="en">
+                            "Sergio Fedele’s Le Melancholie di Tifeo is a unique work for an equally unique
+                            instrument. Taking its inspiration from the mythical figure of Typhon, the gigantic,
+                            monstrous, and half-human offspring of Earth and Tartarus, Fedele’s six part suite
+                            is an exploration of the sonic range made possible by the Ecatorf, a triple-belled
+                            hybrid instrument of his own invention. Fedele describes the Ecatorf as a slide reed
+                            contrabass instrument; it combines a trombone slide and tubing and valves from brass
+                            instruments with a soprano clarinet mouthpiece. Like Typhon, whom Hesiod described
+                            as emitting sounds only the gods could understand, the Ecatorf, with its unorthodox
+                            range and timbres, intensified by Fedele’s focused use of a variety of extended
+                            techniques, creates sounds seemingly beyond ordinary comprehension."
+                        </span>
+                        <span data-translation="avantmusic" data-original="false" lang="it">
+                            "Le Melancolie di Tifeo di Sergio Fedele è un'opera unica per uno strumento altrettanto
+                            unico. Prendendo ispirazione dalla mitica figura di Tifone, la gigantesca, mostruosa e
+                            mezza umana progenie della Terra e del Tartaro, la suite in sei parti di Fedele è
+                            un'esplorazione della gamma sonora resa possibile dall'Ecatorf, uno strumento ibrido a
+                            tripla campana di sua invenzione.
+                            Fedele descrive l'Ecatorf come uno strumento contrabbasso ad ancia slide; combina
+                            insieme alla coulisse del trombone a tiro, le valvole di alcuni ottoni e il bocchino del
+                            clarinetto [soprano]. Come Tifone, del quale, dice Esiodo, solo gli dei potevano capire i
+                            suoni, l'Ecatorf, con la sua gamma e i suoi timbri non ortodossi, intensificati dall'uso mirato
+                            di Fedele di una ampia varietà di tecniche, crea suoni apparentemente al di là della
+                            comprensione ordinaria."
+                        </span>
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source">
+                            <b>Ettore Garzia - <a
+                                    href="https://www.percorsimusicali.eu/2022/07/23/futuro-presente-passato/"
+                                    target="_blank" rel="noopener">Percorsi Musicali</a> (23 Luglio 2022):</b>
+                        </p>
+                    </header>
+                    <p>
+                        "Sergio Fedele non è certo un tipo che si incunea nell’ordinarietà di un percorso
+                        artistico. Lo dimostra l’Ecatorf, uno strumento da lui costruito, che da undici anni
+                        imperversa nella sua ricerca. L’Ecatorf è composto da un’imboccatura che, per
+                        bocchino utilizzato e canna cilindrica, si riconduce al clarinetto soprano, mentre
+                        la slitta dello strumento è quella di un trombone posto però in orizzontale; la
+                        campana e le valvole fanno pensare anche agli altri strumenti ad ottone disponibili
+                        sul mercato. Fedele lo suona seduto e aziona le braccia per far scorrere la slitta e
+                        movimentare le chiavi esterne, ottenendo un’estensione di registro di quattro ottave
+                        e mezzo, superiore a quella di un clarinetto contrabbasso: a livello sonoro ciò che
+                        ne deriva è un fantastico gigante che è in grado di emettere sub-armoniche profonde
+                        e caratterizzate, con punteggiature che sembrano riprodurre la dinamica di partenza
+                        dell’elica di un motore. L’eccentrica nomenclatura dello strumento deriva dalla
+                        contrazione tra Ecate e Orfeo, due soggetti della mitologia greca che santificano
+                        l’incrocio e il mistero: la fantasia mitologica è applicabile anche alle sue
+                        esibizioni, cosa che è regolarmente accaduta con Le Melancolie di Tifeo quando
+                        Fedele ha presentato e suonato un set di circa 25 minuti al festival di Angelica lo
+                        scorso anno; superando l’impostazione storica che vede quel potente mostro
+                        arruolarsi in battaglie cruente e decisive per la sua esistenza contro la signoria
+                        degli Dei, Fedele mette in movimento un sound che è espressione di un lamento
+                        circoscritto, di una spocchioso essere in stand by rispetto agli eventi, una
+                        tessitura musicale che valorizza le caratteristiche tecniche dello strumento e
+                        riesce persino a farci pensare a linee melodiche che replicherebbero sentimenti. Un
+                        corposo libretto scritto di pugno da Fedele accompagna il CD e coglie molti aspetti
+                        della sua ricerca, tra i quali vi invito a porre attenzione sulle tecniche usate per
+                        suonare l’Ecatorf, dai free slaps profusi nella prima parte dell’esibizione di
+                        Angelica e che mutuano la tecnica originata da Stomp Evans sullo slap tongue, fino
+                        ad arrivare alla specificazione di una multifonia che produce impasti differenziati
+                        (Fedele parla di suoni rotti, battimenti e infrasuoni di combinazione secondo la
+                        classificazione di Reginal Smith Brindle)."
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source"><b>Jean-Michel Van Schouwburg - <a
+                                href="https://orynx-improvandsounds.blogspot.com/2022/08/rudi-mahall-olaf-rupp-jan-roder-sergio.html"
+                                target="_blank" rel="noopener">Orynx-improv'andsounds</a>
+                            (12 Agosto 2022):</b>
+                        </p>
+                        <button class="translation" type="button" data-translate="ornyx" hidden>
+                            <ActionIcon name="language"/>
+                            <span class="button-label">Traduzione</span>
+                        </button>
+                    </header>
+                    <p>
+                        <span data-translation="ornyx" data-original="true" lang="fr">
+                            "Réalisées avec l’aide du Centro di Ricerca Musicale Angelica de Bologne, les
+                            Melancolie
+                            di Tifeo mettent en scène et en sons un instrument monstrueux et hybride, l’Ecatorf
+                            pour
+                            lequel Sergio Fedele s’est mis à écrire des compositions avant que l’instrument soit
+                            finalement construit. Disposé sur une armature de soutien, l’Ecatorf est un
+                            instrument de
+                            souffle à anche avec plusieurs tuyaux et trois pavillons qui a été conçu pour en
+                            métamorphoser les sons, graves en général, et en exprimer des nuances sonores et des
+                            effets de timbre - glissandi – harmoniques – bourdonnements - etc …. Le CD contient
+                            un
+                            livret très explicatif en italien qui s’adresse à ceux qui ont des solides notions
+                            d’organologie et de musicologie. Il y a aussi toute une mythologie qui s’inscrit
+                            dans ce
+                            projet, un univers poétique et sémantique original. Bien que j’ai acquis une
+                            connaissance
+                            approfondie de l’italien, ce serait tout un travail pour moi d’essayer de traduire
+                            et de
+                            décortiquer le contenu des notes fournies par le compositeur instrumentiste, Sergio
+                            Fedele. Pragmatiquement , je me réfère à ce qui sort de mes haut – parleur, avec la
+                            remarque que la copie de CD (ou CDr ?) reçue ne fonctionnait pas sur mes appareils.
+                            Mais, rassurez-vous, le son est tout-à-fait convenable via mon IBook Air et ses «
+                            speakers
+                            ». Et donc j’ai écouté cette musique avec grand plaisir pour la qualité sonore de la
+                            musique, la précision du jeu et son excellente originalité. Avec un tel instrument,
+                            impossible de jouer « vite », car il faut contrôler l’émission du son dans la
+                            colonne d’air
+                            par chacun des différents tubes et pavillons avec les mécanismes. Donc il s’agit
+                            d’une
+                            musique « lente » où l’auditeur prend son temps pour écouter ces sonorités se
+                            transformer, glisser, grasseyer, siffler, gronder, cracher, trembler et n’en rater
+                            aucune
+                            nuance. Comme j’en ai une vision photographique, je ne réalise pas bien comment cela
+                            fonctionne. Mais une chose est certaine, cela fonctionne merveilleusement pour
+                            produire
+                            de curieux timbres avec une précision étonnante et des techniques diversifiées
+                            basées
+                            essentiellement sur un contrôle minutieux du souffle, en utilisant les principes
+                            sonores de
+                            base d’un instrument de souffle à tubes tel qu’on le connaît depuis la nuit des
+                            temps.
+                            Qualité au niveau des compositions et de leur complémentarité. Absolument unique en
+                            son genre et follement audacieux. Au moins, un artiste créatif qui ne s’inscrit dans
+                            aucune
+                            logique – école – tendance – sub-scène x , y ou z, mais nous fait entendre quelque
+                            chose
+                            de vraiment inouï et facétieux produit de son imagination et de son imaginaire.
+                            L’enregistrement a été réalisé à Angelica et produit par l’infatigable Stefano
+                            Giust, le
+                            responsable du label Setola di Maiale, l’étiquette numéro un des musiques
+                            expérimentales – free-jazz – improvisations en Italie."
+                        </span>
+                        <span data-translation="ornyx" data-original="false" lang="it">
+                            "Prodotta con l'aiuto del Centro di Ricerca Musicale Angelica di Bologna, le Melancolie di Tifeo mette in
+                            scena e in suono uno strumento mostruoso e ibrido, l'Ecatorf per il quale Sergio Fedele iniziò a scrivere
+                            composizioni prima che lo strumento fosse alla fine costruito. Disposto su un telaio di supporto, l'Ecatorf è
+                            uno strumento ad ancia con diverse canne e tre padiglioni che è stato progettato per metamorfosare i
+                            suoni, bassi in generale, ed esprimere sfumature sonore ed effetti timbrici - glissandi - armonici - ronzii -
+                            ecc. .... Il CD contiene un libretto molto esplicativo in italiano indirizzato a chi ha solide nozioni di
+                            organologia e musicologia. C'è inoltre tutta una mitologia che fa parte di questo progetto, un universo
+                            poetico e semantico originale. Anche se ho acquisito una conoscenza approfondita dell'italiano,
+                            richiederebbe un certo sforzo per me cercare di tradurre e indagare il contenuto delle note fornite dal
+                            compositore strumentista, Sergio Fedele. Pragmaticamente, mi riferisco a ciò che esce dai miei altoparlanti,
+                            con l'osservazione che la copia del CD (o CDr?) ricevuta non ha funzionato sui miei dispositivi. Ma, state
+                            tranquilli, il suono è stato colto dal mio IBook Air e i suoi "altoparlanti". E così ho ascoltato questa musica
+                            con grande piacere per la qualità sonora, la precisione dell’esecuzione e la sua eccellente originalità. Con un
+                            tale strumento è impossibile suonare "veloce", perché è necessario controllare l'emissione di suono nella
+                            colonna d'aria da ciascuno dei diversi tubi e padiglioni con i loro meccanismi. Quindi si tratta di una musica
+                            "lenta" in cui l'ascoltatore si prende il suo tempo per ascoltare queste sonorità trasformarsi, glissare,
+                            frullare, fischiare, ringhiare, eruttare, tremolare, senza perdere nessuna sfumatura. Poiché ne ho solo una
+                            visione fotografica, non mi rendo conto bene di come funziona. Ma una cosa è certa, funziona
+                            meravigliosamente per produrre curiosi timbri con sorprendente precisione, utilizzando tecniche diverse
+                            basate essenzialmente su un controllo minuzioso dell’insufflazione, utilizzando i principi sonori di base dei
+                            tubi sonori così come si conoscevano sin dalla notte dei tempi. Qualità in termini di composizione e della
+                            sua resa esecutiva. Assolutamente unico nel suo genere e selvaggiamente audace. Un artista creativo che
+                            non rientra in nessuna logica – scuola – tendenza – sottotendenza x, y o z, ma ci fa sentire qualcosa di
+                            veramente inaudito e brillante prodotto dalla sua immaginazione e dal suo immaginario. La registrazione è
+                            stata realizzata ad Angelica e prodotta dall'infaticabile Stefano Giust, a capo dell'Etichetta Setola di Maiale,
+                            l'etichetta numero uno di musica sperimentale – free-jazz – improvvisazione in Italia."
+                        </span>
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source">
+                            <b>G. T. Briquet - <a href="https://www.jazzhalo.be/home/"
+                                                  target="_blank" rel="noopener">Jazzhalo</a>:</b>
+                        </p>
+                    </header>
+                    <p>
+                        "Van het Italiaanse improlabel Setola Di Maiale zijn we ondertussen reeds een en
+                        ander gewoon maar deze concertopname die plaatshad in het Teatro San Leonardo
+                        (Bologna, IT) op 18 juni 2021 vormt toch wel een buitenbeentje. Niet alleen door de
+                        fragiele geluidstaferelen maar vooral ook door het instrument dat Fedele
+                        hanteert.<br>
+                        Het gaat om een “ecatorf”, nog best te omschrijven als een slide riet subcontrabas
+                        (zie link onderaan voor beelden). Het basisidee was slidetrombone spelen met het
+                        mondstuk van een sopraanklarinet en zo niet alleen een bereik verkrijgen van vier en
+                        een half octaaf maar tevens een uitbreiding van de basistonen die hoger zijn dan
+                        deze van een contrabasklarinet. Het duurde elf jaar vooraleer het eerste prototype
+                        afgewerkt geraakte.<br>
+                        In een half uur illustreerde Fedele op die bewuste avond waar hij zoal toe in staat
+                        is met dit ontwerp. Eens voorbij de ogenschijnlijke stilte van de eerste minuten
+                        (best luisteren met koptelefoon om de spaarzame geluiden te detecteren) worden bonte
+                        en bizarre verschuivingen van het wel zeer bijzondere instrument uitvergroot. Fedele
+                        plaatste titels en onderverdelingen bij de acht fragmenten maar elkeen kan deze
+                        aanpassen naargelang de eigen verbeelding. Kernbegrippen blijven in elk geval zen en
+                        minimalisme. Heel bijzonder is bovendien de tongslap techniek van Fedele.<br>
+                        Nog een extra weetje: de naam Ecatorf komt uit de Griekse mythologie en verwijst
+                        naar Hecate en Orpheus. Uitgebreide info en beeldmateriaal zitten vervat in het
+                        bijgevoegde boekje."
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source">
+                            <b>Nazim Comunale - <a
+                                    href="https://www.blowupmagazine.com/prod/blow-up-292-settembre-2022.asp"
+                                    target="_blank" rel="noopener">Blow Up #292</a> (Settembre 2022):</b>
+                        </p>
+                    </header>
+                    <p>
+                        “Sergio Fedele scandaglia gli abissi dei suoni bassi con l’Ecatorf, uno strumento ad
+                        ancia subcontrabbassa a tiro, ibrido poiché combina il bocchino e il tubo cilindrico del
+                        clarinetto con la coulisse del trombone e i cilindri a valvola di alcuni ottoni. Registrato
+                        durante l’edizione di Angelica Festival del 2021, l’esperimento è ben riuscito e mostra le
+                        infinite possibilità di uno strumento-mostro (la parte più estesa arriva a sei metri e
+                        mezzo). Da ascoltare al buio o a finestre spalancate, spaventando i vicini.”
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source">
+                            <b>Frans de Waard - <a href="http://www.vitalweekly.net"
+                                                   target="_blank" rel="noopener">Vital Weekly</a>:</b>
+                        </p>
+                        <button class="translation" type="button" data-translate="vital" hidden>
+                            <ActionIcon name="language"/>
+                            <span class="button-label">Traduzione</span>
+                        </button>
+                    </header>
+                    <p>
+                        <span data-translation="vital" data-original="true" lang="en">
+                            "In monster movies, whenever the sound design for the creature is pretty complicated. Mostly mixing
+                            several sounds into one, the old-fashioned way or digitally. What if you could make
+                            an instrument that does precisely that? Well, Sergio Fedele made one. Or maybe the other way around:
+                            first the instrument and after that an idea for the instrument: the ecatorf; combining Hecate, the Greek
+                            goddess who had the power to send poor souls back to the world to haunt the living and Orpheus, the
+                            tragic figure who wanted to be reunited with the love of his live by entering the netherworld. What does this
+                            have to do with monsters? Tifeo, or Typhon in English, was a giant man-like snake or a snake-like
+                            man. The music or, better yet sounds on this release are Sergios'idea of what that monster would have sounded
+                            like. No words, but earth-shuddering low notes, glissandos, high-pitched squeaks and everything in
+                            between. The ecatorf has been in the making for ten years after the design took three years of preparation.
+                            Like the Typhon, it's a hybrid instrument, merging a B-flat clarinet mouthpiece with the slide trombone, the
+                            bass version, or maybe a contrabass one. When you see pictures of the ecatorf it's hard to imagine
+                            what sounds it can produce. This is one monstrous beast of an instrument that sports three bells in
+                            various sizes and valves to alternate and combine the three bells. I guess it's the instrument with the broadest
+                            range ranging from the sub-bass spectrum to the altissimo and higher. This release documents the first live
+                            performance in front of an audience on the instrument. Since the instrument uses a reed to produce the sound
+                            and a nifty combination of valves, you can let it sound like a reed instrument. Still, by using
+                            the valves and using no tongue (how do I know this ? The clarinet has been my main instrument for nearly
+                            forty years now), while starting a sound, you can let it sound like a brass instrument because the rest of
+                            the instrument acts like a three-headed brass instrument, just like the merging of man and god(ess). It's a
+                            relatively short release, but I won't know how hard it is to play the instrument. I highly recommend this for
+                            people who want to hear the powerful sound of the lowest-sounding wind instrument in the world. But not only
+                            that: Sergio knows how to tell a story. Subtle, sweet-sounding at times, growling at others. And the
+                            timbres are often shifting ever so slightly. Bravissimo! And on another note, I want to try the instrument one
+                            day!"
+                        </span>
+                        <span data-translation="vital" data-original="false" lang="it">
+                            "Nei film di mostri, il sound design per la creatura è ogni volta piuttosto complicato da realizzare. Per lo più
+                            si ottiene mescolando diversi suoni in uno, seguendo il vecchio stile o agendo digitalmente. E se fosse
+                            possibile creare uno strumento che ne renda possibile la realizzazione in modo preciso? Beh, Sergio Fedele
+                            ne ha fatto uno. O forse è possibile percorrere un’altra strada: prima lo strumento e poi un'idea per lo
+                            strumento: l'ecatorf; combinando Ecate, la dea greca che aveva il potere di rimandare le povere anime al
+                            mondo per perseguitare i vivi e Orfeo, la tragica figura che voleva ricongiungersi con l'amore della sua vita
+                            entrando negli inferi. Cosa c'entra questo con i mostri? Tifeo, o Typhon in inglese, era un gigantesco
+                            serpente simile a un uomo o un uomo simile a un serpente. <br>
+                            l'idea di Sergio è dare voce alla musica o, meglio ancora, ai suoni che avrebbe prodotto questo mostro .
+                            Niente parole, note basse da brividi, glissandi, squittii acuti e tutto ciò che ci sta in mezzo. L'ecatorf è stato
+                            in lavorazione dieci anni mentre il progetto ha richiesto tre anni di preparazione. Come Typhon, l’ecatorf è
+                            uno strumento ibrido, che fonde un bocchino per clarinetto con il trombone a tiro, nella versione bassa o
+                            forse contrabbassa. Quando si vedono le immagini dell'ecatorf è difficile immaginare quali suoni possa
+                            produrre. Questo è uno strumento mostruoso che sfoggia tre campane di varie dimensioni, e valvole per
+                            alternare e combinare le tre campane. Immagino che sia lo strumento a fiato con la gamma più ampia
+                            esistente, che va dallo spettro sub-basso all'altissimo e acutissimo.<br>
+                            Questo cd documenta la prima esibizione dal vivo di fronte a un pubblico dello strumento. Poiché lo
+                            strumento utilizza un'ancia per produrre il suono e una elegante combinazione di valvole, puoi lasciarlo
+                            suonare come uno strumento ad ancia. Tuttavia, usando le valvole e non usando la l’ancia (come faccio a
+                            saperlo? Il clarinetto è stato il mio strumento principale per quasi quarant'anni), mentre inizi un suono,
+                            puoi lasciarlo suonare come un ottone perché il resto dello strumento agisce come uno strumento a tre
+                            teste, proprio come la fusione di uomo e di uno o più dei. È un pezzo relativamente breve, ma non so
+                            immaginare quanto possa essere difficile suonare questo strumento.<br>
+                            Lo consiglio vivamente alle persone che vogliono ascoltare il potente suono dello strumento a fiato più
+                            basso del mondo. Ma non solo: Sergio sa raccontare una storia. Sottile: a volte dolce, a volte ringhiosa. E i
+                            timbri sono spesso mutevoli, così come sempre soffusi. Bravissimo! E alla fine, io voglio provare lo
+                            strumento un giorno! (MDS)"
+                        </span>
+                    </p>
+                </article>
+                <article class="review">
+                    <header class="review-heading">
+                        <p class="review-source"><b>Marco Carcasi - <a
+                                href="https://www.kathodik.org/2022/10/05/sergio-fedele-le-melancolie-di-tifeo/"
+                                target="_blank" rel="noopener">Kathodik</a> (5 Ottobre 2022):</b></p>
+                    </header>
+                    <p>
+                        "Registrato durante l’Angelica Festival del 2021, “Le Melancolie Di Tifeo” ci
+                        presenta l’azione esplorativa dell’autoprodotto, Ecatorf.
+                        Un’insieme strumentale ad ancia e tiro, che combina parti di clarinetto,
+                        trombone e cilindri a valvola di vari ottoni.
+                        Un mostro, che può raggiungere i sei metro e mezzo di dimensione (ed ha
+                        richiesto anni di costruzione e preparazione) e consente un bel surfare dove il
+                        suono diventa basso borbottio (di luci e di ombre).
+                        Il bel libretto interno illumina sul tutto (tecniche d’approccio e quant’altro).
+                        File Under: Giganti in placido dialogo."
+                    </p>
+                </article>
+
+                <h4 class="review-notices-title">Segnalazioni:</h4>
+                <header class="review-heading">
+                    <p class="review-source"><b>Recommended <a href="/partiture/TNYCJR2022.pdf" target="_blank"
+                                                               rel="noopener">The New
+                        York City Jazz Record</a>; August 2022, p. 14</b>
+                    </p>
+                </header>
+                <header class="review-heading">
+                    <p class="review-source">
+                        <b><a href="/partiture/gianniMimmo.pdf" target="_blank" rel="noopener">Gianni
+                            Mimmo - Una lettera</a> (22 agosto 2023)</b>
+                    </p>
+                </header>
+            </div>
+
+            <div class="row description body-copy" data-panel="tifeo" data-value="3">
+                <div class="col-md-6 text-center">
+                    <CoverImage src={covers["tifeo-fronte.webp"]} alt="Fronte copertina CD de Le Melanconie di Tifeo"/>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <CoverImage src={covers["tifeo-retro.webp"]} alt="Retro copertina CD de Le Melanconie di Tifeo"/>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details class="composition">
+        <summary>
+            <h3>Spirali: tre Studi per Ecatorf (2010)</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-4 text-center spirali-score-action">
+                    <a class="action" href="/partiture/spirali.pdf" target="_blank" rel="noopener">
+                        <ActionIcon name="score"/>
+                        <span class="button-label">Partitura</span></a>
+                </div>
+                <div class="col-md-8">
+                    <p class="body-copy">
+                        <b>Avvertenza:</b><br>
+                        La partitura va letta dal basso all'alto seguendo un percorso bustrofedico: il
+                        primo pentagramma va letto da destra a sinistra, il secondo da sinistra a
+                        destra, il terzo da destra a sinistra, ecc.<br>
+                        La durata delle note e delle pause ha un carattere indicativo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details class="composition">
+        <summary>
+            <h3>Shuairan (2022-25)</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button class="action" type="button" data-select="shuairan" data-value="partiture" hidden>
+                        <ActionIcon name="score"/>
+                        <span class="button-label">Partiture</span></button>
+                </div>
+            </div>
+            <div data-panel="shuairan" data-value="partiture">
+                <ul class="score-list body-copy">
+                    <li>
+                        <a href="/partiture/shuairan/tetraeanphesibena.pdf" target="_blank" rel="noopener">
+                            <span class="title">Tetra e Anphesibena</span>
+                            <span class="year">(2022-25)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/partiture/shuairan/chi.pdf" target="_blank" rel="noopener">
+                            <span class="title">Ch'i</span>
+                            <span class="year">(2022-25)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/partiture/shuairan/fondali.pdf" target="_blank" rel="noopener">
+                            <span class="title">Fondali</span>
+                            <span class="year">(2022-25)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/partiture/shuairan/shuairan.pdf" target="_blank" rel="noopener">
+                            <span class="title">Shuairan</span>
+                            <span class="year">(2022-25)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </details>
+
+</section>

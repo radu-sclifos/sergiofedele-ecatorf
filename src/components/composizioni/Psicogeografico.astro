@@ -1,0 +1,473 @@
+---
+import CoverImage from './CoverImage.astro';
+import ActionIcon from './ActionIcon.astro';
+
+const images = import.meta.glob<ImageMetadata>('../../assets/composizioni/*.webp', {eager: true, import: 'default'});
+const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => [path.slice(path.lastIndexOf('/') + 1), image]));
+---
+
+<section aria-labelledby="psicogeografico-title">
+    <h2 id="psicogeografico-title">PsicoGeografico Ensemble</h2>
+
+    <details class="composition">
+        <summary>
+            <h3>Quartetto PsicoGeografico</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4 class="album-title">251</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" data-select="quartetto" data-value="cd" hidden>
+                        <ActionIcon name="cd"/>
+                        <span class="button-label">CD</span>
+                    </button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" data-select="quartetto" data-value="recensioni" hidden>
+                        <ActionIcon name="review"/>
+                        <span class="button-label">Recensioni</span>
+                    </button>
+                </div>
+
+                <div class="col-md-12 text-center" data-panel="quartetto" data-value="cd">
+                    <CoverImage src={covers["251.webp"]} alt="Copertina del CD 251 del Quartetto PsicoGeografico" wide/>
+                </div>
+
+                <div class="description body-copy" data-panel="quartetto" data-value="recensioni">
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ettore Garzia - <a
+                                    href="https://www.percorsimusicali.eu/2025/05/28/scarti-dimensioni-sacralita/"
+                                    target="_blank" rel="noopener">Percorsi Musicali</a> (28 Maggio 2025):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Improvvisare’ significa anche ‘comunicare’. Ci si chiede come avvenga questa
+                            comunicazione. Per spiegarlo potremmo prendere in considerazione un concetto chiave
+                            che proviene dal mondo classico, in particolare quello di Karlheinz Stockhausen che
+                            parlava di ‘musica intuitiva’: i musicisti impostano suoni estemporanei facendo leva sia sui
+                            propri influssi che su quelli dei partners in modalità evolutiva, intuendo le direzioni;
+                            essi si scambiano supporti comunicativi secondo lo spirito del momento e le condizioni
+                            ‘biologiche’ dell’ambiente e dell’audience, dando luogo ad un rapporto tattile che è anche
+                            sana relazione di convivenza.<br>
+                            Un caso concreto di ‘comunicazione’ è certamente quello che deriva dalle intuizioni
+                            del Quartetto Psicogeografico, composto da Andrea Bini (piano e mirliton), Sergio
+                            Fedele (flauto, clarinetto, sax alto e tenore), Davide Negrini (percussioni) ed Enrico Caimi
+                            (batteria), che ritornano con 251, una registrazione in studio dell’ottobre del 2023 fatta
+                            all’Elfo Studio di Tavernago. I musicisti nominati non sono solo degli improvvisatori ma
+                            hanno anche un’ottima cultura della musica alle spalle: se qualcuno vuol prendersi la briga
+                            di andare ad ascoltare questi artisti sia nella dimensione di gruppo che singolarmente,
+                            capirà che esiste un tessuto connettivo con l’area classica che rimanda al Fluxus, al
+                            situazionismo, ai lettristi e ad un mondo alterato nella percezione degli spazi (il
+                            quartetto non è forma stabile ma suscettibile di aggregazioni che lo portano a quintetto o
+                            sestetto). Le improvvisazioni di 251 sono trattate come ‘sequenze’ provviste di un’ottima
+                            varietà di interventi: il clarinetto o i sax di Fedele sono stralunati ma efficaci, le
+                            percussioni di Negrini e Caimi lavorano come fossero in un ‘meccanismo’ imperfetto,
+                            procedendo nella casualità dell’approccio, mentre il pianoforte di Bini si fregia di tecnica
+                            estensiva, spunti caratterizzanti sulla tastiera e sorprendenti dissonanze. 251 è anche la
+                            sommatoria degli anni dei musicisti, ma è anche un numero primo del matematico cinese Chen
+                            Jingrun, che altro non è che prodotto di numeri primi, quindi una supersingolarità che
+                            sembra adattarsi benissimo al tenore musicale del quartetto.<br>In 251 c’è tutto quello che
+                            vuoi ottenere da una sessione improvvisativa: frammentazioni funzionali, attenzione ai
+                            timbri e una subliminale capacità di dare una dimensione al tempo presente che, per i
+                            musicisti in questione, significa porsi in contraddizione.
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ken Waxnan - <a
+                                    href="https://www.jazzword.com/reviews/quartetto-psicogeografico/"
+                                    target="_blank" rel="noopener">Jazz Word</a> (20 ottobre 2025):</b>
+                            </p>
+                        </header>
+                        <p>
+                            A percussion focused free session that isn’t exclusively beat oriented, Quartetto
+                            PsicoGeografico’s eponymously titled disc stirs up five sound sequences that delineate
+                            dulcet articulation as well as drum beats. Consisting of veteran Italian improvisers, who
+                            have worked together in various combinations in various genres, the quartet is
+                            woodwind/lute player Sergio Fedele, who has recorded with Piero Bittolo Bon and in duos
+                            with keyboardist Andrea Bini; percussionist Davide Negrini, who has recorded with Enrico
+                            Caimi; while drummer, pianist and mirliton Enrico Caimi has worked with Daniele Goldoni.
+                            This disc is all free improvisation that is translated through different pitches and tempos.
+                            Its base is that of snare pops, cymbal clanks and bass drum crashes connected to percussion
+                            pressure encompassing gong resonations, darbuka-like hand patterning, triangle pings and
+                            güiro-like rubs. Meanwhile hard piano clips and reed overblowing can be as percussive as the
+                            expected idiophones vibrations. Thickened drum beats are met with choked reed cries, snorts
+                            or honks and intense piano patterning.<br>
+                            The final two tracks bring speedier and more
+                            moderated timbres forward as woody and metallic percussion smacks are carefully positioned
+                            and measured in counterpoint with pinched saxophone whines and yowls plus full keyboard
+                            rumbles and lead to decided finality. However the multi-sectional “Sq. 2” gives the quartet
+                            the most space to develop. As cymbals clank and drums rumble during the first section,
+                            Fedele’s lyrical clarion tones develop a linear exposition that turns to yelps, and snorts
+                            as piano comping becomes more irregular and threatening. Jackhammer-like strokes on
+                            unyielding metal idiophones intensify the mood that only lessens in the third variation.
+                            Prestisssimo split tones and shakes vie for supremacy with Bini’s exploration of the piano’s
+                            inner string set until a transformative pivot follows vibe-like reverb that coordinates
+                            lyrical reed puffs with almost opaque bracketing percussion rubs and hard slaps.<br>
+                            Distinctive
+                            in its invention and interaction Quartetto PsicoGeografico shows how rhythm and refrain can
+                            be connected for musical exploration and resolution.
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b><a
+                                    href="https://www.raiplaysound.it/audio/2025/05/Battiti-del-14052025-85f8b267-1f83-4b78-b0cb-afd2161ddc1e.html"
+                                    target="_blank" rel="noopener">Battiti | S2025 | Stoicheia | Rai Radio 3</a> (14
+                                maggio 2025)</b>
+                            </p>
+                        </header>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Georges Tonla Briquet - <a
+                                    href="https://www.jazzhalo.be/reviews/cdlpk7-reviews/various/setola-di-maiale-special-sergio-fedele/"
+                                    target="_blank" rel="noopener">Jazz'Halo</a>:</b>
+                            </p>
+                            <button class="translation" type="button" data-translate="jazzhalo251" hidden>
+                                <ActionIcon name="language"/>
+                                <span class="button-label">Traduzione</span>
+                            </button>
+                        </header>
+                        <p>
+                            <span data-translation="jazzhalo251" data-original="true" lang="nl">
+                                Drie recente releases op het snijpunt van avant-garde en improvisatie bij het Italiaanse
+                                label dat alsmaar verder grenzen durft te verleggen. Centrale figuur is Sergio Fedele.<br>
+                                […]<br>
+                                In vijf improsequenties tasten Andrea Bini (pianoforte, mirliton), Enrico
+                                Caimi (drums), Sergio Fedele (fluit, klarinet, sousafoon, alt- & tenorsaxofoon) en Davide
+                                Negrini (percussie) de elasticiteit af tussen hun communicerende instrumenten onderling
+                                en ingelaste stiltes.<br>
+                                Ze doen dit in stukken die variëren in lengte van zeven tot negentien minuten. Geen
+                                effectbejag maar een aaneenschakeling van akoestische erupties. Robuuste opwellingen
+                                wisselen daarbij af met mijmerende nuances, allemaal volgens hun eigen idiomen en
+                                typologie. Ze schrikken er evenmin voor terug om speelse knipogen te introduceren, wat
+                                nog meer desoriënterend werkt.<br>
+                                Hun existentiële kijk op de invloed van de (stedelijke) omgeving op het menselijk gedrag
+                                (cfr. de groepsnaam).<br>
+                                <a href="https://www.setoladimaiale.net/catalogue/view/SM4940">https://www.setoladimaiale.net/catalogue/view/SM4940</a>
+                            </span>
+                            <span data-translation="jazzhalo251" data-original="false" lang="it">
+                                Tre recenti uscite all'incrocio tra avanguardia e improvvisazione dall'etichetta
+                                italiana che continua a spingersi oltre i confini. Sergio Fedele ne è il
+                                protagonista.<br>
+                                […]<br>
+                                In cinque sequenze di improvvisazione, Andrea Bini (pianoforte, mirliton),
+                                Enrico Caimi (batteria), Sergio Fedele (flauto, clarinetto, sousafono,
+                                sassofono contralto e tenore) e Davide Negrini (percussioni) esplorano
+                                l' elasticità tra i loro strumenti comunicanti e i silenzi.<br>
+                                Lo fanno in brani che vanno dai sette ai diciannove minuti. Non per
+                                sensazionalismo, ma piuttosto per una serie di eruzioni acustiche. Esplosioni
+                                robuste si alternano a sfumature meditative, tutte secondo un loro idioma e
+                                una loro tipologia. Né esitano a introdurre ammiccamenti giocosi, il che ha un
+                                effetto ancora più disorientante.<br>
+                                La loro prospettiva esistenziale sull'influenza dell' ambiente (urbano) sul
+                                comportamento umano (cfr. il nome del gruppo).<br>
+                                <a href="https://www.setoladimaiale.net/catalogue/view/SM4940">https://www.setoladimaiale.net/catalogue/view/SM4940</a>
+                            </span>
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details class="composition">
+        <summary>
+            <h3>Duo PsicoGeografico</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4 class="album-title">Iskra</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" data-select="duo" data-value="cd" hidden>
+                        <ActionIcon name="cd"/>
+                        <span class="button-label">CD</span>
+                    </button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" data-select="duo" data-value="recensioni" hidden>
+                        <ActionIcon name="review"/>
+                        <span class="button-label">Recensioni</span>
+                    </button>
+                </div>
+
+                <div class="col-md-12 text-center" data-panel="duo" data-value="cd">
+                    <CoverImage src={covers["iskra.webp"]} alt="Copertina CD di Iskra" wide/>
+                </div>
+
+                <div class="description body-copy" data-panel="duo" data-value="recensioni">
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ben Taffijn - <a
+                                    href="https://www.nieuwenoten.nl/duo-psicogeografico-iskra-ecatorf-trio-benthos-cd-recensie/"
+                                    target="_blank" rel="noopener">Neuwe Noten</a> (4 ottobre 2025):</b></p>
+                            <button class="translation" type="button" data-translate="neuwenoten" hidden>
+                                <ActionIcon name="language"/>
+                                <span class="button-label">Traduzione</span></button>
+                        </header>
+                        <p>
+                            <span data-translation="neuwenoten" data-original="true" lang="nl">
+                                Van beide gezelschappen heeft u waarschijnlijk nooit gehoord. Het Duo
+                                PsicoGeografica bestaat uit multi-instrumentalist Andrea Bini en
+                                rietblazer Sergio Fedele en het Ecatorf Trio wordt gevormd door twee
+                                rietblazers, Piero Bittolo Bon en Fedele en een koperblazer: Francesco Bucci.
+                                Van het duo verscheen ‘Iskra’, van het trio ‘Benthos’. Beiden bij het eveneens
+                                Italiaanse – daar was u inmiddels al achter – Setola di Maiale. Waarom deze
+                                albums hier vandaag aan bod komen, zit hem in de klarinetten. Bittolo Bon
+                                horen we onder andere op de basklarinet. Fedele op de vrij zeldzame contra-
+                                altklarinet en natuurlijk op de ecatorf, waarover later meer.<br>
+                                Pure improvisatie op ‘Iskra’, verdeeld over negen ‘Sequenza’s’. Direct aan het
+                                begin van ‘Sequenza 1’ klinkt, na een paar pianoaanslagen van Bini, die toch
+                                wat vreemde klank van de contra-altklarinet. Al sputterend en grommend
+                                ontleent Fedele de meest boeiende abstracties aan dit instrument. En grappig
+                                hoe er verderop wel een heel vreemde ritmiek in dit stuk kruipt. In ‘Sequenza
+                                2’, wisseleen Fedele, hier op klarinet en Bini, op piano, op boeiende wijze
+                                abstracties af met meer melodieuze fragmenten. Iedere keer als je als
+                                luisteraar vat denkt te hebben op het stuk blijk je het mis te hebben. De derde
+                                ‘Sequenza’ vangt aan met spannend slagwerk van Bini, waarna we Fedele
+                                horen op de ecatorf, een zelfgebouwd instrument waar het trio zijn naam aan
+                                ontleent. Georges Tonla Briquet zei hier eerder op de website van Jazz’halo
+                                het volgende over: “nog best te omschrijven als een slide riet subcontrabas.
+                                Het basisidee was slidetrombone spelen met het mondstuk van een
+                                sopraanklarinet en zo niet alleen een bereik verkrijgen van vier en een half
+                                octaaf maar tevens een uitbreiding van de basistonen die hoger zijn dan deze
+                                van een contrabasklarinet (zie de website van Fedele voor foto’s, red.)”. Het
+                                resultaat, na elf jaar bouwen en uitproberen, is verbluffend en ook wat
+                                vreemd, zo blijkt met name uit ‘Sequenza 4’. In de vijfde, achtste en negende
+                                ‘Sequenza’ horen we weer het mooie laag van de contra-altklarinet, in de
+                                vijfde en negende in een boeiend duet met de pianoforte, in de achtste met
+                                de fluit. Ongewone klanken op al die stukken, maar toch nergens zo bijzonder
+                                als in ‘Sequenza 6’, waar we Bini ook nog met boventoonzang horen. Minder
+                                experimenteel, maar evengoed bijzonder is de zevende ‘Sequenza’, met
+                                name door de boeiende combinatie van klarinet en gongs.
+                            </span>
+                            <span data-translation="neuwenoten" data-original="false" lang="it">
+                                Pura improvvisazione in "Iskra", distribuita in nove "Sequenze". Proprio
+                                all'inizio di "Sequenza 1", dopo alcuni tocchi di pianoforte di Bini, risuona il
+                                suono piuttosto insolito del clarinetto contra alto. Con un borbottio e un
+                                brontolio, Fedele trae da questo strumento le astrazioni più accattivanti.
+                                Ed è curioso come un ritmo molto strano si insinui più avanti in questo brano.
+                                In "Sequenza 2", Fedele, qui al clarinetto, e Bini, al pianoforte, alternano in
+                                modo accattivante astrazioni a frammenti più melodici. Ogni volta che pensi
+                                di aver capito il brano, ti sbagli. La terza "Sequenza" inizia con le
+                                entusiasmanti percussioni di Bini, dopodiché sentiamo Fedele all'ecatorf,
+                                uno strumento autocostruito da cui il trio prende il nome. Georges Tonla
+                                Briquet aveva già commentato questo sul sito web di Jazz'halo: "Si può
+                                descrivere al meglio come un subcontrabbasso ad ancia a coulisse. L'idea di
+                                base era di suonare un trombone a coulisse con il bocchino di un clarinetto
+                                soprano, ottenendo così non solo un'estensione di quattro ottave e mezza,
+                                ma anche un'estensione delle note fondamentali, che sono più acute di quelle
+                                di un clarinetto contrabbasso (vedi il sito web di Fedele per le foto, ndr)."
+                                Il risultato, dopo undici anni di costruzione e sperimentazione, è al tempo
+                                stesso sorprendente e in qualche modo insolito, come è evidente in
+                                particolare in "Sequenza 4". Nella quinta, ottava e nona "Sequenza",
+                                sentiamo di nuovo le splendide note gravi del clarinetto contra alto; nella
+                                quinta e nona, in un accattivante duetto con il pianoforte; e nell'ottava, con il
+                                flauto. Suoni insoliti in tutti questi brani, ma in nessun luogo più notevoli che
+                                in "Sequenza 6", dove sentiamo anche Bini cantare armonici. Meno
+                                sperimentale, ma altrettanto notevole, è la settima "Sequenza", in particolare
+                                per l'accattivante combinazione di clarinetto e gong.
+                            </span>
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ettore Garzia - <a
+                                    href="https://www.percorsimusicali.eu/2025/09/29/improvvisazioni-orientate-metalli-psicogeografie/"
+                                    target="_blank" rel="noopener">Percorsi musicali</a> (29 Settembre 2025):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Un altro concatenamento ideologico della libera improvvisazione alla parola viene
+                            da Iskra, dimensione ridotta a duo del Quartetto PsicoGeografico, ossia Andrea
+                            Bini e Sergio Fedele che approcciano su molti strumenti accendendo ‘sequenze’
+                            diversificate. Come già spiegato in passato, parlare di ‘psicogeografia’ significa
+                            irrimediabilmente riferirsi a quella pratica avanguardista che si concentrava sugli
+                            spazi urbani e sulle complessità di esse, in sostanza un modo per scoprire difetti e
+                            carpire l’identità vera dei luoghi; Bini e Fedele hanno perciò introitato questa visione
+                            e aderito implicitamente al disordine e alla complessità che la possiede, in modo da
+                            poterla trasferirla nella musica.<br>
+                            Iskra significa in russo ‘scintilla’ e il significato della parola vale come nutrimento
+                            musicale: il Duo Psicogeografico va oltre l’inevitabile, subdolo e terminologico
+                            riferimento alle Sequenze di Berio, per loro vale il principio della creazione dal
+                            nulla, del lasciare andare gli impulsi ed ottenere insolite combinazioni sonore,
+                            principali condizioni di svolgimento di una registrazione all’Elfo Studio di Tavernago
+                            nel novembre del 2024.<br>
+                            In alcuni abbinamenti è di scena l’ecatorf, lo strumento creato da Sergio Fedele che
+                            lavora nell’area delle frequenze che si trovano sostanzialmente sotto l’ultima nota
+                            grave del pianoforte anche se il lavoro non è incentrato sulle qualità disponibili di
+                            quello strumento; l’idea generale di Iskra è più concentrata nella connotazione di
+                            un’espressione musicale, esplicitazione di tonfi e rivoli pianistici, esalazioni di gong
+                            e in linea di principio di topografie della creatività che gettano ombre o lavorano su
+                            insinuazioni perspicaci, con l’ausilio di variazioni abnormi del registro e di tecniche
+                            non convenzionali di clarinetto contrabbasso, ocarina e rombo. Le sovrapposizioni
+                            tra i due musicisti riescono perfettamente nel loro intento, dando vita ad un’astrusa
+                            rappresentazione che affascina per il suo senso oggettivo, nobiltà di un’estetica sui
+                            cui è difficile assistere a declinazioni di appartenenza e mancanza di sorprese.
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Jean-Michel Van Schouwburg - <a
+                                    href="https://orynx-improvandsounds.blogspot.com"
+                                    target="_blank" rel="noopener">ORYNX</a> (13 ottobre 2025):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Un bien curieux duo de multi-instrumentistes improvisateurs qui alimentent 9
+                            sequenze (pluriel de sequenza) d’improvisations contemporaines. Andrea
+                            Bini joue du piano, de la « flauto dolce basso » soit une flûte à bec basse, voix, «
+                            richiamo » soit un appel ou un cri, rombo ou grondement, percussions et
+                            gong. Sergio Fedele est crédité ecatorf, un instrument à vent de son invention
+                            avec anches coulisses, pavillons combinant plusieurs tuyaux et des éléments
+                            mobiles et d’une grande complexité au niveau de la construction. Une espèce de
+                            monstre avec lequel on obtient de curieux effets de souffles similaires à la clarinette
+                            contrebasse et au trombone. Il ajoute à ce curieux instrument hybride, le sax alto,
+                            la clarinette contra alto, la clarinette et l’ocarina bassa. Iskra signifie l’étincelle en
+                            Russe et servit de titre pour la revue marxiste de Lénine lors de son séjour en
+                            Grand Bretagne. Plus tard, Paul Rutherford intitula son trio avec Derek Bailey et
+                            Barry Guy, Iskra 1903, tandis qu’un groupe free suédois s’est baptisé Iskra. Ses 9
+                            Sequenze s’intitulent Iskra 01, Iskra 02 , etc… jusqu’à Iskra 09 et les notes de
+                            pochette indiquent clairement les instruments utilisés. Parmi ces 9 pièces , Andrea
+                            Bini jouent du piano dans cinq d’entr’elles, la première nous faisant entendre les
+                            possibilités sonores et dynamiques de cet ecatorf mystérieux dans une approche
+                            avant garde contemporaine réussie Pour la deuxième pièce avec sax alto et piano,
+                            la musique se rapproche de l’univers du free-jazz. Au fil de chaque improvisation, le
+                            centre de gravité et l’approche musicale varie comme dans ce duo percussions et
+                            clarinette contra alto rêveuse. On y entend des frappes clairsemées sur un tambour
+                            et la résonance d’un gong face à un souffle retenu et note à note parsemé de
+                            silences dans une ambiance intime. Chacun de ces duos cultivent une ambiance
+                            particulière avec les moyens de chacun des instruments sollicités successivement
+                            d’un Iskra à l’autre. On y trouve l’étincelle de la sensibilité sans pour autant y mettre
+                            le feu aux poudres. On est plus ici dans la réflexion ou les appels d’oiseaux au sein
+                            d’une volière comme dans cet Iskra 04 et son dialogue ocarina basse et flûte à bec
+                            basse et quelques trouvailles sonores. Iskra 05 : retour à la démarche musique
+                            contemporaine entre la clarinette contralto et le piano dans le sillage de Iskra 01.
+                            J’en apprécie la résonnance des cordes « bloquées » du piano et le cheminement
+                            de la clarinette de graves discrets à la limite du souffle vers les égosillements des
+                            harmoniques aiguës Chaque pièce offre ainsi une nouvelle opportunité sensible et
+                            bien choisie et l’ecatorf en est bien la part de mystère (Iskra 06). Un album
+                            d’improvisation à part soigneusement préparé et simplement poétique. En fait, une
+                            belle réussite.
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Frans de Waard - <a
+                                    href="https://www.vitalweekly.net/number-1500/"
+                                    target="_blank" rel="noopener">Vital Weekly</a> (27 settembre 2025):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Italian record label Setola di Maiale released two records with Sergio Fedele.
+                            The first one is a duo with Andrea Bini. Percussion and several wind
+                            instruments, including the ecatorf, the subcontrabass hybrid combining a clarinet
+                            mouthpiece with a copper tube, a trombone slide and several valves. Nine tracks
+                            that offer a splendid sonic landscape into the lower regions of the sound
+                            spectrum. Excellent stuff with chamber music quality. Iskra means spark in the
+                            Slavic language, and that spark is definitely burning brightly here. The other is
+                            the sophomore release of the Ecamorf Trio, featuring Sergio Fedele, Piero
+                            Bittolo Bon, and Francesco Bucci. This one delves even more into the lower
+                            regions, featuring, besides the ectomorf, a tuba in F, which is the smallest of the
+                            bass tubas, as well as several low clarinets. Again, excellent stuff with
+                            atmospheric work and some pyrotechnics thrown in for good measure. And I still
+                            want to try that ecatorf. See issue 1340 for more info on the instrument. (MDS)
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Georges Tonla Briquet - <a
+                                    href="https://www.jazzhalo.be/reviews/cdlpk7-reviews/various/setola-di-maiale-special-sergio-fedele/"
+                                    target="_blank" rel="noopener">Jazz'Halo</a>:</b>
+                            </p>
+                            <button class="translation" type="button" data-translate="jazzhaloIskra" hidden>
+                                <ActionIcon name="language"/>
+                                <span class="button-label">Traduzione</span>
+                            </button>
+                        </header>
+                        <p>
+                            <span data-translation="jazzhaloIskra" data-original="true" lang="nl">
+                                Drie recente releases op het snijpunt van avant-garde en improvisatie bij het Italiaanse
+                                label dat alsmaar verder grenzen durft te verleggen. Centrale figuur is Sergio Fedele.<br>
+                                […]<br>
+                                De helft van het Quartetto PsicoGeografico, namelijk Andrea Bini (pianoforte, fluit,
+                                percussie, gong, richiamo, stem) en Sergio Fedele (ecatorf, klarinet, altsaxofoon,
+                                ocarina).<br>
+                                De twee voeren negen dialogen uit telkens met onderscheiden instrumenten. Hun queeste
+                                leidt naar de vergankelijkheid van klanken wat afwisselend bloedstollend poëtische
+                                taferelen oplevert maar tevens meer macabere sfeerscheppingen. Ludiek en sinister
+                                vormen zo elkaars yin en yang. Bovenal een bewijs van meesterlijke soberheid met als
+                                een van de hoogtepunten ’Sequenza 3’.<br>
+                                Een cd die complementair is aan ‘251’ van het gelijknamige kwartet.<br>
+                                <a href="https://www.setoladimaiale.net/catalogue/view/SM5010">https://www.setoladimaiale.net/catalogue/view/SM5010</a>
+                            </span>
+                            <span data-translation="jazzhaloIskra" data-original="false" lang="it">
+                                Tre recenti uscite all'incrocio tra avanguardia e improvvisazione dall'etichetta
+                                italiana che continua a spingersi oltre i confini. Sergio Fedele ne è il
+                                protagonista.<br>
+                                […]<br>
+                                Metà del Quartetto PsicoGeografico, ovvero Andrea Bini (pianoforte, flauto,
+                                percussioni, gong, richiamo, voce) e Sergio Fedele (ecatorf, clarinetto,
+                                sassofono contralto, ocarina).<br>
+                                I due eseguono nove dialoghi, ciascuno con strumenti distinti. La loro ricerca
+                                conduce all'effimero dei suoni, dando vita alternativamente a scene poetiche
+                                raccapriccianti e a creazioni atmosferiche più macabre. Giocoso e sinistro
+                                formano così il reciproco yin e yang. Soprattutto, dimostrano una magistrale
+                                moderazione, con "Sequenza 3" come uno dei punti salienti.<br>
+                                Un CD che completa "251" dell'omonimo quartetto.<br>
+                                <a href="https://www.setoladimaiale.net/catalogue/view/SM5010">https://www.setoladimaiale.net/catalogue/view/SM5010</a>
+                            </span>
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details class="composition">
+        <summary>
+            <h3>Sestetto PsicoGeografico</h3>
+        </summary>
+
+        <div class="composition-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4 class="album-title">Vortex</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" data-select="vortex" data-value="cd" hidden>
+                        <ActionIcon name="cd"/>
+                        <span class="button-label">CD</span>
+                    </button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button class="action" type="button" disabled>
+                        <ActionIcon name="review"/>
+                        <span class="button-label">Recensioni</span>
+                    </button>
+                </div>
+
+                <div class="col-md-12 text-center" data-panel="vortex" data-value="cd">
+                    <CoverImage src={covers["vortex.webp"]} alt="Copertina CD di Vortex" wide/>
+                </div>
+            </div>
+        </div>
+    </details>
+
+
+</section>
