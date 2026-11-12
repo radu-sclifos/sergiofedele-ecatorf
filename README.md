@@ -71,3 +71,11 @@ Semenov. Its complete notice is included in
 [`public/licenses/photoswipe.txt`](public/licenses/photoswipe.txt), published at
 `/licenses/photoswipe.txt`. See the
 [upstream license](https://github.com/dimsemenov/PhotoSwipe/blob/master/LICENSE).
+
+Montserrat is self-hosted as WOFF2 files in `src/assets/fonts/`, with local
+`@font-face` rules in `src/styles/global.css`; no Google Fonts requests are needed.
+The Latin subset serves both regular and bold text; the Latin Extended subset
+loads only when its characters are needed. Vite fingerprints the font URLs for
+cache invalidation when the files change. Montserrat is distributed under the
+SIL Open Font License 1.1, included in
+[`public/licenses/montserrat.txt`](public/licenses/montserrat.txt).
