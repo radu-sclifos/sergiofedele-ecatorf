@@ -1,6 +1,6 @@
 ---
 import CoverImage from './CoverImage.astro';
-import ActionIcon from './ActionIcon.astro';
+import ActionIcon from '../ActionIcon.astro';
 
 const images = import.meta.glob<ImageMetadata>('../../assets/composizioni/*.webp', {eager: true, import: 'default'});
 const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => [path.slice(path.lastIndexOf('/') + 1), image]));

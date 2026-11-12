@@ -78,6 +78,11 @@ assess documentation requirements before launch.
 | `public/` | Files served unchanged, including browser diagnostics and license notices. |
 | `scripts/` | Compatibility checks and browser identification tests. |
 
+`src/components/ActionIcon.astro` centralizes decorative SVG action icons and
+uses the global `action-icon` styles. Select an icon with `name`; optional `size`
+and `strokeWidth` preserve context-specific dimensions. Use `standalone` for
+icons without adjacent text; the containing control supplies its accessible name.
+
 Photo galleries use [PhotoSwipe](https://photoswipe.com/) through
 `src/components/Gallery.astro`. Each instance is independent, with responsive
 thumbnails, zoom, arrow and touch navigation, and keyboard controls. The main

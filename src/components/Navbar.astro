@@ -1,4 +1,5 @@
 ---
+import ActionIcon from './ActionIcon.astro';
 interface Props {
     overlay: boolean;
 }
@@ -65,10 +66,7 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
             ))}
             <li>
                 <a href="https://www.youtube.com/channel/UCGsoqMijBRT7i6pK988AK6g" aria-label="Canale YouTube">
-                    <svg class="youtube-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-                        <path fill="currentColor" fill-rule="evenodd"
-                              d="M5 4h14a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4Zm5 4v8l6-4-6-4Z"/>
-                    </svg>
+                    <ActionIcon name="youtube" class="youtube-icon" size={20} standalone />
                 </a>
             </li>
         </ul>
@@ -224,7 +222,7 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
         cursor: pointer;
     }
 
-    .youtube-icon {
+    .site-header :global(.youtube-icon) {
         display: block;
         width: 1.25rem;
         height: 1.25rem;

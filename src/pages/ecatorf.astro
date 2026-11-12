@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ActionIcon from '../components/ActionIcon.astro';
 import DesignCarousel from '../components/DesignCarousel.astro';
 import YouTubeVideo from '../components/YouTubeVideo.astro';
 import { designPages } from '../data/ecatorf-design';
@@ -27,7 +28,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
                     <span data-language="en" lang="en" hidden>Structure</span>
                 </h2>
                 <button class="translation" type="button" hidden aria-label="Read in English" aria-pressed="false">
-                    Translation
+                    <ActionIcon name="language" /><span class="button-label">Translation</span>
                 </button>
             </div>
             <div class="body-copy" data-language="it">
@@ -210,7 +211,8 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         button.addEventListener('click', () => {
             const english = button.getAttribute('aria-pressed') !== 'true';
             for (const section of sections) section.hidden = section.dataset.language !== (english ? 'en' : 'it');
-            button.textContent = english ? 'Traduzione' : 'Translation';
+            const label = button.querySelector('.button-label');
+            if (label) label.textContent = english ? 'Traduzione' : 'Translation';
             button.setAttribute('aria-label', english ? 'Leggi in italiano' : 'Read in English');
             button.setAttribute('aria-pressed', String(english));
             document.dispatchEvent(new CustomEvent('ecatorf:languagechange'));
