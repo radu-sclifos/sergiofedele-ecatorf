@@ -33,6 +33,37 @@ links that load a complete page; there is no client-side router.
 | `src/pages/index.astro` | `/` | Introduction to Sergio and the instrument. |
 | `src/pages/biografia.astro` | `/biografia/` | Music, visual arts, literature and photo galleries. |
 | `src/pages/ecatorf.astro` | `/ecatorf/` | Technical descriptions, photographs, range illustrations and video. |
+| `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
+| `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
+
+## Privacy and YouTube consent
+
+`CookieConsent.astro` is shared by all pages. Its non-modal panel offers equally
+visible accept/refuse actions; closing the initial panel saves a refusal.
+The small Cookie button and footer controls reopen preferences after either choice.
+`YouTubeVideo.astro` keeps a local, text-only placeholder visible until consent;
+the iframe is created only after acceptance and removed on revocation. With
+JavaScript disabled, only an ordinary external YouTube link is available.
+
+The `ecatorf-cookie-consent` localStorage entry records a boolean YouTube choice,
+consent version, timestamp and expiry six calendar months later. It is local to
+the browser and origin, with no consent logging endpoint or tracking identifier.
+Expiry, invalid records and missing storage default to blocking YouTube. If storage
+is unavailable, an explicit choice can enable it only in the current page.
+Open tabs synchronize storage changes; restored/foregrounded pages recheck the choice.
+Privacy and cookie pages do not automatically open the panel, so the notices can
+be read without dismissing it. Preferences remain available there.
+
+Before publishing, the site owner must confirm the controller/contact details and
+complete the privacy draft's retention periods, hosting/processing arrangements,
+email provider details and international-transfer safeguards. Verify the actual
+Netlify account settings (including analytics, integrations and injected scripts)
+and inventory the player's cookies/storage in the intended deployment. The source
+audit alone cannot establish these facts. No blanket GDPR-compliance claim is made.
+If optional services or processing conditions change materially, update both notices
+and increment the consent version in `CookieConsent.astro` to request a new choice.
+The client-side record is not a server-side consent audit trail; the owner must
+assess documentation requirements before launch.
 
 ## Project structure
 

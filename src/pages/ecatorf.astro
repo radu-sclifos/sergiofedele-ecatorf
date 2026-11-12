@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DesignCarousel from '../components/DesignCarousel.astro';
+import YouTubeVideo from '../components/YouTubeVideo.astro';
 import { designPages } from '../data/ecatorf-design';
 import hero from '../assets/ecatorf/numa-schio.webp';
 import detail from '../assets/ecatorf/dettaglio-ecatorf.webp';
@@ -189,10 +190,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
                    alt="Dettaglio della doppia coulisse e delle chiavi dell’Ecatorf" loading="lazy" decoding="async"/>
         </div>
         <div class="video">
-            <iframe src="https://www.youtube-nocookie.com/embed/IZ7kZjdvGnY?color=white"
-                    title="Ecatorf a Villa Rossi, Santorso" loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+            <YouTubeVideo videoId="IZ7kZjdvGnY" title="Ecatorf a Villa Rossi, Santorso" />
         </div>
     </article>
     <section id="progettazione" class="design" aria-labelledby="design-title">
@@ -371,21 +369,6 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         position: relative;
         margin-top: 9.375rem;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .video::before {
-        content: '';
-        display: block;
-        padding-top: 56.25%;
-    }
-
-    iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
     }
 
     .design {

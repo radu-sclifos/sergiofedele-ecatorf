@@ -1,0 +1,285 @@
+<aside class="cookie-panel" id="cookie-panel" aria-labelledby="cookie-title" hidden>
+    <button class="cookie-close" type="button" data-cookie-close aria-label="Chiudi senza accettare YouTube">×</button>
+    <h2 id="cookie-title">Un momento per la tua privacy</h2>
+    <p>Utilizziamo una memoria tecnica per ricordare la tua scelta. Solo con il tuo consenso
+        carichiamo il video di YouTube, che può utilizzare cookie e altri strumenti di tracciamento
+        e ricevere dati di navigazione.</p>
+    <p>Puoi rifiutare e continuare a visitare il sito. La scelta resta modificabile dal pulsante Cookie.</p>
+    <p class="cookie-status" data-cookie-status aria-live="polite"></p>
+    <div class="cookie-actions">
+        <button type="button" data-cookie-reject>Rifiuta</button>
+        <button type="button" data-cookie-accept>Accetta</button>
+    </div>
+    <p class="cookie-links"><a href="/privacy/">Privacy</a><span aria-hidden="true"> · </span><a href="/cookie/">Informativa
+        cookie</a></p>
+</aside>
+<button class="cookie-widget" type="button" data-cookie-settings aria-controls="cookie-panel" aria-expanded="false"
+        hidden>
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+         aria-hidden="true">
+        <path d="M21 12a9 9 0 1 1-9-9 4 4 0 0 0 4 4 4 4 0 0 0 5 5Z"/>
+        <circle cx="8" cy="9" r="1"/>
+        <circle cx="8" cy="15" r="1"/>
+        <circle cx="14" cy="14" r="1"/>
+    </svg>
+    Cookie
+</button>
+
+<script>
+    const panel = document.getElementById('cookie-panel');
+    const widget = document.querySelector<HTMLButtonElement>('.cookie-widget');
+    const close = panel?.querySelector<HTMLButtonElement>('[data-cookie-close]');
+    const status = panel?.querySelector<HTMLElement>('[data-cookie-status]');
+    const key = 'ecatorf-cookie-consent';
+    const version = 1;
+    type Preference = { version: number; youtube: boolean; savedAt: number; expiresAt: number };
+
+    if (panel && widget && close && status) {
+        let preference: Preference | null = null;
+        let storageAvailable = true;
+        let opener: HTMLElement | null = null;
+        let expiryTimer: number | undefined;
+
+        function readPreference(): Preference | null {
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return null;
+                const value = JSON.parse(raw);
+                if (value.version === version && typeof value.youtube === 'boolean'
+                    && typeof value.savedAt === 'number' && Number.isFinite(value.savedAt)
+                    && typeof value.expiresAt === 'number' && Number.isFinite(value.expiresAt)
+                    && value.savedAt <= Date.now() && value.expiresAt > Date.now()
+                    && value.expiresAt > value.savedAt) return value;
+                localStorage.removeItem(key);
+            } catch {
+                storageAvailable = false;
+            }
+            return null;
+        }
+
+        function updateVideo() {
+            for (const video of document.querySelectorAll<HTMLElement>('[data-youtube-video]')) {
+                const placeholder = video.querySelector<HTMLElement>('[data-youtube-placeholder]');
+                const existing = video.querySelector('iframe');
+                if (preference?.youtube) {
+                    if (!existing) {
+                        const iframe = document.createElement('iframe');
+                        iframe.title = video.dataset.videoTitle || 'Video YouTube';
+                        iframe.loading = 'lazy';
+                        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.dataset.youtubeVideo || '')}?color=white`;
+                        video.appendChild(iframe);
+                    }
+                    if (placeholder) placeholder.hidden = true;
+                } else {
+                    existing?.remove();
+                    if (placeholder) placeholder.hidden = false;
+                }
+            }
+        }
+
+        function updateStatus() {
+            status!.textContent = preference
+                ? `YouTube è ${preference.youtube ? 'consentito' : 'bloccato'}. Puoi modificare la tua scelta.`
+                : 'YouTube è bloccato fino al tuo consenso.';
+            if (!storageAvailable) status!.textContent += ' Il browser non permette di memorizzare la scelta: vale solo per questa pagina.';
+            close!.setAttribute('aria-label', preference ? 'Chiudi le preferenze cookie' : 'Chiudi senza accettare YouTube');
+        }
+
+        function setOpen(open: boolean, moveFocus = false) {
+            panel!.hidden = !open;
+            widget!.hidden = open;
+            for (const button of document.querySelectorAll('[data-cookie-settings]')) {
+                button.setAttribute('aria-expanded', String(open));
+            }
+            updateStatus();
+            if (moveFocus) {
+                if (open) close!.focus();
+                else (opener && document.contains(opener) && !opener.closest('[hidden]') ? opener : widget!).focus();
+            }
+        }
+
+        function scheduleExpiry() {
+            window.clearTimeout(expiryTimer);
+            if (!preference) return;
+            expiryTimer = window.setTimeout(() => {
+                if (preference && preference.expiresAt <= Date.now()) syncPreference();
+                else scheduleExpiry();
+            }, Math.min(preference.expiresAt - Date.now() + 1, 2147483647));
+        }
+
+        function syncPreference() {
+            if (storageAvailable) preference = readPreference();
+            else if (preference && preference.expiresAt <= Date.now()) preference = null;
+            updateVideo();
+            setOpen(!preference && !document.querySelector('[data-privacy-page]'));
+            scheduleExpiry();
+        }
+
+        function saveChoice(youtube: boolean) {
+            const savedAt = Date.now();
+            const expires = new Date(savedAt);
+            expires.setMonth(expires.getMonth() + 6);
+            preference = {version, youtube, savedAt, expiresAt: expires.getTime()};
+            try {
+                localStorage.setItem(key, JSON.stringify(preference));
+                storageAvailable = true;
+            } catch {
+                storageAvailable = false;
+            }
+            updateVideo();
+            scheduleExpiry();
+            setOpen(false, true);
+        }
+
+        for (const button of document.querySelectorAll<HTMLButtonElement>('[data-cookie-settings]')) {
+            button.hidden = false;
+            button.setAttribute('aria-controls', 'cookie-panel');
+            button.addEventListener('click', () => {
+                opener = button;
+                setOpen(true, true);
+            });
+        }
+        panel.querySelector('[data-cookie-accept]')?.addEventListener('click', () => saveChoice(true));
+        panel.querySelector('[data-cookie-reject]')?.addEventListener('click', () => saveChoice(false));
+        const dismiss = () => preference ? setOpen(false, true) : saveChoice(false);
+        close.addEventListener('click', dismiss);
+        panel.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') dismiss();
+        });
+        window.addEventListener('storage', (event) => {
+            if (event.key === key || event.key === null) syncPreference();
+        });
+        window.addEventListener('pageshow', syncPreference);
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) syncPreference();
+        });
+        syncPreference();
+    }
+</script>
+
+<style>
+    .cookie-panel, .cookie-widget {
+        position: fixed;
+        z-index: 1000;
+        bottom: 1rem;
+        left: 1rem;
+        border: 1px solid #c7cfda;
+        background: #fff;
+        color: #1f344e;
+        font-family: var(--font-ui);
+        box-shadow: 0 4px 24px rgba(6, 26, 64, 0.16);
+    }
+
+    .cookie-panel[hidden], .cookie-widget[hidden] {
+        display: none;
+    }
+
+    .cookie-panel {
+        width: 25rem;
+        max-width: calc(100% - 2rem);
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.8125rem;
+        line-height: 1.65;
+    }
+
+    h2 {
+        margin: 0 1.75rem 0.75rem 0;
+        color: #061a40;
+        font-size: 1.375rem;
+        line-height: 1.3;
+    }
+
+    p {
+        margin: 0 0 0.75rem;
+    }
+
+    .cookie-status {
+        font-size: 0.75rem;
+    }
+
+    .cookie-actions {
+        display: flex;
+        margin: 1rem -0.25rem 0;
+    }
+
+    .cookie-actions button {
+        flex: 1;
+        margin: 0 0.25rem;
+        padding: 0.625rem 0.5rem;
+        border: 1px solid #8798ae;
+        border-radius: 0.25rem;
+        background: #f1f4f8;
+        color: #061a40;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .cookie-actions button:hover {
+        background: #dfe7f0;
+        border-color: #061a40;
+    }
+
+    .cookie-links {
+        margin: 0.875rem 0 0;
+        font-size: 0.75rem;
+    }
+
+    a {
+        color: #002364;
+    }
+
+    button:focus, a:focus {
+        outline: 2px solid #062e69;
+        outline-offset: 3px;
+    }
+
+    .cookie-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        border: 0;
+        border-radius: 0.25rem;
+        background: transparent;
+        color: #1f344e;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .cookie-close:hover, .cookie-widget:hover {
+        background: #eaf0f6;
+    }
+
+    .cookie-widget {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0.75rem;
+        border-radius: 1.5rem;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        cursor: pointer;
+    }
+
+    .cookie-widget svg {
+        margin-right: 0.375rem;
+    }
+
+    @media (max-width: 26rem) {
+        .cookie-panel {
+            padding: 1.25rem;
+        }
+
+        .cookie-widget {
+            bottom: 0.625rem;
+            left: 0.625rem;
+        }
+    }
+</style>

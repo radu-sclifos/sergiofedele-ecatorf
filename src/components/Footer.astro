@@ -13,6 +13,10 @@ const year = new Date().getFullYear();
         <p class="credits">
             &copy; {year} Sergio Fedele<br/>
             Sito di <a href="https://www.linkedin.com/in/radusclifos/">Radu Sclifos</a>
+            <span class="privacy-links">
+                <a href="/privacy/">Privacy</a> · <a href="/cookie/">Cookie</a><br/>
+                <button type="button" data-cookie-settings hidden>Preferenze cookie</button>
+            </span>
         </p>
     </div>
 </footer>
@@ -47,6 +51,21 @@ const year = new Date().getFullYear();
 
     a {
         color: #002364;
+    }
+
+    .privacy-links { display: block; margin-top: 0.75rem; }
+    .privacy-links button {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: #002364;
+        font: inherit;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .privacy-links button:focus, .privacy-links a:focus {
+        outline: 2px solid #062e69;
+        outline-offset: 3px;
     }
 
     @media (max-width: 36rem) {
