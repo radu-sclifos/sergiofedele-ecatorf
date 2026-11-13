@@ -31,30 +31,30 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
             </summary>
 
             <div class="composition-content">
-                <div class="row">
+                <div class="row language-controls">
                     <div class="col-md-3 text-center">
                         <button class="action" type="button" data-select="language" data-value="it" data-default="true"
-                                hidden>
+                                aria-label="Italiano" hidden>
                             <LanguageFlag language="it"/>
-                            Italiano
+                            <span class="language-label">Italiano</span>
                         </button>
                     </div>
                     <div class="col-md-3 text-center">
-                        <button class="action" type="button" data-select="language" data-value="en" hidden>
+                        <button class="action" type="button" data-select="language" data-value="en" aria-label="English" hidden>
                             <LanguageFlag language="en"/>
-                            English
+                            <span class="language-label">English</span>
                         </button>
                     </div>
                     <div class="col-md-3 text-center">
-                        <button class="action" type="button" data-select="language" data-value="de" hidden>
+                        <button class="action" type="button" data-select="language" data-value="de" aria-label="Deutsch" hidden>
                             <LanguageFlag language="de"/>
-                            Deutsch
+                            <span class="language-label">Deutsch</span>
                         </button>
                     </div>
                     <div class="col-md-3 text-center">
-                        <button class="action" type="button" data-select="language" data-value="fr" hidden>
+                        <button class="action" type="button" data-select="language" data-value="fr" aria-label="Français" hidden>
                             <LanguageFlag language="fr"/>
-                            Français
+                            <span class="language-label">Français</span>
                         </button>
                     </div>
                 </div>
@@ -355,6 +355,26 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
     }
 
     @media (max-width: 48rem) {
+        .compositions .language-controls {
+            grid-gap: 0.5rem;
+        }
+
+        .compositions .language-controls > .col-md-3 {
+            grid-column: span 3;
+        }
+
+        .compositions .language-controls .action {
+            padding: 0.625rem 0.25rem;
+        }
+
+        .language-label {
+            display: none;
+        }
+
+        .language-controls :global(.action-icon) {
+            margin-right: 0;
+        }
+
         .ensemble {
             grid-template-columns: 1fr;
             grid-gap: 1rem;
