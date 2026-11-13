@@ -104,6 +104,13 @@ Both keep the current selection when closing PhotoSwipe. Ecate's original sequen
 is stored in `src/data/ecate-scores.ts`, including each blank separator and the final
 blank page.
 
+`LoadingImage.astro` wraps an Astro image with a subtle loading skeleton and
+reserves its proportions using percentage padding. Pass an imported image as
+`src`, descriptive `alt`, and optional `widths`, `sizes` and `loading` (default:
+`lazy`). Size its container in the consuming page. The skeleton clears on load
+or error, handles cached images, and respects reduced motion. Images remain
+visible without JavaScript. Film uses it for the poster.
+
 CD covers on Composizioni use `src/components/composizioni/CoverImage.astro`:
 each cover opens its own single-image PhotoSwipe viewer, with thumbnail zoom,
 a translucent backdrop and closing on a backdrop click, without navigation to
