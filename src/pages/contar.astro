@@ -8,7 +8,7 @@ const links = [
     {label: 'De lo texto de lo nostro Contar', page: 'de_lo_texto_de_lo_nostro_contar'},
     {label: '7 risposte a 7 domande', page: '7_risposte_a_7_domande'},
     {label: 'Recensioni', page: 'altre_recensioni'},
-    {label: 'Prime presentazioni e prima edizione autoprodotta', page: 'prime_pres'},
+    {label: 'Prime presentazioni', continuation: 'e prima edizione autoprodotta', page: 'prime_pres'},
 ];
 ---
 
@@ -17,9 +17,9 @@ const links = [
     <nav class="contar-links" aria-label="Edizioni e approfondimenti su Contar"
          style={{backgroundImage: `url(${background.src})`}}>
         <ul>
-            {links.map(({label, page}) => (
+            {links.map(({label, continuation, page}) => (
                     <li>
-                        <a href={`https://www.sergiofedele.it/${page}.php?lang=it`}>{label}</a>
+                        <a href={`https://www.sergiofedele.it/${page}.php?lang=it`}>{label}{continuation && <><br />{continuation}</>}</a>
                     </li>
             ))}
         </ul>
@@ -38,7 +38,7 @@ const links = [
     }
 
     ul {
-        list-style: none;
+        list-style: disc;
         padding: 0;
         margin: 0;
     }
