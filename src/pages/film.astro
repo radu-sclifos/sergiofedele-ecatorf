@@ -1,0 +1,185 @@
+---
+import { Image } from 'astro:assets';
+import ProjectLayout from '../layouts/ProjectLayout.astro';
+import poster from '../assets/film/ve-la-via-e-ve-landare.webp';
+
+const posterWidths = [240, 320, 480, 640].filter(width => width < poster.width).concat(poster.width);
+---
+
+<ProjectLayout title="V’è la via e v’è l’andare"
+               description="V’è la via e v’è l’andare: il documentario sull’Ecatorf e Sergio Fedele. Sinossi, Asolo Art Film Festival 2026, recensioni e trailer.">
+    <div class="film body-copy">
+        <header class="screening">
+            <p><strong>Asolo Art Film Festival</strong><br/>
+                Asolo (TV), Teatro Duse, <strong>13 giugno 2026</strong>
+            </p>
+            <p>
+                <strong>Ore 20.00</strong> Proiezione del film <strong>V’è la via e v’è l’andare</strong><br/>
+                <strong>Ore 20.45</strong> Sergio Fedele <strong>Ecatorf</strong>
+            </p>
+            <p>
+                <a href="https://asoloartfilmfestival.com/portfolio/ve-la-via-e-ve-landare-2/">
+                    La scheda del film all’Asolo Art Film Festival
+                </a>
+            </p>
+        </header>
+
+        <Image class="poster" src={poster} alt="Locandina del film V’è la via e v’è l’andare"
+               widths={posterWidths} sizes="(max-width: 48rem) 70vw, 285px"/>
+
+        <section aria-labelledby="sinossi">
+            <h2 id="sinossi">Sinossi</h2>
+            <p>
+                Questo documentario, quasi sotto forma di racconto o favola, narra la storia di uno degli strumenti più
+                strani al mondo —
+                un esemplare unico, posseduto dal suo inventore, Sergio Fedele. Quattordici anni di lavoro lo hanno
+                portato a creare lo
+                strumento a fiato dal suono più grave esistente: l’Ecatorf. Il documentario ripercorre la storia di
+                questa invenzione e del
+                suo inventore, seguendo al contempo le avventure intrecciate di un cavallo e di un cavaliere —
+                personaggi immaginari
+                che si muovono attraverso una lingua antica eppure straordinariamente moderna, maccheronica, una miscela
+                di dialetto
+                veneziano, latino, spagnolo e neologismi. La narrazione si sviluppa anche attraverso i suoni
+                dell’Ecatorf e degli
+                innumerevoli oggetti, o frammenti di oggetti, che Sergio trasforma in strumenti di transizione nella sua
+                ricerca sonora
+                profondamente personale.
+            </p>
+        </section>
+
+        <section lang="en" aria-labelledby="synopsis">
+            <h2 id="synopsis">Synopsis</h2>
+            <p>
+                This documentary, almost in the form of a story or a fable, tells the story of one of the strangest
+                instruments in the
+                world—a unique specimen, owned by its inventor, Sergio Fedele. Fourteen years of work led him to create
+                the deepest-sounding
+                wind instrument in existence: the Ecatorf. The documentary traces the history of this invention and its
+                inventor,
+                while following the intertwined adventures of a horse and a rider—imaginary characters navigating an
+                ancient yet
+                remarkably modern language, macaronic, a blend of Venetian dialect, Latin, Spanish, and neologisms. The
+                narrative also
+                develops through the sounds of the Ecatorf and the countless objects, or fragments of objects, that
+                Sergio transforms
+                into transitional instruments in his deeply personal sound research.
+            </p>
+        </section>
+
+        <section class="award" aria-labelledby="premio">
+            <h2 id="premio">42° Asolo Art Film Festival – IMAGO</h2>
+            <p>
+                <strong>12–14 giugno 2026</strong>
+            </p>
+            <p>
+                <strong>Miglior film — Sezione Film sull’arte, lungometraggio</strong><br/>
+                <em>V’è la via e v’è l’andare</em>
+            </p>
+            <p>
+                Realizzazione: Antonio Pintus, Elia Romanelli, Giampaolo Dal Prà,
+                Sergio Fedele, Ilaria Bruni, Fabio Xodo.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://asoloartfilmfestival.com/vincitori-2026/">I vincitori del festival 2026 — Asolo Art
+                        Film Festival</a>
+                </li>
+                <li>
+                    <a href="https://www.cinemaitaliano.info/news/91961/asolo-art-film-festival-42-i-premi.html">Asolo
+                        Art Film Festival 42: i premi — CinemaItaliano.info</a>
+                </li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="presentazioni">
+            <h2 id="presentazioni">Presentazioni</h2>
+            <ul>
+                <li>
+                    <a href="https://ytali.com/2026/06/13/uno-strumento-infrabasso-allasoloart-film-festival/">Uno
+                        strumento infrabasso all’Asolo Art Film Festival — ytali</a>
+                </li>
+                <li>
+                    <a href="https://www.percorsimusicali.eu/2026/06/11/lecatorf-di-sergio-fedele-allasolo-art-film-festival/">L’Ecatorf
+                        di Sergio Fedele all’Asolo Art Film Festival — Percorsi Musicali</a>
+                </li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="recensioni">
+            <h2 id="recensioni">Recensioni</h2>
+            <ul>
+                <li>
+                    <a href="https://www.fattitaliani.it/2026/06/asolo-art-film-festival-la-seconda.html">Asolo Art Film
+                        Festival, la seconda giornata: Premio Duse a Lina Sastri — Fattitaliani</a>
+                </li>
+                <li>
+                    <a href="https://www.taxidrivers.it/532969/festival-di-cinema/asolo-art-film-festival/ve-la-via-e-ve-landare-la-favola-di-un-suono-impossibile.html">
+                        ‘V’è la via e v’è l’andare’: la favola di un suono impossibile. La memoria di un’utopia sonora —
+                        Taxidrivers</a>
+                </li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="trailer">
+            <h2 id="trailer">Trailer ufficiale</h2>
+            <p>
+                <a href="https://www.youtube.com/watch?v=clVTriJ6Obw">V’è la via e v’è l’andare — Official Trailer |
+                    Asolo Art Film Festival 2026 (YouTube)</a>
+            </p>
+        </section>
+    </div>
+</ProjectLayout>
+
+<style>
+    .film {
+        padding: 1.75rem 2rem 2rem;
+        background: #e4e7ed;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .screening {
+        text-align: center;
+    }
+
+    .poster {
+        width: 30%;
+        max-width: 17.8125rem;
+        height: auto;
+        margin: 1.5rem auto 2rem;
+    }
+
+    section + section {
+        margin-top: 2rem;
+    }
+
+    h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.5rem;
+        line-height: 1.4;
+    }
+
+    ul {
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+
+    li + li {
+        margin-top: 0.75rem;
+    }
+
+    .award {
+        padding-top: 2rem;
+        border-top: 1px solid #bac3d0;
+    }
+
+    @media (max-width: 48rem) {
+        .film {
+            padding: 1.5rem 1.25rem;
+        }
+
+        .poster {
+            width: 80%;
+        }
+    }
+</style>
