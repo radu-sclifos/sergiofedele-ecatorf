@@ -33,6 +33,7 @@ links that load a complete page; there is no client-side router.
 | `src/pages/index.astro` | `/` | Introduction to Sergio and the instrument. |
 | `src/pages/biografia.astro` | `/biografia/` | Music, visual arts, literature and photo galleries. |
 | `src/pages/ecatorf.astro` | `/ecatorf/` | Technical descriptions, photographs, range illustrations and video. |
+| `src/pages/partitureperecate.astro` | `/partitureperecate/` | Modular screens, dimensions and the original sequence of 33 pages, including 11 blank pages. |
 | `src/pages/composizioni.astro` | `/composizioni/` | Solo, Trio and PsicoGeografico compositions, scores, CD covers, reviews and translations. |
 | `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
 | `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
@@ -78,11 +79,22 @@ assess documentation requirements before launch.
 | `public/` | Files served unchanged, including browser diagnostics and license notices. |
 | `scripts/` | Compatibility checks and browser identification tests. |
 
+`src/components/ActionIcon.astro` centralizes decorative SVG action icons and
+uses the global `action-icon` styles. Select an icon with `name`; optional `size`
+and `strokeWidth` preserve context-specific dimensions. Use `standalone` for
+icons without adjacent text; the containing control supplies its accessible name.
+
 Photo galleries use [PhotoSwipe](https://photoswipe.com/) through
 `src/components/Gallery.astro`. Each instance is independent, with responsive
 thumbnails, zoom, arrow and touch navigation, and keyboard controls. The main
 PhotoSwipe module loads when a gallery opens; image links also work without
 JavaScript.
+
+`DesignCarousel.astro` shares preview and fullscreen navigation for Ecatorf's
+paired design pages and the single pages of Partiture per Ecate (`pagesPerSlide={1}`).
+Both keep the current selection when closing PhotoSwipe. Ecate's original sequence
+is stored in `src/data/ecate-scores.ts`, including each blank separator and the final
+blank page.
 
 CD covers on Composizioni use `src/components/composizioni/CoverImage.astro`:
 each cover opens its own single-image PhotoSwipe viewer, with thumbnail zoom,
