@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LanguageFlag from '../../components/LanguageFlag.astro';
 import ActionIcon from '../../components/ActionIcon.astro';
+import Gallery from '../../components/Gallery.astro';
 import CoverImage from '../../components/composizioni/CoverImage.astro';
 import CompositionControls from '../../components/CompositionControls.astro';
 import DesignCarousel from '../../components/DesignCarousel.astro';
@@ -17,215 +18,350 @@ import '../../styles/composizioni.css';
 const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).concat(hero.width);
 ---
 
-<BaseLayout title="Sergio Fedele – Musica · Kwatz!" description="Kwatz! Ensemble: quartetto acustico di percussioni con Enrico Caimi, Roberto Dani, Sergio Fedele e Davide Negrini. Presentazione, CD, recensioni, foto e locandine.">
+<BaseLayout title="Sergio Fedele – Musica · Kwatz!"
+            description="Kwatz! Ensemble: quartetto acustico di percussioni con Enrico Caimi, Roberto Dani, Sergio Fedele e Davide Negrini. Presentazione, CD, recensioni, foto e locandine.">
     <header class="compositions-hero">
         <Image src={hero} widths={widths} sizes="100vw" alt="" format="webp" quality={90} priority/>
         <h1 class="page-title">Kwatz!</h1>
     </header>
     <div class="compositions">
         <details class="composition">
-            <summary><h3>Presentazione</h3></summary>
-            <div class="composition-content">
-                <div class="row"><div class="col-md-3 text-center"><button class="action" type="button" data-select="language" data-value="it" data-default="true" hidden><LanguageFlag language="it"/> Italiano</button></div>
-<div class="col-md-3 text-center"><button class="action" type="button" data-select="language" data-value="en"  hidden><LanguageFlag language="en"/> English</button></div>
-<div class="col-md-3 text-center"><button class="action" type="button" data-select="language" data-value="de"  hidden><LanguageFlag language="de"/> Deutsch</button></div>
-<div class="col-md-3 text-center"><button class="action" type="button" data-select="language" data-value="fr"  hidden><LanguageFlag language="fr"/> Français</button></div></div>
-                <div class="ensemble description">
-                    <ul class="people body-copy">
-                        {['Enrico Caimi', 'Roberto Dani', 'Sergio Fedele', 'Davide Negrini'].map(name => <li><ActionIcon name="person"/>{name}</li>)}
-                    </ul>
-                    <div class="presentation-image"><CoverImage src={presentation} alt="L’ensemble Kwatz! con i suoi strumenti a percussione" skeleton/></div>
-                </div>
-                <div class="description body-copy" data-panel="language" data-value="it" lang="it"><p>
-                        L'ensemble Kwatz! è un quartetto acustico di sole percussioni. Nella sua ricerca convergono
-                        l'esperienza della musica colta contemporanea - in particolare dell'improvvisazione - e
-                        l'inesauribile mondo delle percussioni.<br> A percussioni tradizionali si aggiungono rielaborazioni
-                        di strumenti classici e set completamente autocostruiti con materiali di riciclo.<br>
-                        L'improvvisazione e, soprattutto, una certa idea dell'improvvisazione, è anzitutto praticare
-                        l'ascolto, è l'arte di ascoltare: viviamo nel suono e siamo suono, prima di produrre i suoni si
-                        tratta di accoglierli. In un mondo dove ogni tipo di informazione martella senza posa i sensi e la
-                        mente riproducendo all'infinito luoghi comuni e rimasticature di ciò che un tempo era un sapere,
-                        annichilendo ogni messaggio, Kwatz! cerca il mistero del suono, la sua presenza unica e
-                        irripetibile. Parafrasando Eraclito: il suono è nuovo ogni giorno.<br> Il nome dell'ensemble è il
-                        grido tradizionale usato dai monaci Ch'an.<br> Così lo descrive brevemente Engaku Taino nel suo
-                        commento alla Raccolta dei Detti del Maestro Ch'an Lin-Chi I-Hsuan: "L'urlo di cui si tratta fu
-                        portato alla perfezione proprio da Lin-chi che lo catalogò in quattro modo differenti: il kwatz che
-                        è come una spada di diamante, il secondo è come un leone dorato di montagna, il terzo come una
-                        pertica per esplorare l'acqua davanti alla barca e il quarto è un kwatz che non è un kwatz."<br> Nel
-                        2016 è uscito il primo cd dell'ensemble: Kwatz! (Setola di Maiale SM 3050).<br> <a
-                        href="https://youtu.be/caIN13mu754">Il quartetto si può ascoltare e vedere cliccando qui.</a>
-                    </p></div>
-<div class="description body-copy" data-panel="language" data-value="en" lang="en"><p>
-                        The Kwatz! ensemble is an acoustic quartet made up of four percussionists. The contemporary music
-                        experience – improvisation in particular – and the unlimited world of percussion converge togheter
-                        in their research.<br> Traditional percussions are joined by re-elaborated versions of classical
-                        instruments and self assembled kits put together entirely from recycled materials.<br>
-                        Improvisation, and especially a certain idea of improvisation, consists above all of practicing the
-                        listeting, it is the art of listening. We live in sound and we ourselves are sound, and before
-                        producing sounds we need to be able to accept them. In a world where every kind of information
-                        relentlessly hammers our senses and our minds by endlessly reproducing clichés and reshuffling what
-                        once was a knowledge, annihilating every message, Kwatz! looks for the mystery of sound, its
-                        peculiar and unique presence. To paraphrase Heraclitus: the sound is new every day.<br> The
-                        ensemble's name Kwatz!, refers to the traditional shout of Ch'an monks. It is briefly described by
-                        Engaku Taino in his commentary to Collection of sayings of Ch'an Master Lin- Chi I-Hsuan as follows:
-                        "The shout under consideration was brought to perfection by Lin-chi who classified it in four
-                        different ways: kwatz is like a diamond sword, the second is like a mountain golden lion, the third
-                        is like a perch to explore the water in front of the boat, the fourth is a kwatz which is not a
-                        kwatz".<br> In 2016, the ensemble's first CD was issued: Kwatz! (Setola di Maiale SM 3050).<br> <a
-                        href="https://youtu.be/caIN13mu754">The quartet can be heard and seen clicking here.</a>
-                    </p></div>
-<div class="description body-copy" data-panel="language" data-value="de" lang="de"><p>
-                        Das Ensemble Kwatz! ist ein akustisches Quartett, das nur mit Percussion arbeitet. Bei seiner
-                        Klangforschung fließen die Erfahrung in der zeitgenössischen Kunstmusik, insbesondere der
-                        Improvisation, und die unerschöpfliche Welt der Percussion mit ein.<br> Zu traditioneller Percussion
-                        kommen Neuauslegungen klassischer Instrumente und vollkommen im Eigenbau mit Recyclingmaterialien
-                        hergestellte Sets hinzu.<br> Die Improvisation, und vor allem eine bestimmte Vorstellung von
-                        Improvisation, besteht vor allem darin, das Zuhören zu praktizieren, ist die Kunst des Zuhörens: wir
-                        leben im Klang und sind Klang, vor dem Erzeugen von Klängen geht es darum, diese aufzunehmen. In
-                        einer Welt, in der alle Arten von Informationen unablässig auf die Sinne und den Geist einprasseln
-                        und dabei bis ins Unendliche Gemeinplätze und Wiedergekautes dessen wiedergeben, was einst Wissen
-                        war und so jegliche Botschaft im Keim ersticken, versucht Kwatz! das Geheimnis des Klangs zu lüften
-                        und seine einzigartige und unnachahmliche Präsenz zu erforschen. Um mit Heraklit zu sprechen: Der
-                        Klang scheint jeden Tag neu.<br> Der Name des Ensembles ist der Name des traditionellen Schreis der
-                        Chan-Mönche.<br> So beschreibt es Engaku Taino in seinem Kommentar zur Sammlung der Sprüche des
-                        Chan-Meisters Lin-Chi I-Hsüan: "Der Schrei, um den es sich handelt, wurde eigens von Lin-chi zur
-                        Perfektion gebracht, der dabei vier Arten unterschied: den Kwatz, der wie ein Diamantschwert ist,
-                        den zweiten, der wie ein goldener Berglöwe ist, den dritten, der wie eine Stange zum Sondieren des
-                        Wassers vor dem Boot ist und den vierten Kwatz, der kein Kwatz ist."<br> 2016 erschien die erste CD
-                        des Ensembles: Kwatz! (Setola di Maiale SM 3050).<br> <a href="https://youtu.be/caIN13mu754">Das
-                        Quartett ist unter den folgenden Links zu hören und zu sehen.</a>
-                    </p></div>
-<div class="description body-copy" data-panel="language" data-value="fr" lang="fr"><p>
-                        L'ensemble Kwatz! est un quartet acoustique de seules percussions. L'experience de la musique
-                        contemporaine - en particulier de l'improvisation – et le monde inépulsable des percussions
-                        convergent dans sa recherche.<br> Des remaniements d'instruments classiques et des assemblages
-                        entiérement auto- costruits avec des materiaux recycles s'ajoutent aux percussions
-                        traditionnelles.<br> L'improvisation et, surtout, une certaine idée de l'improvisation, est avant
-                        tout pratiquer l'écoute, es l'art d' ecouter: nous vivons dans le son et nous sommes son, avant de
-                        produire les sons il faut les accueillir. Dans un monde où toutes sortes d'informations martèlent
-                        sans cesse nos sens et nos esprits enreproduisant continuellement des clichés et en remastiquant ce
-                        qui autrefois était un savoir anéantissant tout message, Kwatz! cherche le mystére du son, sa
-                        présence unique et irrepetible. Pour paraphraser Héraclite: le son est nouveau chaque jour.<br> Le
-                        nom de l'ensemble est le cri traditionnel utilisé par les moines Chan. Engaku Taino le décrit
-                        brièvement dans son commentaire sur la Collection des énonciations de Maître Chan Lin-Chi I-Hsuan:
-                        comme suit "Le cri en question fut porté à la perfection juste par Lin-chi qui le catalogue selon
-                        quatre modes différents: le kwatz qui est comme une épée de diamant, le deuxième est comme un lion
-                        doré de montagne, le troisième comme una perche pour explorer l'eau devant le bateau et le quatrième
-                        est un kwatz qui n'est pas un kwatz."<br> En 2016, l'ensemble a publié son premier CD: Kwatz!
-                        (Setola di Maiale SM 3050).<br> On peut entendre et voir le quartet au <a
-                        href="https://youtu.be/caIN13mu754">link</a> suivant:
-                    </p></div>
+            <summary>
+                <h3>Presentazione</h3>
+            </summary>
 
-            </div>
-        </details>
-        <details class="composition">
-            <summary><h3>CD e Recensioni</h3></summary>
             <div class="composition-content">
                 <div class="row">
-                    <div class="col-md-6 text-center"><button class="action" type="button" data-select="album" data-value="cd" hidden><ActionIcon name="cd"/>CD</button></div>
-                    <div class="col-md-6 text-center"><button class="action" type="button" data-select="album" data-value="reviews" hidden><ActionIcon name="review"/>Recensioni</button></div>
+                    <div class="col-md-3 text-center">
+                        <button class="action" type="button" data-select="language" data-value="it" data-default="true"
+                                hidden>
+                            <LanguageFlag language="it"/>
+                            Italiano
+                        </button>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button class="action" type="button" data-select="language" data-value="en" hidden>
+                            <LanguageFlag language="en"/>
+                            English
+                        </button>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button class="action" type="button" data-select="language" data-value="de" hidden>
+                            <LanguageFlag language="de"/>
+                            Deutsch
+                        </button>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button class="action" type="button" data-select="language" data-value="fr" hidden>
+                            <LanguageFlag language="fr"/>
+                            Français
+                        </button>
+                    </div>
                 </div>
-                <div class="description covers" data-panel="album" data-value="cd">
-                    <CoverImage src={white} alt="Kwatz! — copertina bianca del CD" skeleton/>
-                    <CoverImage src={grey} alt="Kwatz! — copertina grigia del CD" skeleton/>
-                    <CoverImage src={circle} alt="Kwatz! — copertina del CD con cerchio" skeleton/>
+
+                <div class="ensemble description">
+                    <ul class="people body-copy">
+                        <li>
+                            <ActionIcon name="person"/>
+                            Enrico Caimi
+                        </li>
+                        <li>
+                            <ActionIcon name="person"/>
+                            Roberto Dani
+                        </li>
+                        <li>
+                            <ActionIcon name="person"/>
+                            Sergio Fedele
+                        </li>
+                        <li>
+                            <ActionIcon name="person"/>
+                            Davide Negrini
+                        </li>
+                    </ul>
+
+                    <div class="presentation-image">
+                        <CoverImage src={presentation} alt="L’ensemble Kwatz! con i suoi strumenti a percussione"
+                                    skeleton/>
+                    </div>
                 </div>
-                <div class="description body-copy" data-panel="album" data-value="reviews">
-                    <article class="review"><header class="review-heading"><h4 class="review-source">Ettore Garzia - <a href="https://www.percorsimusicali.eu/2016/08/21/quattro-percussioni-alla-ricerca-del-kwatz/" target="_blank" rel="noopener">Percorsi musicali</a> (21 Agosto 2016):</h4></header><p>
-                        Non ci volle molto tempo nella musica per capire che le percussioni fossero gli strumenti più adatti
-                        per rappresentare i panorami pragmatici delle pratiche buddiste: compositori come Cage (con le
-                        proprie costruzioni di metallo) o Evangelisti (con i suoi "spazi" a cinque) avvicinarono gli
-                        ensembles percussivi alla percezione sensoria del suono come entità libera e fluida. Kwatz! è quella
-                        parola composita che nella religione buddista esprime il raggiungimento di uno stato supremo della
-                        comprensione ma è anche il nome che quattro musicisti hanno scelto per il loro progetto artistico:
-                        interamente dediti alle percussioni nell'acustica della chiesa di S.Pietro a Gazzuolo, Sergio
-                        Fedele, Roberto Dani, Enrico Caimi e Davide Negrini dimostrano che è possibile costruire delle
-                        architetture soniche basate su un set percussivo la cui metodologia è ben conosciuta (posizioni,
-                        modo di colpire, impostazione di base delle amplificazioni, etc.) ma imprevedibili sono i risultati
-                        da riscuotere (le scosse spirituali e un'incredibile, sottile armonia subsonica dei corpi
-                        metallici). Gongs, tam tam, cimbali, batteria preparata, colpi di bastone e altri oggetti di
-                        supporto condividono la sintonia dei quattro modelli del Kwatz spingendosi oltre il lecito,
-                        suscitando l'estasi dell'attenzione e il riconoscimento di turbe empatiche dei suoni.<br>
-                        Riconosciuto come un progetto partorito da Sergio Fedele, Kwatz! è un'estensione della dialettica
-                        del musicista che parte da lontano: pluristrumentista ai fiati con predilezione per il clarinetto,
-                        pittore, conoscitore delle arti visive e scrittore (sotto le mentite spoglie di Guido Carminati) con
-                        una spiccata vicinanza di intenti alle novelle di Italo Calvino, Fedele è da sempre promotore di un
-                        ideale simbolismo musicale, in cui far convergere il gesto, le tecniche aleatorie o improvvisative,
-                        le preparazioni e la congruenza naturale con la filosofia orientale: in tal senso un ascolto molto
-                        convincente da poter escutere si trova in Su ciò potrei già cantare… con Stefano Giust a batteria,
-                        piatti e cembali, mentre il Duo Klang (dal 2000 posto in essere con Roberto Dani) si può definire
-                        come l'embrione dell'esperienza percussiva depositaria delle soluzioni di Kwatz!, che oggi conta un
-                        accrescimento dei suoi elementi costitutivi e l'intervento diretto di Fedele nell'esplorazione
-                        acustica posta sul parco percussioni, in un set che devia dalla splendida capacità narrativa finora
-                        traslata nella musica.
-                    </p></article>
-<article class="review"><header class="review-heading"><h4 class="review-source">Iris Brognara - La Voce di Rovigo (21 Luglio 2016):</h4></header><p>
-                        BADIA POLESINE - La musica ruba la scena in Villa Valente Crocco. Due serate di musica al Festival
-                        dei Popoli hanno regalato al numeroso pubblico presente in entrambe le occasioni tante e diverse
-                        emozioni. Si è cominciato venerdì, con KWATZ! Ensemble, trio di percussionisti formato da Enrico
-                        Caimi, Roberto Dani e Sergio Fedele. I tre si sono esibiti con strumenti che tutto sembravano essere
-                        tranne che musicali: al di là di un paio di tamburi, piatti e poco altro, il pubblico si è trovato
-                        di fronte a barattoli di latta, dischi metallici, chiavi riposte in fila e chi più ne ha più ne
-                        metta. Dopo un attimo di silenzio, i musicisti si sono scambiati uno sguardo, e il primo è partito,
-                        seguito dal secondo e dal terzo, che si sono accodati reagendo agli stimoli sonori lanciati dal
-                        primo, e aggiungendone di propri. E hanno continuato così, alternando momenti di pathos ai più
-                        flebili sussurri, per arrivare a colpi potenti degni delle colonne sonore di alcuni film. Se si
-                        chiudevano gli occhi, si poteva pensare di stare ascoltando un'orchestra, tanto variegati erano i
-                        suoni e gli effetti prodotti da quegli "strumenti" strappati alla quotidianità. In chiusura, Sergio
-                        Fedele ha spiegato l'origine del nome così particolare, il grido dei monaci Ch'an, prima di parlare
-                        della loro ricerca musicale. "Cerchiamo di avvicinarci al mistero del suono, restituendogli la sua
-                        dignità, utilizzando qualsiasi corpo timbrico. Il suono è un'avventura—ha detto Fedele—e le
-                        percussioni sono lo strumento più versatile per fare un viaggio nel mondo infinito della musica". La
-                        composizione istantanea è un'arte e rende ogni concerto, ogni esibizione un unicum: tutta la
-                        precisione e la conoscenza musicale si mettono in gioco in quel preciso momento, in quell'atmosfera,
-                        con chi ascolta, fino a vivere un'esperienza totalizzante.
-                    </p></article>
-<article class="review"><header class="review-heading"><h4 class="review-source">Eva Purelli - Il Giornale Di Vicenza (11 Febbraio 2019):</h4></header><p>
-                        Tutto fa suono. Lo mettono in pratica i percussionisti Sergio Fedele, Enrico Caimi e Davide Negrini
-                        riuniti nell'ensemble "Kwatz!". Il punto esclamativo indica il grido tradizionale dei monaci Ch'an,
-                        scuola di pensiero da cui si sviluppò lo Zen.<br> Esibitisi sabato sera allo Spazio Bixio
-                        nell'ambito della rassegna "Teatro Elemento-Tredici" hanno trovato ad ascoltarli solo dieci
-                        spettatori...!<br> Sarà stata la serata finale del Festival di San Remo o la concorrenza del vicino
-                        Teatro (grande) Comunale con uno spettacolo di richiamo o altro.<br> Peccato, per chi non era
-                        presente, perchè ha perso una delle serate più originali in assoluto (almeno) degli ultimi dieci
-                        anni.<br> Forti del teorema del "politeismo strumentale" i tre del gruppo "Kwatz!" hanno
-                        improvvisato per una ora e mezza (a suggello finale, anche un bis) dividendosi tra vasi e vasetti di
-                        terracotta (quelli per i fiori che a seconda delle dimensioni del diametro producono sonorità
-                        differenti), bidoni e contenitori di diverse dimensioni, pulegge di lavastoviglie, catene, chiavi,
-                        seghe, stampi in acciaio traforati, giocattolini meccanici, lamiere, chiavi inglesi, barattoli,
-                        pentole, coperchi e "pegnate".<br> Che a vedere tutto ciò sulla scena del Bixio sembra di stare in
-                        una officina, o in una discarica di rottami, belli, ordinati e coreografici, ma tanti strumenti
-                        percussivi sono in effetti realizzati con materiali di riciclo.<br> Unici classici del "corpus"
-                        della batteria che vengono utilizzati nella performance sono alcuni piatti , due tom, spazzole e
-                        bacchette in legno con e senza punte.<br> Ma originali per segnare il tempo, improvvisare e creare
-                        rumori e suoni sono anche dei ferri da calza, spatole, legnetti: il tutto viene usato sia in modo
-                        percussivo che circolare o in trascinamento con una varietà di possibilità rit-mico-sonore.<br> Il
-                        mistero dei suoni che tanto i "Kwatz" ricercano è assicurato e ha raggiunto l'incredulo e sparuto
-                        parterre. Per la prima volta assieme a Sergio Fedele, Enrico Caimi e Davide Negrini si sarebbe
-                        dovuto esibire al cembalo Alessandro Ferrarese, che nelle intenzioni doveva fondere la musica colta
-                        contemporanea con la restante improvvisazione dei tre percussionisti, purtroppo però causa
-                        indisposizione ha dato forfait.<br> A sondare il mondo delle sonorità e dei rumori impossibili ci
-                        hanno pensato comunque con grande fantasia improvvisativa i tre componenti, alfieri dello
-                        sperimentalismo divertito (anche se un po' straniante) salutati da pochi ma sinceri applausi.
-                    </p></article>
+
+                <div class="description body-copy" data-panel="language" data-value="it" lang="it">
+                    <p>L'ensemble Kwatz! è un quartetto acustico di sole percussioni. Nella sua ricerca convergono
+                        l'esperienza della musica colta contemporanea - in particolare dell'improvvisazione - e
+                        l'inesauribile mondo delle percussioni.<br> A percussioni tradizionali si aggiungono
+                        rielaborazioni di strumenti classici e set completamente autocostruiti con materiali di riciclo.<br>
+                        L'improvvisazione e, soprattutto, una certa idea dell'improvvisazione, è anzitutto praticare
+                        l'ascolto, è l'arte di ascoltare: viviamo nel suono e siamo suono, prima di produrre i suoni si
+                        tratta di accoglierli. In un mondo dove ogni tipo di informazione martella senza posa i sensi e
+                        la mente riproducendo all'infinito luoghi comuni e rimasticature di ciò che un tempo era un
+                        sapere, annichilendo ogni messaggio, Kwatz! cerca il mistero del suono, la sua presenza unica e
+                        irripetibile. Parafrasando Eraclito: il suono è nuovo ogni giorno.<br>
+                        Il nome dell'ensemble è il grido tradizionale usato dai monaci Ch'an.<br>
+                        Così lo descrive brevemente Engaku Taino nel suo commento alla Raccolta dei Detti del Maestro
+                        Ch'an Lin-Chi I-Hsuan: "L'urlo di cui si tratta fu portato alla perfezione proprio da Lin-chi
+                        che lo catalogò in quattro modo differenti: il kwatz che è come una spada di diamante, il
+                        secondo è come un leone dorato di montagna, il terzo come una pertica per esplorare l'acqua
+                        davanti alla barca e il quarto è un kwatz che non è un kwatz."<br>
+                        Nel 2016 è uscito il primo cd dell'ensemble: Kwatz! (Setola di Maiale SM 3050).<br>
+                        <a href="https://youtu.be/caIN13mu754">Il quartetto si può ascoltare e vedere cliccando qui.</a>
+                    </p>
+                </div>
+                <div class="description body-copy" data-panel="language" data-value="en" lang="en">
+                    <p>The Kwatz! ensemble is an acoustic quartet made up of four percussionists. The contemporary music
+                        experience – improvisation in particular – and the unlimited world of percussion converge
+                        togheter in their research.<br>
+                        Traditional percussions are joined by re-elaborated versions of classical instruments and self
+                        assembled kits put together entirely from recycled materials.<br>
+                        Improvisation, and especially a certain idea of improvisation, consists above all of practicing
+                        the listeting, it is the art of listening. We live in sound and we ourselves are sound, and
+                        before producing sounds we need to be able to accept them. In a world where every kind of
+                        information relentlessly hammers our senses and our minds by endlessly reproducing clichés and
+                        reshuffling what once was a knowledge, annihilating every message, Kwatz! looks for the mystery
+                        of sound, its peculiar and unique presence. To paraphrase Heraclitus: the sound is new every
+                        day.<br>
+                        The ensemble's name Kwatz!, refers to the traditional shout of Ch'an monks. It is
+                        briefly described by Engaku Taino in his commentary to Collection of sayings of Ch'an Master
+                        Lin- Chi I-Hsuan as follows: "The shout under consideration was brought to perfection by Lin-chi
+                        who classified it in four different ways: kwatz is like a diamond sword, the second is like a
+                        mountain golden lion, the third is like a perch to explore the water in front of the boat, the
+                        fourth is a kwatz which is not a kwatz".<br>
+                        In 2016, the ensemble's first CD was issued: Kwatz! (Setola di Maiale SM 3050).<br>
+                        <a href="https://youtu.be/caIN13mu754">The quartet can be heard and seen clicking here.</a>
+                    </p>
+                </div>
+                <div class="description body-copy" data-panel="language" data-value="de" lang="de">
+                    <p>
+                        Das Ensemble Kwatz! ist ein akustisches Quartett, das nur mit Percussion arbeitet. Bei seiner
+                        Klangforschung fließen die Erfahrung in der zeitgenössischen Kunstmusik, insbesondere der
+                        Improvisation, und die unerschöpfliche Welt der Percussion mit ein.<br>
+                        Zu traditioneller Percussion kommen Neuauslegungen klassischer Instrumente und vollkommen im
+                        Eigenbau mit Recyclingmaterialien hergestellte Sets hinzu.<br>
+                        Die Improvisation, und vor allem eine bestimmte Vorstellung von Improvisation, besteht vor allem
+                        darin, das Zuhören zu praktizieren, ist die Kunst des Zuhörens: wir leben im Klang und sind
+                        Klang, vor dem Erzeugen von Klängen geht es darum, diese aufzunehmen. In einer Welt, in der alle
+                        Arten von Informationen unablässig auf die Sinne und den Geist einprasseln und dabei bis ins
+                        Unendliche Gemeinplätze und Wiedergekautes dessen wiedergeben, was einst Wissen war und so
+                        jegliche Botschaft im Keim ersticken, versucht Kwatz! das Geheimnis des Klangs zu lüften und
+                        seine einzigartige und unnachahmliche Präsenz zu erforschen. Um mit Heraklit zu sprechen: Der
+                        Klang scheint jeden Tag neu.<br>
+                        Der Name des Ensembles ist der Name des traditionellen Schreis der Chan-Mönche.<br>
+                        So beschreibt es Engaku Taino in seinem Kommentar zur Sammlung der Sprüche des Chan-Meisters
+                        Lin-Chi I-Hsüan: "Der Schrei, um den es sich handelt, wurde eigens von Lin-chi zur Perfektion
+                        gebracht, der dabei vier Arten unterschied: den Kwatz, der wie ein Diamantschwert ist, den
+                        zweiten, der wie ein goldener Berglöwe ist, den dritten, der wie eine Stange zum Sondieren des
+                        Wassers vor dem Boot ist und den vierten Kwatz, der kein Kwatz ist."<br>
+                        2016 erschien die erste CD des Ensembles: Kwatz! (Setola di Maiale SM 3050).<br>
+                        <a href="https://youtu.be/caIN13mu754">Das Quartett ist unter den folgenden Links zu hören und
+                            zu sehen.</a>
+                    </p>
+                </div>
+                <div class="description body-copy" data-panel="language" data-value="fr" lang="fr">
+                    <p>
+                        L'ensemble Kwatz! est un quartet acoustique de seules percussions. L'experience de la musique
+                        contemporaine - en particulier de l'improvisation – et le monde inépulsable des percussions
+                        convergent dans sa recherche.<br>
+                        Des remaniements d'instruments classiques et des assemblages entiérement auto- costruits avec
+                        des materiaux recycles s'ajoutent aux percussions traditionnelles.<br>
+                        L'improvisation et, surtout, une certaine idée de l'improvisation, est avant tout pratiquer
+                        l'écoute, es l'art d' ecouter: nous vivons dans le son et nous sommes son, avant de produire les
+                        sons il faut les accueillir. Dans un monde où toutes sortes d'informations martèlent sans cesse
+                        nos sens et nos esprits enreproduisant continuellement des clichés et en remastiquant ce qui
+                        autrefois était un savoir anéantissant tout message, Kwatz! cherche le mystére du son, sa
+                        présence unique et irrepetible. Pour paraphraser Héraclite: le son est nouveau chaque jour.<br>
+                        Le nom de l'ensemble est le cri traditionnel utilisé par les moines Chan. Engaku Taino le décrit
+                        brièvement dans son commentaire sur la Collection des énonciations de Maître Chan Lin-Chi
+                        I-Hsuan: comme suit "Le cri en question fut porté à la perfection juste par Lin-chi qui le
+                        catalogue selon quatre modes différents: le kwatz qui est comme une épée de diamant, le deuxième
+                        est comme un lion doré de montagne, le troisième comme una perche pour explorer l'eau devant le
+                        bateau et le quatrième est un kwatz qui n'est pas un kwatz."<br>
+                        En 2016, l'ensemble a publié son premier CD: Kwatz! (Setola di Maiale SM 3050).<br>
+                        <a href="https://youtu.be/caIN13mu754">On peut entendre et voir le quartet aulink suivant.</a>
+                    </p>
                 </div>
             </div>
         </details>
+
         <details class="composition">
-            <summary><h3>Foto e locandine</h3></summary>
-            <div class="composition-content"><DesignCarousel pages={kwatzPhotos} pagesPerSlide={1} label="Kwatz! — foto e locandine"/></div>
+            <summary>
+                <h3>CD e Recensioni</h3>
+            </summary>
+
+            <div class="composition-content">
+
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <button class="action" type="button" data-select="album" data-value="cd" hidden>
+                            <ActionIcon name="cd"/>
+                            CD
+                        </button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <button class="action" type="button" data-select="album" data-value="reviews" hidden>
+                            <ActionIcon name="review"/>
+                            Recensioni
+                        </button>
+                    </div>
+                </div>
+
+                <div class="description covers" data-panel="album" data-value="cd">
+                    <Gallery layout="covers" skeleton photos={[
+                        {src: white, alt: 'Kwatz! — copertina bianca del CD'},
+                        {src: grey, alt: 'Kwatz! — copertina grigia del CD'},
+                        {src: circle, alt: 'Kwatz! — copertina del CD con cerchio'},
+                    ]}/>
+                </div>
+
+                <div class="description body-copy" data-panel="album" data-value="reviews">
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ettore Garzia - <a
+                                    href="https://www.percorsimusicali.eu/2016/08/21/quattro-percussioni-alla-ricerca-del-kwatz/"
+                                    target="_blank" rel="noopener">Percorsi musicali</a> (21 Agosto 2016):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Non ci volle molto tempo nella musica per capire che le percussioni fossero gli strumenti
+                            più adatti per rappresentare i panorami pragmatici delle pratiche buddiste: compositori come
+                            Cage (con le proprie costruzioni di metallo) o Evangelisti (con i suoi "spazi" a cinque)
+                            avvicinarono gli ensembles percussivi alla percezione sensoria del suono come entità libera
+                            e fluida. Kwatz! è quella parola composita che nella religione buddista esprime il
+                            raggiungimento di uno stato supremo della comprensione ma è anche il nome che quattro
+                            musicisti hanno scelto per il loro progetto artistico: interamente dediti alle percussioni
+                            nell'acustica della chiesa di S.Pietro a Gazzuolo, Sergio Fedele, Roberto Dani, Enrico Caimi
+                            e Davide Negrini dimostrano che è possibile costruire delle architetture soniche basate su
+                            un set percussivo la cui metodologia è ben conosciuta (posizioni, modo di colpire,
+                            impostazione di base delle amplificazioni, etc.) ma imprevedibili sono i risultati da
+                            riscuotere (le scosse spirituali e un'incredibile, sottile armonia subsonica dei corpi
+                            metallici). Gongs, tam tam, cimbali, batteria preparata, colpi di bastone e altri oggetti di
+                            supporto condividono la sintonia dei quattro modelli del Kwatz spingendosi oltre il lecito,
+                            suscitando l'estasi dell'attenzione e il riconoscimento di turbe empatiche dei suoni.<br>
+                            Riconosciuto come un progetto partorito da Sergio Fedele, Kwatz! è un'estensione della
+                            dialettica del musicista che parte da lontano: pluristrumentista ai fiati con predilezione
+                            per il clarinetto, pittore, conoscitore delle arti visive e scrittore (sotto le mentite
+                            spoglie di Guido Carminati) con una spiccata vicinanza di intenti alle novelle di Italo
+                            Calvino, Fedele è da sempre promotore di un ideale simbolismo musicale, in cui far
+                            convergere il gesto, le tecniche aleatorie o improvvisative, le preparazioni e la congruenza
+                            naturale con la filosofia orientale: in tal senso un ascolto molto convincente da poter
+                            escutere si trova in Su ciò potrei già cantare… con Stefano Giust a batteria, piatti e
+                            cembali, mentre il Duo Klang (dal 2000 posto in essere con Roberto Dani) si può definire
+                            come l'embrione dell'esperienza percussiva depositaria delle soluzioni di Kwatz!, che oggi
+                            conta un accrescimento dei suoi elementi costitutivi e l'intervento diretto di Fedele
+                            nell'esplorazione acustica posta sul parco percussioni, in un set che devia dalla splendida
+                            capacità narrativa finora traslata nella musica.
+                        </p></article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Iris Brognara - La Voce di Rovigo (21
+                                Luglio 2016):</b>
+                            </p>
+                        </header>
+                        <p>
+                            BADIA POLESINE - La musica ruba la scena in Villa Valente Crocco. Due serate di musica al
+                            Festival dei Popoli hanno regalato al numeroso pubblico presente in entrambe le occasioni
+                            tante e diverse emozioni. Si è cominciato venerdì, con KWATZ! Ensemble, trio di
+                            percussionisti formato da Enrico Caimi, Roberto Dani e Sergio Fedele. I tre si sono esibiti
+                            con strumenti che tutto sembravano essere tranne che musicali: al di là di un paio di
+                            tamburi, piatti e poco altro, il pubblico si è trovato di fronte a barattoli di latta,
+                            dischi metallici, chiavi riposte in fila e chi più ne ha più ne metta. Dopo un attimo di
+                            silenzio, i musicisti si sono scambiati uno sguardo, e il primo è partito, seguito dal
+                            secondo e dal terzo, che si sono accodati reagendo agli stimoli sonori lanciati dal primo, e
+                            aggiungendone di propri. E hanno continuato così, alternando momenti di pathos ai più
+                            flebili sussurri, per arrivare a colpi potenti degni delle colonne sonore di alcuni film. Se
+                            si chiudevano gli occhi, si poteva pensare di stare ascoltando un'orchestra, tanto variegati
+                            erano i suoni e gli effetti prodotti da quegli "strumenti" strappati alla quotidianità. In
+                            chiusura, Sergio Fedele ha spiegato l'origine del nome così particolare, il grido dei monaci
+                            Ch'an, prima di parlare della loro ricerca musicale. "Cerchiamo di avvicinarci al mistero
+                            del suono, restituendogli la sua dignità, utilizzando qualsiasi corpo timbrico. Il suono è
+                            un'avventura—ha detto Fedele—e le percussioni sono lo strumento più versatile per fare un
+                            viaggio nel mondo infinito della musica". La composizione istantanea è un'arte e rende ogni
+                            concerto, ogni esibizione un unicum: tutta la precisione e la conoscenza musicale si mettono
+                            in gioco in quel preciso momento, in quell'atmosfera, con chi ascolta, fino a vivere
+                            un'esperienza totalizzante.
+                        </p></article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Eva Purelli - Il Giornale Di Vicenza
+                                (11 Febbraio 2019):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Tutto fa suono. Lo mettono in pratica i percussionisti Sergio Fedele, Enrico Caimi e Davide
+                            Negrini riuniti nell'ensemble "Kwatz!". Il punto esclamativo indica il grido tradizionale
+                            dei monaci Ch'an, scuola di pensiero da cui si sviluppò lo Zen.<br>
+                            Esibitisi sabato sera allo Spazio Bixio nell'ambito della rassegna "Teatro Elemento-Tredici"
+                            hanno trovato ad ascoltarli solo dieci spettatori...!<br>
+                            Sarà stata la serata finale del Festival di San Remo o la concorrenza del vicino Teatro
+                            (grande) Comunale con uno spettacolo di richiamo o altro.<br>
+                            Peccato, per chi non era presente, perchè ha perso una delle serate più originali in
+                            assoluto (almeno) degli ultimi dieci anni.<br>
+                            Forti del teorema del "politeismo strumentale" i tre del gruppo "Kwatz!" hanno improvvisato
+                            per una ora e mezza (a suggello finale, anche un bis) dividendosi tra vasi e vasetti di
+                            terracotta (quelli per i fiori che a seconda delle dimensioni del diametro producono
+                            sonorità differenti), bidoni e contenitori di diverse dimensioni, pulegge di lavastoviglie,
+                            catene, chiavi, seghe, stampi in acciaio traforati, giocattolini meccanici, lamiere, chiavi
+                            inglesi, barattoli, pentole, coperchi e "pegnate".<br>
+                            Che a vedere tutto ciò sulla scena del Bixio sembra di stare in una officina, o in una
+                            discarica di rottami, belli, ordinati e coreografici, ma tanti strumenti percussivi sono in
+                            effetti realizzati con materiali di riciclo.<br>
+                            Unici classici del "corpus" della batteria che vengono utilizzati nella performance sono
+                            alcuni piatti , due tom, spazzole e bacchette in legno con e senza punte.<br>
+                            Ma originali per segnare il tempo, improvvisare e creare rumori e suoni sono anche dei ferri
+                            da calza, spatole, legnetti: il tutto viene usato sia in modo percussivo che circolare o in
+                            trascinamento con una varietà di possibilità rit-mico-sonore.<br>
+                            Il mistero dei suoni che tanto i "Kwatz" ricercano è assicurato e ha raggiunto l'incredulo e
+                            sparuto parterre. Per la prima volta assieme a Sergio Fedele, Enrico Caimi e Davide Negrini
+                            si sarebbe dovuto esibire al cembalo Alessandro Ferrarese, che nelle intenzioni doveva
+                            fondere la musica colta contemporanea con la restante improvvisazione dei tre
+                            percussionisti, purtroppo però causa indisposizione ha dato forfait.<br>
+                            A sondare il mondo delle sonorità e dei rumori impossibili ci hanno pensato comunque con
+                            grande fantasia improvvisativa i tre componenti, alfieri dello sperimentalismo divertito
+                            (anche se un po' straniante) salutati da pochi ma sinceri applausi.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </details>
+
+        <details class="composition">
+            <summary>
+                <h3>Foto e locandine</h3>
+            </summary>
+
+            <div class="composition-content">
+                <DesignCarousel pages={kwatzPhotos} pagesPerSlide={1} label="Kwatz! — foto e locandine"/>
+            </div>
         </details>
     </div>
 </BaseLayout>
 <CompositionControls/>
 
 <style>
-    .ensemble { display: grid; grid-template-columns: 1fr 2fr; grid-gap: 2rem; align-items: center; }
-    .people { list-style: none; padding: 0; margin: 0; }
-    .people li + li { margin-top: 0.75rem; }
-    .covers :global(.cover-viewer + .cover-viewer) { margin-top: 1.5rem; }
+    .ensemble {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 2rem;
+        align-items: center;
+    }
+
+    .people {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        justify-self: center;
+    }
+
+    .people li + li {
+        margin-top: 0.75rem;
+    }
+
     @media (max-width: 48rem) {
-        .ensemble { grid-template-columns: 1fr; grid-gap: 1rem; }
-        .people { text-align: center; }
+        .ensemble {
+            grid-template-columns: 1fr;
+            grid-gap: 1rem;
+        }
+
+        .people {
+            text-align: center;
+        }
     }
 </style>
