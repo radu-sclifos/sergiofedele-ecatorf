@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import ImageSkeleton from '../components/ImageSkeleton.astro';
 import concerto from '../assets/home/concertoBologna2-upscale.webp';
 import schioPortrait from '../assets/home/Numa_schio_1_zoomed2.webp';
 import ecatorfDetail from '../assets/home/7-Ecatorf-zoomed2.webp';
@@ -29,6 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                        widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPortrait.width).concat(schioPortrait.width)}
                        sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw" alt="Foto dell’Ecatorf a Schio"
                        loading="lazy"/>
+                <ImageSkeleton/>
             </div>
             <blockquote class="body-copy">
                 <p>
@@ -49,6 +51,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                        widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < ecatorfDetail.width).concat(ecatorfDetail.width)}
                        sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 42rem, 43vw" alt="Dettaglio dell’Ecatorf"
                        loading="lazy"/>
+                <ImageSkeleton/>
             </div>
             <h2>Ecatorf</h2>
             <section class="body-copy">
@@ -130,6 +133,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                        widths={[320, 480, 640, 960, 1280, 1920].filter((width) => width < schioPerformance.width).concat(schioPerformance.width)}
                        sizes="(max-width: 48rem) 90vw, (min-width: 95rem) 44rem, 46vw"
                        alt="Un’altra foto dell’Ecatorf a Schio" loading="lazy"/>
+                <ImageSkeleton/>
             </div>
             <h2 id="further-reading-title">Visita le altre pagine</h2>
             <ul class="body-copy">

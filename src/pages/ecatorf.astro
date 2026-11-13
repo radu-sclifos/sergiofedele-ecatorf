@@ -1,5 +1,7 @@
 ---
 import { Image } from 'astro:assets';
+import ImageSkeleton from '../components/ImageSkeleton.astro';
+import LoadingImage from '../components/LoadingImage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ActionIcon from '../components/ActionIcon.astro';
 import DesignCarousel from '../components/DesignCarousel.astro';
@@ -79,6 +81,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
             <div class="instrument-photo photo">
                 <Image src={instrument} widths={widths(instrument)} sizes="(max-width: 48rem) 100vw, 510px"
                        alt="Vista laterale dell’Ecatorf e delle sue tre campane" loading="eager" decoding="async"/>
+                <ImageSkeleton/>
             </div>
             <div class="technical-description">
                 <div class="body-copy" data-language="it">
@@ -125,14 +128,14 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
                         tradotto in termini di frequenza significa:<br>
                         1) Nell’ambito dei soli suoni fondamentali: 2 ottave e una quinta giusta, ossia da FA-1
                         (hz. 10.92) a DO 1 (hz. 65.4).<br>
-                        <Image class="score" src={scores['estensione-fondamentali.webp']}
-                               alt="Suoni fondamentali: da FA−1 a DO1" loading="lazy"/>
+                        <div class="score"><LoadingImage src={scores['estensione-fondamentali.webp']}
+                               alt="Suoni fondamentali: da FA−1 a DO1" loading="lazy"/></div>
                         2) Mentre con l’utilizzo degli armonici, l’estensione totale dello strumento è di 5
                         ottave complete: da FA-1 (hz. 10.92) a FA 4 (hz. 349.2). Altri armonici superiori, spesso
                         facilmente ottenibili, arricchiscono l’ambito delle frequenze e il timbro dello
                         strumento.<br>
-                        <Image class="score" src={scores['estensione-armonici.webp']}
-                               alt="Estensione con armonici: da FA−1 a FA4" loading="lazy"/>
+                        <div class="score"><LoadingImage src={scores['estensione-armonici.webp']}
+                               alt="Estensione con armonici: da FA−1 a FA4" loading="lazy"/></div>
                     </p>
                 </div>
                 <div class="body-copy" data-language="en" lang="en" hidden>
@@ -174,14 +177,14 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
                         terms of frequency it means:<br>
                         1) Talking about the only fundamental tones: 2 octaves and a perfect fifth, that is
                         from FA-1 (hz. 10.92) to C 1 (hz. 65.4).<br>
-                        <Image class="score" src={scores['range-fundamentals.webp']} alt="Fundamental tones: F−1 to C1"
-                               loading="lazy"/>
+                        <div class="score"><LoadingImage src={scores['range-fundamentals.webp']} alt="Fundamental tones: F−1 to C1"
+                               loading="lazy"/></div>
                         2) By using the harmonics (12 th and 17 th ), the total range of the instrument is 5
                         complete octaves: from FA-1 (hz. 10.92) to FA 4 (hz.349.2). Other higher
                         harmonics, often obtainable, expand the frequencies range and the timbres of
                         instrument.<br>
-                        <Image class="score" src={scores['range-harmonics.webp']}
-                               alt="Total range with harmonics: F−1 to F4" loading="lazy"/>
+                        <div class="score"><LoadingImage src={scores['range-harmonics.webp']}
+                               alt="Total range with harmonics: F−1 to F4" loading="lazy"/></div>
                     </p>
                 </div>
             </div>
@@ -189,6 +192,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         <div class="detail-photo photo">
             <Image src={detail} widths={widths(detail)} sizes="(max-width: 48rem) 100vw, 510px"
                    alt="Dettaglio della doppia coulisse e delle chiavi dell’Ecatorf" loading="lazy" decoding="async"/>
+                <ImageSkeleton/>
         </div>
         <div class="video">
             <YouTubeVideo videoId="IZ7kZjdvGnY" title="Ecatorf a Villa Rossi, Santorso" />

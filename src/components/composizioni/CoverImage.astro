@@ -10,7 +10,7 @@ interface Props {
     skeleton?: boolean;
 }
 
-const { src, alt, wide = false, skeleton = false } = Astro.props;
+const { src, alt, wide = false, skeleton = true } = Astro.props;
 const widths = (wide ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 800])
     .filter(width => width < src.width).concat(src.width);
 ---

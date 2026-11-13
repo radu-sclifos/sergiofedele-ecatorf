@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import ActionIcon from './ActionIcon.astro';
+import ImageSkeleton from './ImageSkeleton.astro';
 
 interface Props {
     pages: { src: ImageMetadata; alt: string }[];
@@ -13,9 +14,12 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 ---
 
 <div class:list={['design-carousel', {'single-page-carousel': pagesPerSlide === 1}]}
-     data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region" aria-label={label}
+     data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region"
+     aria-label={label}
      aria-roledescription="carosello">
-    <template data-design-arrow><ActionIcon name="previous" size={32} strokeWidth={2.5} standalone class="pswp__icn" /></template>
+    <template data-design-arrow>
+        <ActionIcon name="previous" size={32} strokeWidth={2.5} standalone class="pswp__icn"/>
+    </template>
     <div class="carousel-stage">
         {pairs.map((pair, index) => (
                 <button class="spread-button" data-spread type="button" hidden={index !== 0}
@@ -25,17 +29,20 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                         aria-label={pagesPerSlide === 1 ? `Ingrandisci pagina ${index + 1}` : `Ingrandisci pagine ${index * 2 + 1}–${index * 2 + 2}`}>
                 <span class:list={['spread-pages', {'single-page': pagesPerSlide === 1}]}>
                     {pair.map(({src, alt}) => (
-                            <img src={src.src} width={src.width} height={src.height} alt={alt}
-                                 loading="lazy" decoding="async" draggable="false"/>
+                            <span class="carousel-page">
+                                <img src={src.src} width={src.width} height={src.height} alt={alt}
+                                     loading="lazy" decoding="async" draggable="false"/>
+                                <ImageSkeleton/>
+                            </span>
                     ))}
                 </span>
                 </button>
         ))}
         <button class="carousel-arrow previous" data-previous type="button" aria-label="Coppia precedente" hidden>
-            <ActionIcon name="previous" size={26} strokeWidth={2.5} standalone />
+            <ActionIcon name="previous" size={26} strokeWidth={2.5} standalone/>
         </button>
         <button class="carousel-arrow next" data-next type="button" aria-label="Coppia successiva" hidden>
-            <ActionIcon name="next" size={26} strokeWidth={2.5} standalone />
+            <ActionIcon name="next" size={26} strokeWidth={2.5} standalone/>
         </button>
     </div>
     <p class="carousel-status" data-status role="status" aria-live="polite" aria-atomic="true"></p>
@@ -84,16 +91,23 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         // Fullscreen preserves the same page grouping as the preview.
         const slides = spreads.map(spread => {
             // Template contents stay inert: preparing fullscreen markup must
-            // not start image requests before PhotoSwipe actually opens it.
+            // not start image requests before PhotoSwipe actually opens it
             const template = document.createElement('template');
             template.innerHTML = spread.querySelector<HTMLElement>('.spread-pages')!.outerHTML;
             const content = template.content.firstElementChild as HTMLElement;
             content.classList.add('pswp__img');
+            // PhotoSwipe manages loading feedback for its fullscreen content
+            content.querySelectorAll('[data-image-skeleton], noscript').forEach(node => node.remove());
             for (const image of content.querySelectorAll('img')) {
                 image.loading = 'eager';
             }
             const height = Number(spread.dataset.height);
-            return {element: spread, html: content.outerHTML, width: Number(spread.dataset.width) || Math.round(height * 1040 / 660), height};
+            return {
+                element: spread,
+                html: content.outerHTML,
+                width: Number(spread.dataset.width) || Math.round(height * 1040 / 660),
+                height
+            };
         });
         const arrowSVG = root.querySelector<HTMLTemplateElement>('[data-design-arrow]')!.innerHTML;
         const lightbox = new PhotoSwipeLightbox({
@@ -167,17 +181,13 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             }
             if (event.key === 'ArrowLeft') {
                 showPair(current - 1);
-            }
-            else if (event.key === 'ArrowRight') {
+            } else if (event.key === 'ArrowRight') {
                 showPair(current + 1);
-            }
-            else if (event.key === 'Home') {
+            } else if (event.key === 'Home') {
                 showPair(0);
-            }
-            else if (event.key === 'End') {
+            } else if (event.key === 'End') {
                 showPair(spreads.length - 1);
-            }
-            else return;
+            } else return;
             event.preventDefault();
             if (event.target instanceof HTMLElement && event.target.matches('[data-spread]')) spreads[current].focus({preventScroll: true});
         });
@@ -237,6 +247,14 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         width: 100%;
         height: 100%;
         background: transparent;
+    }
+
+    .carousel-page {
+        display: block;
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
     }
 
     .spread-pages img {

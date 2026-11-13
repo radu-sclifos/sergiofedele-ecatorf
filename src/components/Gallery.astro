@@ -9,7 +9,7 @@ interface Props {
     skeleton?: boolean;
 }
 
-const {photos, layout = 'photos', skeleton = false} = Astro.props;
+const {photos, layout = 'photos', skeleton = true} = Astro.props;
 
 const covers = layout === 'covers';
 const widths = (src: ImageMetadata) => (covers ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 720, 960])
@@ -89,6 +89,24 @@ const sizes = covers ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 36re
         content: '';
         display: block;
         padding-top: 66.666667%;
+    }
+
+    .photo-grid:not(.cover-grid) :global(.loading-image) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+
+    .photo-grid:not(.cover-grid) :global(.image-frame) {
+        height: 100%;
+        padding-top: 0 !important;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.25rem 0.8rem rgba(6, 26, 64, 0.22);
+    }
+
+    .photo-grid:not(.cover-grid) :global(.image-frame img) {
+        object-fit: cover;
     }
 
     .cover-grid {

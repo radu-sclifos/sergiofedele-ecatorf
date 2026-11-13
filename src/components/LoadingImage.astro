@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import ImageSkeleton from './ImageSkeleton.astro';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -16,33 +17,9 @@ const {src, alt, widths, sizes, loading = 'lazy'} = Astro.props;
 <div class="loading-image" data-loading-image>
     <div class="image-frame" style={{paddingTop: `${src.height / src.width * 100}%`}}>
         <Image src={src} alt={alt} widths={widths} sizes={sizes} loading={loading} decoding="async"/>
-        <span class="image-skeleton" aria-hidden="true"></span>
+        <ImageSkeleton/>
     </div>
 </div>
-
-<noscript>
-    <style is:inline>
-        [data-loading-image] .image-skeleton {
-            display: none;
-        }
-    </style>
-</noscript>
-
-<script>
-    for (const root of document.querySelectorAll<HTMLElement>('[data-loading-image]')) {
-        const image = root.querySelector('img')!;
-        const finish = () => {
-            root.classList.add('is-loaded');
-            image.removeEventListener('load', finish);
-            image.removeEventListener('error', finish);
-        };
-
-        // Cached images and failures can finish before this script runs
-        image.addEventListener('load', finish);
-        image.addEventListener('error', finish);
-        if (image.complete) finish();
-    }
-</script>
 
 <style>
     .loading-image {
@@ -54,56 +31,13 @@ const {src, alt, widths, sizes, loading = 'lazy'} = Astro.props;
         overflow: hidden;
     }
 
-    .image-frame img, .image-skeleton {
+    .image-frame img {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-    }
-
-    .image-frame img {
         object-fit: contain;
     }
 
-    .image-skeleton {
-        overflow: hidden;
-        background: #d5dce5;
-        pointer-events: none;
-    }
-
-    .image-skeleton::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
-        transform: translateX(-100%);
-    }
-
-    .is-loaded .image-skeleton {
-        opacity: 0;
-    }
-
-    .is-loaded .image-skeleton::after {
-        animation: none;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        .image-skeleton {
-            transition: opacity 200ms ease;
-        }
-
-        .image-skeleton::after {
-            animation: image-shimmer 1.6s ease-in-out infinite;
-        }
-    }
-
-    @keyframes image-shimmer {
-        to {
-            transform: translateX(100%);
-        }
-    }
 </style>
