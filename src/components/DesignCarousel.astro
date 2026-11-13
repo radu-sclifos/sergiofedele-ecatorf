@@ -77,6 +77,9 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
         function showPair(index: number) {
             current = Math.max(0, Math.min(index, spreads.length - 1));
+            if (singlePage) {
+                root.style.setProperty('--frame-width', spreads[current].style.getPropertyValue('--frame-width'));
+            }
             spreads.forEach((spread, i) => {
                 spread.hidden = i !== current;
                 spread.setAttribute('aria-label', `${english() ? (singlePage ? 'Enlarge page' : 'Enlarge pages') : (singlePage ? 'Ingrandisci pagina' : 'Ingrandisci pagine')} ${pageRange(i)}`);
@@ -200,11 +203,20 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
 <style>
     .carousel-stage {
+        --controls-space: 7rem;
         position: relative;
-        padding: 0 4rem;
-        border: 2px solid #34445e;
-        background: #e5e7eb;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: calc(157.575758vh - 18.909091rem + var(--controls-space) + 2px);
+        margin: 0 auto;
+        padding: 0 3.5rem;
+        border: 1px solid #c7cfda;
+        border-radius: 5px;
+        background: transparent;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .single-page-carousel .carousel-stage {
+        max-width: calc(var(--frame-width, 100vw) + var(--controls-space) + 2px);
     }
 
     .spread-button {
@@ -301,11 +313,11 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
 
     .previous {
-        left: 8px;
+        left: 4px;
     }
 
     .next {
-        right: 8px;
+        right: 4px;
     }
 
     button:focus {
@@ -396,6 +408,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
     @media (max-width: 48rem) {
         .carousel-stage {
+            --controls-space: 5.5rem;
             padding: 0 2.75rem;
         }
 
@@ -414,6 +427,10 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
 
     @media (max-height: 24rem) {
+        .carousel-stage, .single-page-carousel .carousel-stage {
+            max-width: calc(19rem + var(--controls-space) + 2px);
+        }
+
         .spread-button, .single-page-carousel .spread-button {
             max-width: 19rem;
         }
