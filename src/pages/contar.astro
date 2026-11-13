@@ -1,0 +1,73 @@
+---
+import ProjectLayout from '../layouts/ProjectLayout.astro';
+import background from '../assets/contar/cerchio.webp';
+
+const links = [
+    {label: 'Contar – Runaeditore', page: 'contar_de_la_catastrophe'},
+    {label: 'Contar – Il Ponte del Sale', page: 'il_ponte_del_sale'},
+    {label: 'De lo texto de lo nostro Contar', page: 'de_lo_texto_de_lo_nostro_contar'},
+    {label: '7 risposte a 7 domande', page: '7_risposte_a_7_domande'},
+    {label: 'Recensioni', page: 'altre_recensioni'},
+    {label: 'Prime presentazioni e prima edizione autoprodotta', page: 'prime_pres'},
+];
+---
+
+<ProjectLayout title="Contar"
+               description="Contar di Sergio Fedele: edizioni, testo, interviste, recensioni e prime presentazioni.">
+    <nav class="contar-links" aria-label="Edizioni e approfondimenti su Contar"
+         style={{backgroundImage: `url(${background.src})`}}>
+        <ul>
+            {links.map(({label, page}) => (
+                    <li>
+                        <a href={`https://www.sergiofedele.it/${page}.php?lang=it`}>{label}</a>
+                    </li>
+            ))}
+        </ul>
+    </nav>
+</ProjectLayout>
+
+<style>
+    .contar-links {
+        min-height: 31.25rem;
+        padding: 2.1875rem 3.75rem;
+        background-color: #e4e7ed;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-family: var(--font-body);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin-bottom: 1rem;
+        font-size: 1.75rem;
+        line-height: 1.65;
+    }
+
+    li:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover, a:focus {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 48rem) {
+        .contar-links {
+            padding: 1.5rem;
+        }
+
+        li {
+            font-size: 1.25rem;
+        }
+    }
+</style>

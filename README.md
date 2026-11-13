@@ -34,9 +34,17 @@ links that load a complete page; there is no client-side router.
 | `src/pages/biografia.astro` | `/biografia/` | Music, visual arts, literature and photo galleries. |
 | `src/pages/ecatorf.astro` | `/ecatorf/` | Technical descriptions, photographs, range illustrations and video. |
 | `src/pages/partitureperecate.astro` | `/partitureperecate/` | Modular screens, dimensions and the original sequence of 33 pages, including 11 blank pages. |
+| `src/pages/contar.astro` | `/contar/` | Links to Contar editions, texts, interviews, reviews and presentations. |
+| `src/pages/film.astro` | `/film/` | V’è la via e v’è l’andare: poster, Italian and English synopsis, festival, award, press and trailer. |
 | `src/pages/composizioni.astro` | `/composizioni/` | Solo, Trio and PsicoGeografico compositions, scores, CD covers, reviews and translations. |
 | `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
 | `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
+
+The Contar menu points directly to `/contar/` and `/film/`. The Altri progetti
+menu retains `/altriprogetti/musica/` and `/altriprogetti/scripturae/`, which have
+not yet been migrated. `public/_redirects` preserves the legacy Angular Contar
+and Film URLs with permanent redirects on Netlify. Other static hosts must
+configure equivalent redirects; the local Astro server does not apply this file.
 
 ## Privacy and YouTube consent
 
