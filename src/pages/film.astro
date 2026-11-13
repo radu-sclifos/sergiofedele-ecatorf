@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import LoadingImage from '../components/LoadingImage.astro';
 import ProjectLayout from '../layouts/ProjectLayout.astro';
 import poster from '../assets/film/ve-la-via-e-ve-landare.webp';
 
@@ -24,8 +24,10 @@ const posterWidths = [240, 320, 480, 640].filter(width => width < poster.width).
             </p>
         </header>
 
-        <Image class="poster" src={poster} alt="Locandina del film V’è la via e v’è l’andare"
-               widths={posterWidths} sizes="(max-width: 48rem) 70vw, 285px"/>
+        <div class="poster">
+            <LoadingImage src={poster} alt="Locandina del film V’è la via e v’è l’andare"
+                          widths={posterWidths} sizes="(max-width: 48rem) 70vw, 285px" loading="eager" />
+        </div>
 
         <section aria-labelledby="sinossi">
             <h2 id="sinossi">Sinossi</h2>

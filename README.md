@@ -37,12 +37,13 @@ links that load a complete page; there is no client-side router.
 | `src/pages/contar.astro` | `/contar/` | Links to Contar editions, texts, interviews, reviews and presentations. |
 | `src/pages/film.astro` | `/film/` | V’è la via e v’è l’andare: poster, Italian and English synopsis, festival, award, press and trailer. |
 | `src/pages/composizioni.astro` | `/composizioni/` | Solo, Trio and PsicoGeografico compositions, scores, CD covers, reviews and translations. |
+| `src/pages/altriprogetti/musica.astro` | `/altriprogetti/musica/` | Kwatz! Ensemble: multilingual presentation, CD covers, reviews, photos and posters. |
+| `src/pages/altriprogetti/scripturae.astro` | `/altriprogetti/scripturae/` | Essays and articles with local PDFs and publication links. |
 | `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
 | `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
 
 The Contar menu points directly to `/contar/` and `/film/`. The Altri progetti
-menu retains `/altriprogetti/musica/` and `/altriprogetti/scripturae/`, which have
-not yet been migrated. `public/_redirects` preserves the legacy Angular Contar
+menu points to `/altriprogetti/musica/` and `/altriprogetti/scripturae/`. `public/_redirects` preserves the legacy Angular Contar
 and Film URLs with permanent redirects on Netlify. Other static hosts must
 configure equivalent redirects; the local Astro server does not apply this file.
 
@@ -104,10 +105,20 @@ Both keep the current selection when closing PhotoSwipe. Ecate's original sequen
 is stored in `src/data/ecate-scores.ts`, including each blank separator and the final
 blank page.
 
+`LoadingImage.astro` wraps an Astro image with a subtle loading skeleton and
+reserves its proportions using percentage padding. Pass an imported image as
+`src`, descriptive `alt`, and optional `widths`, `sizes` and `loading` (default:
+`lazy`). Size its container in the consuming page. The skeleton clears on load
+or error, handles cached images, and respects reduced motion. Images remain
+visible without JavaScript. Film uses it for the poster.
+
 CD covers on Composizioni use `src/components/composizioni/CoverImage.astro`:
 each cover opens its own single-image PhotoSwipe viewer, with thumbnail zoom,
 a translucent backdrop and closing on a backdrop click, without navigation to
-other covers. The image link remains available without JavaScript.
+other covers. The image link remains available without JavaScript. Pass `skeleton`
+to reuse `LoadingImage.astro`, as on Musica for the presentation image and CD covers.
+`CompositionControls.astro` shares language, CD and review selection between
+Composizioni and Musica; content remains readable without JavaScript.
 
 ## Browser support and diagnostics
 

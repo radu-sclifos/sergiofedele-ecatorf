@@ -25,6 +25,8 @@
     --font-heading: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     font-family: var(--font-body);
     line-height: 1.5;
+    /* Suppress the browser's touch overlay but keep keyboard focus styles */
+    -webkit-tap-highlight-color: transparent;
 }
 
 *,
