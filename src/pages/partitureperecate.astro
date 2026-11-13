@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DesignCarousel from '../components/DesignCarousel.astro';
+import { ecatePages } from '../data/ecate-scores';
+import hero from '../assets/partiture-ecate/paraventi-hero.webp';
+
+const heroWidths = [480, 768, 1280, 1920].filter(width => width < hero.width).concat(hero.width);
+---
+
+<BaseLayout title="Sergio Fedele – Partiture per Ecate"
+            description="Partiture per Ecate: paraventi modulari di Sergio Fedele, con telaio in legno laccato e tavole a inchiostro o pastello su carta.">
+    <header class="hero">
+        <Image src={hero} widths={heroWidths} sizes="100vw" alt="" format="webp" quality={90} priority/>
+        <h1 class="page-title">Partiture per Ecate</h1>
+    </header>
+    <article class="ecate" aria-label="Partiture per Ecate">
+        <div class="description body-copy">
+            <p>
+                Telaio in legno laccato, inchiostro o pastello su carta.
+                Ogni paravento è composto da tre ante fruibili su entrambi i lati:
+                sei tavole in tutto, tre per lato. La struttura modulare permette
+                di realizzare paraventi a due, quattro, cinque o più ante.
+            </p>
+            <p class="dimensions">
+                Dimensioni di ogni anta:<br/>
+                <strong>Paravento grande:</strong> 192 × 83 cm<br/>
+                <strong>Paravento piccolo:</strong> 48 × 21,5 cm<br/>
+                <strong>Paravento micro:</strong> 24 × 11 cm
+            </p>
+        </div>
+        <DesignCarousel pages={ecatePages} pagesPerSlide={1} label="Partiture per Ecate"/>
+    </article>
+</BaseLayout>
+
+<style>
+    .hero {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        height: 60vh;
+        min-height: 17rem;
+        max-height: 32rem;
+        padding: 4rem 1rem 2rem;
+        background: #061a40;
+        color: white;
+        text-align: center;
+    }
+
+    .hero img, .hero::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero img {
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .hero::after {
+        content: '';
+        z-index: -1;
+        background: linear-gradient(rgba(6, 26, 64, 0.46), rgba(6, 26, 64, 0.68));
+    }
+
+    .ecate {
+        max-width: 78.125rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 3.75rem;
+        color: #061a40;
+    }
+
+    .description {
+        max-width: 46rem;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    .dimensions {
+        text-align: left;
+        display: inline-block;
+    }
+
+    @media (max-width: 48rem) {
+        .ecate {
+            padding-top: 1.5rem;
+            padding-bottom: 2.5rem;
+        }
+    }
+</style>

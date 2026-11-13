@@ -4,21 +4,26 @@ import ActionIcon from './ActionIcon.astro';
 
 interface Props {
     pages: { src: ImageMetadata; alt: string }[];
+    pagesPerSlide?: 1 | 2;
+    label?: string;
 }
 
-const {pages} = Astro.props;
-const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pages.slice(index * 2, index * 2 + 2));
+const {pages, pagesPerSlide = 2, label = 'Tavole di progettazione'} = Astro.props;
+const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, index) => pages.slice(index * pagesPerSlide, (index + 1) * pagesPerSlide));
 ---
 
-<div class="design-carousel" data-design-carousel role="region" aria-label="Tavole di progettazione"
+<div class:list={['design-carousel', {'single-page-carousel': pagesPerSlide === 1}]}
+     data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region" aria-label={label}
      aria-roledescription="carosello">
     <template data-design-arrow><ActionIcon name="previous" size={32} strokeWidth={2.5} standalone class="pswp__icn" /></template>
     <div class="carousel-stage">
         {pairs.map((pair, index) => (
                 <button class="spread-button" data-spread type="button" hidden={index !== 0}
                         data-height={Math.max(...pair.map(page => page.src.height))}
-                        aria-label={`Ingrandisci pagine ${index * 2 + 1}–${index * 2 + 2}`}>
-                <span class="spread-pages">
+                        data-width={pagesPerSlide === 1 ? pair[0].src.width : undefined}
+                        style={pagesPerSlide === 1 ? `--frame-padding: ${pair[0].src.height / pair[0].src.width * 100}%; --frame-width: calc(${pair[0].src.width / pair[0].src.height * 100}vh - ${pair[0].src.width / pair[0].src.height * 12}rem)` : undefined}
+                        aria-label={pagesPerSlide === 1 ? `Ingrandisci pagina ${index + 1}` : `Ingrandisci pagine ${index * 2 + 1}–${index * 2 + 2}`}>
+                <span class:list={['spread-pages', {'single-page': pagesPerSlide === 1}]}>
                     {pair.map(({src, alt}) => (
                             <img src={src.src} width={src.width} height={src.height} alt={alt}
                                  loading="lazy" decoding="async" draggable="false"/>
@@ -54,25 +59,29 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         const previous = root.querySelector<HTMLButtonElement>('[data-previous]')!;
         const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
         const status = root.querySelector<HTMLElement>('[data-status]')!;
+        const singlePage = root.dataset.pagesPerSlide === '1';
+        const pageCount = Number(root.dataset.pageCount);
         let current = 0;
         const english = () => document.querySelector('.translation')?.getAttribute('aria-pressed') === 'true';
-        const pageLabel = (index: number) => `${english() ? 'Pages' : 'Pagine'} ${index * 2 + 1}–${index * 2 + 2} ${english() ? 'of' : 'di'} ${spreads.length * 2}`;
+        const pageRange = (index: number) => singlePage ? `${index + 1}` : `${index * 2 + 1}–${Math.min(index * 2 + 2, pageCount)}`;
+        const pageLabel = (index: number) => `${english() ? (singlePage ? 'Page' : 'Pages') : (singlePage ? 'Pagina' : 'Pagine')} ${pageRange(index)} ${english() ? 'of' : 'di'} ${pageCount}`;
+        const previousLabel = () => english() ? (singlePage ? 'Previous page' : 'Previous pair') : (singlePage ? 'Pagina precedente' : 'Coppia precedente');
+        const nextLabel = () => english() ? (singlePage ? 'Next page' : 'Next pair') : (singlePage ? 'Pagina successiva' : 'Coppia successiva');
 
         function showPair(index: number) {
             current = Math.max(0, Math.min(index, spreads.length - 1));
             spreads.forEach((spread, i) => {
                 spread.hidden = i !== current;
-                spread.setAttribute('aria-label', `${english() ? 'Enlarge pages' : 'Ingrandisci pagine'} ${i * 2 + 1}–${i * 2 + 2}`);
+                spread.setAttribute('aria-label', `${english() ? (singlePage ? 'Enlarge page' : 'Enlarge pages') : (singlePage ? 'Ingrandisci pagina' : 'Ingrandisci pagine')} ${pageRange(i)}`);
             });
             status.textContent = pageLabel(current);
-            previous.setAttribute('aria-label', english() ? 'Previous pair' : 'Coppia precedente');
-            next.setAttribute('aria-label', english() ? 'Next pair' : 'Coppia successiva');
+            previous.setAttribute('aria-label', previousLabel());
+            next.setAttribute('aria-label', nextLabel());
             previous.disabled = current === 0;
             next.disabled = current === spreads.length - 1;
         }
 
-        // Each PhotoSwipe slide is a complete original pair (fullscreen too)
-        // navigation and zoom never separate the left and right pages
+        // Fullscreen preserves the same page grouping as the preview.
         const slides = spreads.map(spread => {
             // Template contents stay inert: preparing fullscreen markup must
             // not start image requests before PhotoSwipe actually opens it.
@@ -84,7 +93,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
                 image.loading = 'eager';
             }
             const height = Number(spread.dataset.height);
-            return {element: spread, html: content.outerHTML, width: Math.round(height * 1040 / 660), height};
+            return {element: spread, html: content.outerHTML, width: Number(spread.dataset.width) || Math.round(height * 1040 / 660), height};
         });
         const arrowSVG = root.querySelector<HTMLTemplateElement>('[data-design-arrow]')!.innerHTML;
         const lightbox = new PhotoSwipeLightbox({
@@ -102,8 +111,8 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
             returnFocus: false,
             closeTitle: 'Chiudi',
             zoomTitle: 'Ingrandisci',
-            arrowPrevTitle: 'Coppia precedente',
-            arrowNextTitle: 'Coppia successiva',
+            arrowPrevTitle: previousLabel(),
+            arrowNextTitle: nextLabel(),
             arrowPrevSVG: arrowSVG,
             arrowNextSVG: arrowSVG,
         });
@@ -209,6 +218,14 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         padding-top: 63.461538%;
     }
 
+    .single-page-carousel .spread-button {
+        max-width: var(--frame-width);
+    }
+
+    .single-page-carousel .spread-button::before {
+        padding-top: var(--frame-padding);
+    }
+
     .spread-pages {
         position: absolute;
         top: 0;
@@ -230,6 +247,10 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
         object-fit: contain;
         background: white;
         pointer-events: none;
+    }
+
+    .spread-pages.single-page {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .carousel-arrow {
@@ -375,7 +396,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / 2)}, (_, index) => pa
     }
 
     @media (max-height: 24rem) {
-        .spread-button {
+        .spread-button, .single-page-carousel .spread-button {
             max-width: 19rem;
         }
     }
