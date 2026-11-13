@@ -1,23 +1,28 @@
 ---
 import { Image } from 'astro:assets';
+import LoadingImage from '../LoadingImage.astro';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
     src: ImageMetadata;
     alt: string;
     wide?: boolean;
+    skeleton?: boolean;
 }
 
-const { src, alt, wide = false } = Astro.props;
+const { src, alt, wide = false, skeleton = false } = Astro.props;
 const widths = (wide ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 800])
     .filter(width => width < src.width).concat(src.width);
 ---
 
 <div class:list={['cover-viewer', { 'cover-viewer-wide': wide }]} data-cover-viewer>
     <a href={src.src} data-pswp-width={src.width} data-pswp-height={src.height}>
-        <Image src={src} alt={alt} class:list={['cd-cover', { 'cd-cover-wide': wide }]}
+        {skeleton ? <div class:list={['cd-cover', { 'cd-cover-wide': wide }]}>
+            <LoadingImage src={src} alt={alt} widths={widths}
+                sizes={wide ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 48rem) 90vw, 480px'}/>
+        </div> : <Image src={src} alt={alt} class:list={['cd-cover', { 'cd-cover-wide': wide }]}
             widths={widths} sizes={wide ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 48rem) 90vw, 480px'}
-            loading="lazy" />
+            loading="lazy" />}
     </a>
 </div>
 

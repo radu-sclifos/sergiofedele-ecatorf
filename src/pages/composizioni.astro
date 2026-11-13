@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CompositionControls from '../components/CompositionControls.astro';
 import Solo from '../components/composizioni/Solo.astro';
 import Trio from '../components/composizioni/Trio.astro';
 import Psicogeografico from '../components/composizioni/Psicogeografico.astro';
@@ -28,77 +29,4 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
 
 </BaseLayout>
 
-<script>
-    // Each accordion keeps its own selection, including after it is closed.
-    // Without JavaScript all editorial content and PDF links remain available.
-    document.querySelectorAll<HTMLElement>('.composition').forEach((composition, index) => {
-        composition.querySelectorAll<HTMLElement>('summary, button, a.action').forEach(control => {
-            control.addEventListener('pointerdown', () => control.classList.add('pointer-focus'));
-            control.addEventListener('keydown', () => control.classList.remove('pointer-focus'));
-            control.addEventListener('blur', () => control.classList.remove('pointer-focus'));
-        });
-
-        const buttons = Array.from(composition.querySelectorAll<HTMLButtonElement>('[data-select]'));
-        const panels = Array.from(composition.querySelectorAll<HTMLElement>('[data-panel]'));
-        const selected: Record<string, string> = {};
-
-        for (const button of buttons) {
-            const group = button.dataset.select!;
-            button.hidden = false;
-            const controlled = panels.filter(panel => panel.dataset.panel === group && panel.dataset.value === button.dataset.value);
-
-            for (const panel of controlled) {
-                panel.id = `composition-${index}-panel-${panels.indexOf(panel)}`;
-            }
-
-            if (controlled.length) {
-                button.setAttribute('aria-controls', controlled.map(panel => panel.id).join(' '));
-            }
-
-            button.addEventListener('click', () => {
-                selected[group] = button.dataset.value!;
-                update();
-            });
-        }
-
-        update();
-
-        composition.querySelectorAll<HTMLButtonElement>('[data-translate]').forEach((button, translationIndex) => {
-            const label = button.querySelector<HTMLElement>('.button-label');
-            const texts = Array.from(composition.querySelectorAll<HTMLElement>('[data-translation]'))
-                .filter(text => text.dataset.translation === button.dataset.translate);
-            let translated = false;
-
-            texts.forEach((text, textIndex) => {
-                text.id = `composition-${index}-translation-${translationIndex}-${textIndex}`;
-            });
-            button.setAttribute('aria-controls', texts.map(text => text.id).join(' '));
-            button.hidden = false;
-            updateTranslation();
-            button.addEventListener('click', () => {
-                translated = !translated;
-                updateTranslation();
-            });
-
-            function updateTranslation() {
-                for (const text of texts) {
-                    text.hidden = (text.dataset.original === 'true') === translated;
-                }
-                button.setAttribute('aria-pressed', String(translated));
-                if (label) {
-                    label.textContent = translated ? 'Originale' : 'Traduzione';
-                }
-            }
-        });
-
-        function update() {
-            for (const panel of panels) {
-                panel.hidden = selected[panel.dataset.panel!] !== panel.dataset.value;
-            }
-
-            for (const button of buttons) {
-                button.setAttribute('aria-pressed', String(selected[button.dataset.select!] === button.dataset.value));
-            }
-        }
-    });
-</script>
+<CompositionControls/>

@@ -1,0 +1,11 @@
+---
+interface Props { language: 'it' | 'en' | 'de' | 'fr'; }
+const { language } = Astro.props;
+---
+
+<svg class="action-icon" viewBox="0 0 24 16" width="24" height="16" aria-hidden="true" focusable="false">
+    {language === 'it' && <><path fill="#fff" d="M0 0h24v16H0z"/><path fill="#009246" d="M0 0h8v16H0z"/><path fill="#ce2b37" d="M16 0h8v16h-8z"/></>}
+    {language === 'fr' && <><path fill="#fff" d="M0 0h24v16H0z"/><path fill="#002395" d="M0 0h8v16H0z"/><path fill="#ed2939" d="M16 0h8v16h-8z"/></>}
+    {language === 'de' && <><path fill="#ffce00" d="M0 0h24v16H0z"/><path fill="#d00" d="M0 0h24v10.667H0z"/><path fill="#000" d="M0 0h24v5.333H0z"/></>}
+    {language === 'en' && <><path fill="#012169" d="M0 0h24v16H0z"/><path stroke="#fff" stroke-width="3" d="m0 0 24 16M24 0 0 16"/><path stroke="#c8102e" stroke-width="1" d="m0 0 24 16M24 0 0 16"/><path stroke="#fff" stroke-width="5" d="M12 0v16M0 8h24"/><path stroke="#c8102e" stroke-width="3" d="M12 0v16M0 8h24"/></>}
+</svg>

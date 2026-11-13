@@ -1,0 +1,40 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+---
+
+<ProjectLayout title="Saggi e articoli" description="Scripturae: saggi e articoli di Sergio Fedele sulla musica, la materia sonora e le invarianti architettoniche in letteratura.">
+    <div class="essays body-copy">
+        <ul>
+            <li>
+                <a href="/documents/scripturae/datnumero18.pdf">
+                    Ecatorf y cuerdas… y Rojo</a> <a
+                    href="https://www.ilsileno.it/dat/wp-content/uploads/2026/05/d.a.t.-numero-18%E2%80%94anno-X%E2%80%94aprile-2026.pdf"
+                    class="publication">&nbsp;in d.a.t.-numero-18—anno-X—aprile-2026</a>
+            </li>
+            <li>
+                <a href="https://www.roots-routes.org/anno-15-n-49-settembre-dicembre-2025-rumore/">Gli strumenti
+                    tradizionali e la materia sonora</a> <span class="publication">&nbsp;in
+                    www.roots-routes.org › anno-15-n-49- settembre-dicembre-2025-rumore</span>
+            </li>
+            <li>
+                <a href="/documents/scripturae/laletteraturaelesette.pdf">
+                    La letteratura e le sette invarianti</a> <span class="publication">&nbsp;(1994. Inedito)</span>
+            </li>
+            <li>
+                <a href="/documents/scripturae/setteinvarianti.pdf">
+                    Le sette invarianti architettoniche in letteratura / The Seven architectonic invariants in
+                    literature</a>
+                <span class="publication">&nbsp;(1993) (in «L’architettura. Cronache e storia, anno XLI – n. 1 – gennaio 1995»)</span>
+            </li>
+        </ul>
+    </div>
+</ProjectLayout>
+
+<style>
+    .essays { padding: 2.5rem 3rem; background: #e4e7ed; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin-bottom: 1.5rem; }
+    li:last-child { margin-bottom: 0; }
+    .publication { color: #596579; }
+    @media (max-width: 48rem) { .essays { padding: 1.5rem; } }
+</style>
