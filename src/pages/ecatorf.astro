@@ -8,6 +8,7 @@ import DesignCarousel from '../components/DesignCarousel.astro';
 import YouTubeVideo from '../components/YouTubeVideo.astro';
 import { designPages } from '../data/ecatorf-design';
 import hero from '../assets/ecatorf/numa-schio-hero-restored.webp';
+import socialPortrait from '../assets/home/Numa_schio_1_zoomed2.webp';
 import detail from '../assets/ecatorf/dettaglio-ecatorf.webp';
 import instrument from '../assets/ecatorf/ecatorf.webp';
 
@@ -17,6 +18,8 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
 ---
 
 <BaseLayout title="Sergio Fedele – Ecatorf"
+            socialImage={socialPortrait}
+            socialImageAlt="Sergio Fedele e l’Ecatorf presso Numa Schio"
             description="Ecatorf: aerofono ad ancia semplice e tubo cilindrico, uno degli strumenti musicali più bassi al mondo.">
     <header class="hero">
         <Image src={hero} widths={widths(hero)} sizes="100vw" alt="" format="webp" quality={90} priority/>

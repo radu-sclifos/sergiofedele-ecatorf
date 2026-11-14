@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://www.sergiofedele-ecatorf.it',
+    trailingSlash: 'always',
     vite: {
         plugins: [{
             name: 'compatible-vendor-styles',

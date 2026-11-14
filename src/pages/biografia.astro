@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Gallery from '../components/Gallery.astro';
 import ActionIcon from '../components/ActionIcon.astro';
 import hero from '../assets/biografia/numa-schio-hero-restored-v2.webp';
+import socialPortrait from '../assets/home/Numa_schio_1_zoomed2.webp';
 
 const subjects = [
     {
@@ -102,6 +103,8 @@ const albums = [
 <BaseLayout
         title="Sergio Fedele – Note Biografiche"
         description="Biografia completa di Sergio Fedele: Musica, Arti visive e Letteratura."
+        socialImage={socialPortrait}
+        socialImageAlt="Sergio Fedele e l’Ecatorf presso Numa Schio"
 >
     <header class="hero">
         <Image src={hero} widths={[480, 768, 1280, 1920].filter((width) => width < hero.width).concat(hero.width)}
