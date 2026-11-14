@@ -32,23 +32,15 @@ const sizes = covers ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 36re
 </ul>
 
 <script>
-    import type PhotoSwipe from 'photoswipe';
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import { imageZoomOptions } from '../scripts/photoswipe-options';
     import 'photoswipe/style.css';
 
     const lightbox = new PhotoSwipeLightbox({
+        ...imageZoomOptions,
         gallery: '[data-gallery]',
         children: 'a',
         pswpModule: () => import('photoswipe'),
-        bgClickAction: 'close',
-        imageClickAction: 'zoom',
-        tapAction(this: PhotoSwipe, _point, event) {
-            if ((event.target as Element).classList.contains('pswp__img')) {
-                this.element?.classList.toggle('pswp--ui-visible');
-            } else {
-                this.close();
-            }
-        },
         closeTitle: 'Chiudi',
         zoomTitle: 'Ingrandisci',
         arrowPrevTitle: 'Fotografia precedente',

@@ -17,9 +17,6 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
      data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region"
      aria-label={label}
      aria-roledescription="carosello">
-    <template data-design-arrow>
-        <ActionIcon name="previous" size={32} strokeWidth={2.5} standalone class="pswp__icn"/>
-    </template>
     <div class="carousel-stage">
         {pairs.map((pair, index) => (
                 <button class="spread-button" data-spread type="button" hidden={index !== 0}
@@ -59,9 +56,15 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
 <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import { imageZoomOptions } from '../scripts/photoswipe-options';
     import 'photoswipe/style.css';
 
     for (const root of document.querySelectorAll<HTMLElement>('[data-design-carousel]')) {
+        // Keep keyboard focus visible, including after closing PhotoSwipe,
+        // without outlining the image after a mouse click or touch.
+        root.addEventListener('pointerdown', () => root.classList.add('pointer-input'));
+        document.addEventListener('keydown', () => root.classList.remove('pointer-input'));
+
         const spreads = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-spread]'));
         const previous = root.querySelector<HTMLButtonElement>('[data-previous]')!;
         const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
@@ -112,8 +115,8 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                 height
             };
         });
-        const arrowSVG = root.querySelector<HTMLTemplateElement>('[data-design-arrow]')!.innerHTML;
         const lightbox = new PhotoSwipeLightbox({
+            ...imageZoomOptions,
             pswpModule: () => import('photoswipe'),
             mainClass: 'design-lightbox',
             loop: false,
@@ -121,17 +124,12 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             thumbSelector: '.spread-pages',
             padding: {top: 60, bottom: 24, left: 60, right: 60},
             bgOpacity: 0.8,
-            bgClickAction: 'close',
-            imageClickAction: 'zoom',
-            tapAction: 'zoom',
             counter: false,
             returnFocus: false,
             closeTitle: 'Chiudi',
             zoomTitle: 'Ingrandisci',
             arrowPrevTitle: previousLabel(),
             arrowNextTitle: nextLabel(),
-            arrowPrevSVG: arrowSVG,
-            arrowNextSVG: arrowSVG,
         });
         lightbox.addFilter('isContentZoomable', () => true);
         lightbox.addFilter('useContentPlaceholder', () => true);
@@ -264,6 +262,8 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     .carousel-page {
         display: block;
         position: relative;
+        /* PhotoSwipe handles image clicks on the enclosing spread. */
+        pointer-events: none;
         min-width: 0;
         min-height: 0;
         height: 100%;
@@ -325,6 +325,10 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         outline-offset: 3px;
     }
 
+    .design-carousel.pointer-input button:focus {
+        outline: none;
+    }
+
     .carousel-status {
         position: absolute;
         width: 1px;
@@ -349,50 +353,6 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
        variable alone depends on stylesheet loading order. */
     :global(.design-lightbox .pswp__img--placeholder) {
         background: transparent;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow) {
-        visibility: visible;
-        width: 48px;
-        height: 64px;
-        margin-top: -32px;
-        color: white;
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 0.25rem;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow:hover),
-    :global(.design-lightbox .pswp__button--arrow:active),
-    :global(.design-lightbox .pswp__button--arrow:focus) {
-        background: #061a40;
-        border: 1px solid white;
-        opacity: 1;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow:disabled) {
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        opacity: 0.35;
-        cursor: default;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow--prev) {
-        left: 6px;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow--next) {
-        right: 6px;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow .pswp__icn) {
-        color: white;
-        width: 32px;
-        height: 32px;
-        left: 8px;
-        right: auto;
-        top: 16px;
-        margin-top: 0;
     }
 
     :global(.design-lightbox .pswp__design-pages) {
