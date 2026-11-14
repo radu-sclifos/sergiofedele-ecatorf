@@ -1,7 +1,11 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import defaultImage from '../assets/home/concertoBologna2-upscale.webp';
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import StructuredData from '../components/StructuredData.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,9 +13,28 @@ interface Props {
     description: string;
     lang?: 'it' | 'en';
     overlayNavbar?: boolean;
+    socialImage?: ImageMetadata;
+    socialImageAlt?: string;
+    structuredData?: 'home' | 'biography';
 }
 
-const {title, description, lang = 'it', overlayNavbar = true} = Astro.props;
+const {
+    title, description, lang = 'it', overlayNavbar = true,
+    socialImage = defaultImage,
+    socialImageAlt = 'Sergio Fedele suona l’Ecatorf in concerto',
+    structuredData,
+} = Astro.props;
+
+const site = Astro.site!;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') + '/';
+const canonical = new URL(pathname, site).href;
+const sharingImage = await getImage({
+    src: socialImage,
+    width: Math.min(1200, socialImage.width),
+    format: 'jpg',
+    quality: 85,
+});
+const sharingImageUrl = new URL(sharingImage.src, site).href;
 ---
 
 <!doctype html>
@@ -21,22 +44,44 @@ const {title, description, lang = 'it', overlayNavbar = true} = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content={description}/>
     <meta name="generator" content={Astro.generator}/>
+    <link rel="canonical" href={canonical}/>
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/>
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Sergio Fedele – Ecatorf"/>
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'it_IT'}/>
+    <meta property="og:title" content={title}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:url" content={canonical}/>
+    <meta property="og:image" content={sharingImageUrl}/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content={sharingImage.attributes.width}/>
+    <meta property="og:image:height" content={sharingImage.attributes.height}/>
+    <meta property="og:image:alt" content={socialImageAlt}/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content={title}/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={sharingImageUrl}/>
+    <meta name="twitter:image:alt" content={socialImageAlt}/>
     <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/favicon.ico"/>
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png"/>
     <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png"/>
     <title>{title}</title>
+    {structuredData && <StructuredData page={structuredData} title={title}
+                                       description={description} canonical={canonical} />}
 </head>
 
 <body>
 
-<Navbar overlay={overlayNavbar} />
+<Navbar overlay={overlayNavbar}/>
 
 <main>
     <slot/>
 </main>
 
-<Footer />
-<CookieConsent />
+<Footer/>
+<CookieConsent/>
 
 </body>
 </html>

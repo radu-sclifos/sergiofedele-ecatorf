@@ -1,7 +1,7 @@
 # Development instructions
 
 These instructions apply to the entire repository. See [README.md](README.md)
-for project setup, commands, routes and current migration status.
+for the project overview, architecture, setup and commands.
 
 ## Scope and visual style
 
@@ -24,6 +24,52 @@ for project setup, commands, routes and current migration status.
   Preserve PhotoSwipe's thumbnail zoom transition and translucent backdrop;
   leave the space between fullscreen pages transparent, without a connecting
   background strip.
+- Partiture per Ecate uses the same carousel with `pagesPerSlide={1}`. Preserve
+  all 33 entries in `src/data/ecate-scores.ts`, including the 11 blank pages,
+  in their original order.
+
+## SEO and public URLs
+
+- This rebuild replaces the Angular site at the existing domain. Keep `site`
+  set to `https://www.sergiofedele-ecatorf.it` and `trailingSlash: 'always'`
+  in `astro.config.mjs`. The separate historical site at `sergiofedele.it`
+  remains active by the owner's choice; its links are intentional.
+- Keep titles, descriptions, canonical links and sharing metadata centralized
+  in `BaseLayout.astro`. Use distinct, descriptive page titles and imported local
+  images through `socialImage` and `socialImageAlt`. Canonical and image URLs
+  must use the production origin, without preview hostnames or tracking queries.
+- `StructuredData.astro` is enabled through the layout's `structuredData` prop:
+  `home` provides `WebSite` and `Person`; `biography` provides `ProfilePage` and
+  the same `Person`. Preserve stable `@id` values, verified `sameAs` links and
+  safe JSON serialization. Describe only supported facts; avoid adding schema
+  types to unrelated pages or promising ranking gains.
+- Keep sitemap generation in `@astrojs/sitemap`; do not maintain generated XML
+  by hand or edit `dist/`. Preserve the sitemap index reference in
+  `public/robots.txt` and the shared layout. The production robots policy allows
+  crawling; do not add a blanket `noindex` to the shared layout.
+- Preserve legacy URL mappings in `public/_redirects`, including `/sitemap.xml`.
+  These redirects are host-specific and do not run in the local Astro server.
+
+## Privacy and external services
+
+- Keep fonts and images self-hosted. Preserve the Montserrat license notice
+  in `public/licenses/montserrat.txt`.
+- YouTube iframes must only be created after consent and removed on revocation.
+  Preserve the local placeholder, external link and behavior without JavaScript.
+- Keep accept/refuse actions equally visible and preferences accessible after
+  either choice. Missing, invalid or expired preferences must block YouTube;
+  unavailable storage must not imply consent. Preserve six-month expiry and
+  synchronization across tabs and restored pages.
+- If optional services or processing conditions materially change, update the
+  privacy/cookie notices and increment the consent version in `CookieConsent.astro`.
+  Do not infer hosting settings or legal compliance from source code alone.
+
+## Documentation
+
+- Keep `README.md` in English and focused on the public project: purpose,
+  architecture, features, local development, deployment and licensing.
+- Keep agent instructions, implementation rules and internal reminders in
+  `AGENTS.md`, rather than turning the README into an agent runbook.
 
 ## Browser compatibility
 

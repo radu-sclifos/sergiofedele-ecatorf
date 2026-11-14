@@ -1,0 +1,53 @@
+<span class="image-skeleton" data-image-skeleton aria-hidden="true"></span>
+<noscript><style is:inline>[data-image-skeleton] { display: none; }</style></noscript>
+
+<script>
+    for (const skeleton of document.querySelectorAll<HTMLElement>('[data-image-skeleton]')) {
+        const image = skeleton.parentElement?.querySelector('img');
+        if (!image) continue;
+        const finish = () => {
+            skeleton.classList.add('is-loaded');
+            image.removeEventListener('load', finish);
+            image.removeEventListener('error', finish);
+        };
+        image.addEventListener('load', finish);
+        image.addEventListener('error', finish);
+        if (image.complete) finish();
+    }
+</script>
+
+<style>
+    .image-skeleton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #d5dce5;
+        pointer-events: none;
+    }
+
+    .image-skeleton::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+        transform: translateX(-100%);
+    }
+
+    .image-skeleton.is-loaded { opacity: 0; }
+    .image-skeleton.is-loaded::after { animation: none; }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .image-skeleton { transition: opacity 200ms ease; }
+        .image-skeleton::after { animation: image-shimmer 1.6s ease-in-out infinite; }
+    }
+
+    @keyframes image-shimmer {
+        to { transform: translateX(100%); }
+    }
+</style>

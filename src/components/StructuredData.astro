@@ -1,0 +1,62 @@
+---
+import { getImage } from 'astro:assets';
+import portrait from '../assets/home/Numa_schio_1_zoomed2.webp';
+
+interface Props {
+    page: 'home' | 'biography';
+    title: string;
+    description: string;
+    canonical: string;
+}
+
+const {page, title, description, canonical} = Astro.props;
+const site = Astro.site!;
+const websiteId = new URL('/#website', site).href;
+const personId = new URL('/#sergio-fedele', site).href;
+const personImage = await getImage({
+    src: portrait,
+    width: Math.min(1200, portrait.width),
+    format: 'jpg',
+    quality: 85,
+});
+
+const person = {
+    '@type': 'Person',
+    '@id': personId,
+    name: 'Sergio Fedele',
+    url: new URL('/biografia/', site).href,
+    description: 'Musicista e inventore dell’Ecatorf.',
+    image: new URL(personImage.src, site).href,
+    sameAs: [
+        'https://www.sergiofedele.it/',
+        'https://www.youtube.com/channel/UCGsoqMijBRT7i6pK988AK6g',
+    ],
+};
+
+const pageData = page === 'home' ? {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: site.href,
+    name: 'Sergio Fedele – Ecatorf',
+    inLanguage: 'it',
+    about: {'@id': personId},
+} : {
+    '@type': 'ProfilePage',
+    '@id': `${canonical}#profile`,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'it',
+    isPartOf: {'@id': websiteId},
+    mainEntity: {'@id': personId},
+};
+
+const data = {
+    '@context': 'https://schema.org',
+    '@graph': [pageData, person],
+};
+// Prevent HTML from terminating the JSON-LD script if future text contains '<'.
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json}/>

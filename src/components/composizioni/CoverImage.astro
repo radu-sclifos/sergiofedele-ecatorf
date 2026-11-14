@@ -10,7 +10,7 @@ interface Props {
     skeleton?: boolean;
 }
 
-const { src, alt, wide = false, skeleton = false } = Astro.props;
+const { src, alt, wide = false, skeleton = true } = Astro.props;
 const widths = (wide ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 800])
     .filter(width => width < src.width).concat(src.width);
 ---
@@ -27,26 +27,18 @@ const widths = (wide ? [320, 480, 800, 1040, 1600, 2080] : [320, 480, 800])
 </div>
 
 <script>
-    import type PhotoSwipe from 'photoswipe';
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import { imageZoomOptions } from '../../scripts/photoswipe-options';
     import 'photoswipe/style.css';
 
     // Each wrapper is a separate one-image gallery, never a site-wide collection.
     const lightbox = new PhotoSwipeLightbox({
+        ...imageZoomOptions,
         gallery: '[data-cover-viewer]',
         children: 'a',
         pswpModule: () => import('photoswipe'),
         showHideAnimationType: 'zoom',
         bgOpacity: 0.8,
-        bgClickAction: 'close',
-        imageClickAction: 'zoom',
-        tapAction(this: PhotoSwipe, _point, event) {
-            if ((event.target as Element).classList.contains('pswp__img')) {
-                this.element?.classList.toggle('pswp--ui-visible');
-            } else {
-                this.close();
-            }
-        },
         loop: false,
         counter: false,
         arrowPrev: false,

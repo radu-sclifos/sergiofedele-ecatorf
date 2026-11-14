@@ -1,150 +1,142 @@
 # Sergio Fedele · Ecatorf
 
-The personal website of Sergio Fedele, musician and inventor of the Ecatorf.
-This repository contains the static Astro rebuild of his original Angular site,
-preserving its editorial content and visual style.
+A personal website documenting the work of Sergio Fedele, musician and inventor
+of the Ecatorf: an experimental wind instrument that combines elements of the
+clarinet, trombone and other brass instruments.
 
-## Getting started
+**Website:** [sergiofedele-ecatorf.it](https://www.sergiofedele-ecatorf.it/)
 
-Requires Node.js 22.23.4 or later.
+This repository contains the Astro reconstruction of the existing Angular
+website. The project preserves its Italian editorial content, typography, colors
+and overall composition while moving to a static, component-based architecture.
+It brings together Sergio's biography, instrument research, compositions,
+recordings, scores, visual works, writing and documentary film.
+
+## From Angular to Astro
+
+The migration focuses on an editorial website with a substantial collection of
+photographs, documents and musical material. Astro generates complete HTML pages
+at build time, with ordinary links between routes and no client-side router.
+JavaScript supports interactions such as galleries, carousels, content selectors
+and video preferences.
+
+Shared layouts and components keep navigation, typography and recurring interface
+elements consistent across the site. Editorial content lives in Astro pages;
+ordered image collections live in TypeScript data modules. The generated site
+can be served as static files without an application server or database.
+
+## Built with
+
+| Technology | Role |
+| --- | --- |
+| [Astro](https://astro.build/) | Static page generation, reusable components and image processing. |
+| TypeScript | Interactive behavior and structured gallery data. |
+| CSS | Shared typography, responsive layouts and component styles. |
+| [PhotoSwipe](https://photoswipe.com/) | Fullscreen image viewing, zoom and gallery navigation. |
+| `@astrojs/sitemap` | Sitemap generation from the site's routes during each build. |
+
+## Features and implementation
+
+### Editorial content and media
+
+The site covers Sergio's biography, the Ecatorf's construction and acoustic
+characteristics, solo and ensemble recordings, and downloadable scores. Other
+sections present *Partiture per Ecate*, *Contar*, the Kwatz! Ensemble, essays and
+articles, and the documentary *V’è la via e v’è l’andare*.
+
+Photo galleries have independent navigation, responsive thumbnails and
+on-demand loading of the fullscreen viewer. The Ecatorf design carousel presents
+26 pages in their original 13 pairs, including repeated and blank pages. The
+*Partiture per Ecate* carousel retains its original 33-page sequence. Both preserve
+the selected slide when the fullscreen viewer closes.
+
+Images are stored locally and processed through Astro, with responsive sources,
+reserved layout space and lazy loading where appropriate. Montserrat is
+self-hosted as WOFF2 files.
+
+### Progressive enhancement and accessibility
+
+Core editorial content, navigation, document downloads and gallery image links
+remain available without JavaScript. Interactive controls include keyboard
+navigation, visible focus styles and accessible labels. Loading animations and
+transitions account for reduced-motion preferences.
+
+### Video preferences
+
+YouTube embeds are created only after consent and removed when consent is
+revoked. Until then, each video displays a local placeholder with an external
+YouTube link. Preferences are stored locally in the browser for six months and
+can be changed through the shared cookie controls. The site source includes no
+analytics or advertising integration.
+
+### Search and sharing
+
+Every page includes a title, description, canonical URL, Open Graph metadata and
+Twitter Card metadata. Sharing images are generated locally as JPEGs. Canonical
+URLs use `https://www.sergiofedele-ecatorf.it/`.
+
+The homepage includes `WebSite` and `Person` JSON-LD. The biography uses
+`ProfilePage`, linked to the same person identity and established external
+profiles. The build generates `sitemap-index.xml` and its URL sitemap;
+`robots.txt` points to the index.
+
+## Project structure
+
+```text
+src/
+  assets/       Local images and fonts
+  components/   Navigation, galleries, carousels and other shared UI
+  data/         Ordered image collections
+  layouts/      Base, project and legal page layouts
+  pages/        File-based routes and editorial content
+  scripts/      Shared interaction utilities
+  styles/       Global typography and shared styles
+public/         PDFs, favicons, robots.txt, redirects, diagnostics and licenses
+scripts/        Browser compatibility checks and diagnostic tests
+```
+
+## Local development
+
+Requires **Node.js 22.23.4 or later** and npm.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open [localhost:4321](http://localhost:4321) to view the site.
+The development site is available at [localhost:4321](http://localhost:4321).
 
-| Command | Description |
+| Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the development server. |
 | `npm run build` | Generate the static site in `dist/`. |
-| `npm run preview` | Serve the production build locally after building. |
-| `npm run check:compatibility` | Check source and production CSS against the project's compatibility policy. |
-| `node --test scripts/browser-check.test.mjs` | Test browser identification in the diagnostics page. |
+| `npm run preview` | Serve the production build locally. |
+| `npm run check:compatibility` | Check source and production CSS against the compatibility policy. |
+| `node --test scripts/browser-check.test.mjs` | Run the browser identification tests. |
 
-## Pages and routing
+## Deployment and browser support
 
-Astro generates routes from files in `src/pages/`. Navigation uses ordinary HTML
-links that load a complete page; there is no client-side router.
+The deployment artifact is `dist/`, produced by `npm run build`.
+`public/_redirects` provides Netlify redirects for the previous Angular Contar
+and Film routes and the previous sitemap URL. Other hosts require equivalent
+redirect configuration; the local Astro server does not apply this file.
 
-| Source | Route | Content |
-| --- | --- | --- |
-| `src/pages/index.astro` | `/` | Introduction to Sergio and the instrument. |
-| `src/pages/biografia.astro` | `/biografia/` | Music, visual arts, literature and photo galleries. |
-| `src/pages/ecatorf.astro` | `/ecatorf/` | Technical descriptions, photographs, range illustrations and video. |
-| `src/pages/partitureperecate.astro` | `/partitureperecate/` | Modular screens, dimensions and the original sequence of 33 pages, including 11 blank pages. |
-| `src/pages/contar.astro` | `/contar/` | Links to Contar editions, texts, interviews, reviews and presentations. |
-| `src/pages/film.astro` | `/film/` | V’è la via e v’è l’andare: poster, Italian and English synopsis, festival, award, press and trailer. |
-| `src/pages/composizioni.astro` | `/composizioni/` | Solo, Trio and PsicoGeografico compositions, scores, CD covers, reviews and translations. |
-| `src/pages/altriprogetti/musica.astro` | `/altriprogetti/musica/` | Kwatz! Ensemble: multilingual presentation, CD covers, reviews, photos and posters. |
-| `src/pages/altriprogetti/scripturae.astro` | `/altriprogetti/scripturae/` | Essays and articles with local PDFs and publication links. |
-| `src/pages/privacy.astro` | `/privacy/` | Privacy notice draft, including hosting and contact information. |
-| `src/pages/cookie.astro` | `/cookie/` | Local preference storage and optional YouTube service. |
+JavaScript and CSS build targets are set to **Chromium 79**, with conservative
+CSS patterns used throughout the site. A standalone browser diagnostics page is
+available at `/verifica-browser.html`. This compatibility target and the
+automated checks do not constitute verification in the actual target browser.
+Internet Explorer and pre-Chromium Opera are outside the support target.
 
-The Contar menu points directly to `/contar/` and `/film/`. The Altri progetti
-menu points to `/altriprogetti/musica/` and `/altriprogetti/scripturae/`. `public/_redirects` preserves the legacy Angular Contar
-and Film URLs with permanent redirects on Netlify. Other static hosts must
-configure equivalent redirects; the local Astro server does not apply this file.
+## Author and licensing
 
-## Privacy and YouTube consent
-
-`CookieConsent.astro` is shared by all pages. Its non-modal panel offers equally
-visible accept/refuse actions; closing the initial panel saves a refusal.
-The small Cookie button and footer controls reopen preferences after either choice.
-`YouTubeVideo.astro` keeps a local, text-only placeholder visible until consent;
-the iframe is created only after acceptance and removed on revocation. With
-JavaScript disabled, only an ordinary external YouTube link is available.
-
-The `ecatorf-cookie-consent` localStorage entry records a boolean YouTube choice,
-consent version, timestamp and expiry six calendar months later. It is local to
-the browser and origin, with no consent logging endpoint or tracking identifier.
-Expiry, invalid records and missing storage default to blocking YouTube. If storage
-is unavailable, an explicit choice can enable it only in the current page.
-Open tabs synchronize storage changes; restored/foregrounded pages recheck the choice.
-Privacy and cookie pages do not automatically open the panel, so the notices can
-be read without dismissing it. Preferences remain available there.
-
-Before publishing, the site owner must confirm the controller/contact details and
-complete the privacy draft's retention periods, hosting/processing arrangements,
-email provider details and international-transfer safeguards. Verify the actual
-Netlify account settings (including analytics, integrations and injected scripts)
-and inventory the player's cookies/storage in the intended deployment. The source
-audit alone cannot establish these facts. No blanket GDPR-compliance claim is made.
-If optional services or processing conditions change materially, update both notices
-and increment the consent version in `CookieConsent.astro` to request a new choice.
-The client-side record is not a server-side consent audit trail; the owner must
-assess documentation requirements before launch.
-
-## Project structure
-
-| Directory | Purpose |
-| --- | --- |
-| `src/pages/` | Pages and routes. |
-| `src/components/` | Shared components, including navigation, footer and galleries. |
-| `src/layouts/` | Shared HTML page structure. |
-| `src/styles/` | Global styles and shared text typography (`body-copy`). |
-| `src/assets/` | Images processed by Astro, grouped by page. |
-| `public/` | Files served unchanged, including browser diagnostics and license notices. |
-| `scripts/` | Compatibility checks and browser identification tests. |
-
-`src/components/ActionIcon.astro` centralizes decorative SVG action icons and
-uses the global `action-icon` styles. Select an icon with `name`; optional `size`
-and `strokeWidth` preserve context-specific dimensions. Use `standalone` for
-icons without adjacent text; the containing control supplies its accessible name.
-
-Photo galleries use [PhotoSwipe](https://photoswipe.com/) through
-`src/components/Gallery.astro`. Each instance is independent, with responsive
-thumbnails, zoom, arrow and touch navigation, and keyboard controls. The main
-PhotoSwipe module loads when a gallery opens; image links also work without
-JavaScript.
-
-`DesignCarousel.astro` shares preview and fullscreen navigation for Ecatorf's
-paired design pages and the single pages of Partiture per Ecate (`pagesPerSlide={1}`).
-Both keep the current selection when closing PhotoSwipe. Ecate's original sequence
-is stored in `src/data/ecate-scores.ts`, including each blank separator and the final
-blank page.
-
-`LoadingImage.astro` wraps an Astro image with a subtle loading skeleton and
-reserves its proportions using percentage padding. Pass an imported image as
-`src`, descriptive `alt`, and optional `widths`, `sizes` and `loading` (default:
-`lazy`). Size its container in the consuming page. The skeleton clears on load
-or error, handles cached images, and respects reduced motion. Images remain
-visible without JavaScript. Film uses it for the poster.
-
-CD covers on Composizioni use `src/components/composizioni/CoverImage.astro`:
-each cover opens its own single-image PhotoSwipe viewer, with thumbnail zoom,
-a translucent backdrop and closing on a backdrop click, without navigation to
-other covers. The image link remains available without JavaScript. Pass `skeleton`
-to reuse `LoadingImage.astro`, as on Musica for the presentation image and CD covers.
-`CompositionControls.astro` shares language, CD and review selection between
-Composizioni and Musica; content remains readable without JavaScript.
-
-## Browser support and diagnostics
-
-Chromium 79 is the current compatibility target for older Chromium-based browsers.
-This is a development baseline, not a certification that every supported browser
-has been tested. Internet Explorer and Opera's pre-Chromium engine are outside
-the target.
-
-## License
+Website development by [Radu Sclifos](https://github.com/radu-sclifos).
+Editorial content and artistic work by Sergio Fedele, with individual media
+rights belonging to their respective holders.
 
 The site code is available under the [MIT License](LICENSE). Editorial content,
-photographs, artwork, and audio and video materials are excluded from the MIT
-license. All rights in those materials remain with their respective rights
-holders unless otherwise indicated.
+photographs, artwork, scores, audio and video materials are excluded from that
+license and remain subject to their respective rights.
 
-PhotoSwipe is distributed under the MIT license, copyright 2014–2022 Dmitry
-Semenov. Its complete notice is included in
-[`public/licenses/photoswipe.txt`](public/licenses/photoswipe.txt), published at
-`/licenses/photoswipe.txt`. See the
-[upstream license](https://github.com/dimsemenov/PhotoSwipe/blob/master/LICENSE).
-
-Montserrat is self-hosted as WOFF2 files in `src/assets/fonts/`, with local
-`@font-face` rules in `src/styles/global.css`; no Google Fonts requests are needed.
-The Latin subset serves both regular and bold text; the Latin Extended subset
-loads only when its characters are needed. Vite fingerprints the font URLs for
-cache invalidation when the files change. Montserrat is distributed under the
-SIL Open Font License 1.1, included in
-[`public/licenses/montserrat.txt`](public/licenses/montserrat.txt).
-
+Third-party license notices are included for
+[PhotoSwipe](public/licenses/photoswipe.txt) (MIT) and
+[Montserrat](public/licenses/montserrat.txt) (SIL Open Font License 1.1).

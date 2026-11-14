@@ -13,9 +13,9 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 ---
 
 <div class:list={['design-carousel', {'single-page-carousel': pagesPerSlide === 1}]}
-     data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region" aria-label={label}
+     data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region"
+     aria-label={label}
      aria-roledescription="carosello">
-    <template data-design-arrow><ActionIcon name="previous" size={32} strokeWidth={2.5} standalone class="pswp__icn" /></template>
     <div class="carousel-stage">
         {pairs.map((pair, index) => (
                 <button class="spread-button" data-spread type="button" hidden={index !== 0}
@@ -25,17 +25,19 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                         aria-label={pagesPerSlide === 1 ? `Ingrandisci pagina ${index + 1}` : `Ingrandisci pagine ${index * 2 + 1}–${index * 2 + 2}`}>
                 <span class:list={['spread-pages', {'single-page': pagesPerSlide === 1}]}>
                     {pair.map(({src, alt}) => (
-                            <img src={src.src} width={src.width} height={src.height} alt={alt}
-                                 loading="lazy" decoding="async" draggable="false"/>
+                            <span class="carousel-page">
+                                <img src={src.src} width={src.width} height={src.height} alt={alt}
+                                     loading="lazy" decoding="async" draggable="false"/>
+                            </span>
                     ))}
                 </span>
                 </button>
         ))}
         <button class="carousel-arrow previous" data-previous type="button" aria-label="Coppia precedente" hidden>
-            <ActionIcon name="previous" size={26} strokeWidth={2.5} standalone />
+            <ActionIcon name="previous" size={26} strokeWidth={2.5} standalone/>
         </button>
         <button class="carousel-arrow next" data-next type="button" aria-label="Coppia successiva" hidden>
-            <ActionIcon name="next" size={26} strokeWidth={2.5} standalone />
+            <ActionIcon name="next" size={26} strokeWidth={2.5} standalone/>
         </button>
     </div>
     <p class="carousel-status" data-status role="status" aria-live="polite" aria-atomic="true"></p>
@@ -52,9 +54,36 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
 <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import { imageZoomOptions } from '../scripts/photoswipe-options';
+    import { addFullscreenTransitions } from '../scripts/photoswipe-transitions';
     import 'photoswipe/style.css';
 
+    async function loadPreview(image: HTMLImageElement) {
+        if (!image.complete) {
+            await new Promise<void>(resolve => {
+                const finish = () => {
+                    image.removeEventListener('load', finish);
+                    image.removeEventListener('error', finish);
+                    resolve();
+                };
+                image.addEventListener('load', finish);
+                image.addEventListener('error', finish);
+                image.loading = 'eager';
+                if (image.complete) finish();
+            });
+        }
+        if (image.naturalWidth && typeof image.decode === 'function') {
+            await image.decode().catch(() => {
+            });
+        }
+    }
+
     for (const root of document.querySelectorAll<HTMLElement>('[data-design-carousel]')) {
+        // Keep keyboard focus visible, including after closing PhotoSwipe,
+        // without outlining the image after a mouse click or touch.
+        root.addEventListener('pointerdown', () => root.classList.add('pointer-input'));
+        document.addEventListener('keydown', () => root.classList.remove('pointer-input'));
+
         const spreads = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-spread]'));
         const previous = root.querySelector<HTMLButtonElement>('[data-previous]')!;
         const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
@@ -62,6 +91,9 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         const singlePage = root.dataset.pagesPerSlide === '1';
         const pageCount = Number(root.dataset.pageCount);
         let current = 0;
+        let requested = 0;
+        let transitionVersion = 0;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const english = () => document.querySelector('.translation')?.getAttribute('aria-pressed') === 'true';
         const pageRange = (index: number) => singlePage ? `${index + 1}` : `${index * 2 + 1}–${Math.min(index * 2 + 2, pageCount)}`;
         const pageLabel = (index: number) => `${english() ? (singlePage ? 'Page' : 'Pages') : (singlePage ? 'Pagina' : 'Pagine')} ${pageRange(index)} ${english() ? 'of' : 'di'} ${pageCount}`;
@@ -69,8 +101,16 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         const nextLabel = () => english() ? (singlePage ? 'Next page' : 'Next pair') : (singlePage ? 'Pagina successiva' : 'Coppia successiva');
 
         function showPair(index: number) {
+            // Immediate updates (initialization/fullscreen) cancel pending fades.
+            transitionVersion++;
             current = Math.max(0, Math.min(index, spreads.length - 1));
+            requested = current;
+            root.removeAttribute('aria-busy');
+            if (singlePage) {
+                root.style.setProperty('--frame-width', spreads[current].style.getPropertyValue('--frame-width'));
+            }
             spreads.forEach((spread, i) => {
+                spread.classList.remove('preview-leaving', 'preview-entering');
                 spread.hidden = i !== current;
                 spread.setAttribute('aria-label', `${english() ? (singlePage ? 'Enlarge page' : 'Enlarge pages') : (singlePage ? 'Ingrandisci pagina' : 'Ingrandisci pagine')} ${pageRange(i)}`);
             });
@@ -81,10 +121,34 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             next.disabled = current === spreads.length - 1;
         }
 
+        async function navigate(index: number, restoreFocus = false) {
+            requested = Math.max(0, Math.min(index, spreads.length - 1));
+            const destination = requested;
+            const version = ++transitionVersion;
+            spreads[current].classList.remove('preview-leaving');
+            if (destination === current) {
+                root.removeAttribute('aria-busy');
+                return;
+            }
+            root.setAttribute('aria-busy', 'true');
+            // Keep the current page visible while the requested images load.
+            await Promise.all(Array.from(spreads[destination].querySelectorAll('img')).map(loadPreview));
+            if (version !== transitionVersion) return;
+
+            if (!reducedMotion.matches) {
+                spreads[current].classList.add('preview-leaving');
+                await new Promise<void>(resolve => window.setTimeout(resolve, 130));
+                if (version !== transitionVersion) return;
+            }
+            showPair(destination);
+            if (!reducedMotion.matches) spreads[current].classList.add('preview-entering');
+            if (restoreFocus) spreads[current].focus({preventScroll: true});
+        }
+
         // Fullscreen preserves the same page grouping as the preview.
         const slides = spreads.map(spread => {
             // Template contents stay inert: preparing fullscreen markup must
-            // not start image requests before PhotoSwipe actually opens it.
+            // not start image requests before PhotoSwipe actually opens it
             const template = document.createElement('template');
             template.innerHTML = spread.querySelector<HTMLElement>('.spread-pages')!.outerHTML;
             const content = template.content.firstElementChild as HTMLElement;
@@ -93,10 +157,15 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                 image.loading = 'eager';
             }
             const height = Number(spread.dataset.height);
-            return {element: spread, html: content.outerHTML, width: Number(spread.dataset.width) || Math.round(height * 1040 / 660), height};
+            return {
+                element: spread,
+                html: content.outerHTML,
+                width: Number(spread.dataset.width) || Math.round(height * 1040 / 660),
+                height
+            };
         });
-        const arrowSVG = root.querySelector<HTMLTemplateElement>('[data-design-arrow]')!.innerHTML;
         const lightbox = new PhotoSwipeLightbox({
+            ...imageZoomOptions,
             pswpModule: () => import('photoswipe'),
             mainClass: 'design-lightbox',
             loop: false,
@@ -104,17 +173,12 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             thumbSelector: '.spread-pages',
             padding: {top: 60, bottom: 24, left: 60, right: 60},
             bgOpacity: 0.8,
-            bgClickAction: 'close',
-            imageClickAction: 'zoom',
-            tapAction: 'zoom',
             counter: false,
             returnFocus: false,
             closeTitle: 'Chiudi',
             zoomTitle: 'Ingrandisci',
             arrowPrevTitle: previousLabel(),
             arrowNextTitle: nextLabel(),
-            arrowPrevSVG: arrowSVG,
-            arrowNextSVG: arrowSVG,
         });
         lightbox.addFilter('isContentZoomable', () => true);
         lightbox.addFilter('useContentPlaceholder', () => true);
@@ -156,30 +220,27 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             if (lightbox.pswp) showPair(lightbox.pswp.currIndex);
         });
         lightbox.on('destroy', () => spreads[current].focus({preventScroll: true}));
+        addFullscreenTransitions(lightbox);
         lightbox.init();
 
         spreads.forEach((spread, index) => spread.addEventListener('click', () => lightbox.loadAndOpen(index, slides)));
-        previous.addEventListener('click', () => showPair(current - 1));
-        next.addEventListener('click', () => showPair(current + 1));
+        previous.addEventListener('click', () => navigate(requested - 1));
+        next.addEventListener('click', () => navigate(requested + 1));
         root.addEventListener('keydown', event => {
             if (event.altKey || event.ctrlKey || event.metaKey) {
                 return;
             }
+            const restoreFocus = event.target instanceof HTMLElement && event.target.matches('[data-spread]');
             if (event.key === 'ArrowLeft') {
-                showPair(current - 1);
-            }
-            else if (event.key === 'ArrowRight') {
-                showPair(current + 1);
-            }
-            else if (event.key === 'Home') {
-                showPair(0);
-            }
-            else if (event.key === 'End') {
-                showPair(spreads.length - 1);
-            }
-            else return;
+                void navigate(requested - 1, restoreFocus);
+            } else if (event.key === 'ArrowRight') {
+                void navigate(requested + 1, restoreFocus);
+            } else if (event.key === 'Home') {
+                void navigate(0, restoreFocus);
+            } else if (event.key === 'End') {
+                void navigate(spreads.length - 1, restoreFocus);
+            } else return;
             event.preventDefault();
-            if (event.target instanceof HTMLElement && event.target.matches('[data-spread]')) spreads[current].focus({preventScroll: true});
         });
         document.addEventListener('ecatorf:languagechange', () => showPair(current));
         previous.hidden = false;
@@ -190,11 +251,20 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
 <style>
     .carousel-stage {
+        --controls-space: 7rem;
         position: relative;
-        padding: 0 4rem;
-        border: 2px solid #34445e;
-        background: #e5e7eb;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: calc(157.575758vh - 18.909091rem + var(--controls-space) + 2px);
+        margin: 0 auto;
+        padding: 0 3.5rem;
+        border: 1px solid #c7cfda;
+        border-radius: 5px;
+        background: transparent;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .single-page-carousel .carousel-stage {
+        max-width: calc(var(--frame-width, 100vw) + var(--controls-space) + 2px);
     }
 
     .spread-button {
@@ -210,6 +280,29 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
     .spread-button:not([hidden]) {
         display: block;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .spread-button {
+            transition: opacity 130ms ease;
+        }
+
+        .spread-button.preview-leaving {
+            opacity: 0;
+        }
+
+        .spread-button.preview-entering {
+            animation: preview-fade-in 180ms ease-out;
+        }
+    }
+
+    @keyframes preview-fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     .spread-button::before {
@@ -237,6 +330,16 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         width: 100%;
         height: 100%;
         background: transparent;
+    }
+
+    .carousel-page {
+        display: block;
+        position: relative;
+        /* PhotoSwipe handles image clicks on the enclosing spread. */
+        pointer-events: none;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
     }
 
     .spread-pages img {
@@ -283,16 +386,20 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
 
     .previous {
-        left: 8px;
+        left: 4px;
     }
 
     .next {
-        right: 8px;
+        right: 4px;
     }
 
     button:focus {
         outline: 2px solid #0046b9;
         outline-offset: 3px;
+    }
+
+    .design-carousel.pointer-input button:focus {
+        outline: none;
     }
 
     .carousel-status {
@@ -321,50 +428,6 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         background: transparent;
     }
 
-    :global(.design-lightbox .pswp__button--arrow) {
-        visibility: visible;
-        width: 48px;
-        height: 64px;
-        margin-top: -32px;
-        color: white;
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 0.25rem;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow:hover),
-    :global(.design-lightbox .pswp__button--arrow:active),
-    :global(.design-lightbox .pswp__button--arrow:focus) {
-        background: #061a40;
-        border: 1px solid white;
-        opacity: 1;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow:disabled) {
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        opacity: 0.35;
-        cursor: default;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow--prev) {
-        left: 6px;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow--next) {
-        right: 6px;
-    }
-
-    :global(.design-lightbox .pswp__button--arrow .pswp__icn) {
-        color: white;
-        width: 32px;
-        height: 32px;
-        left: 8px;
-        right: auto;
-        top: 16px;
-        margin-top: 0;
-    }
-
     :global(.design-lightbox .pswp__design-pages) {
         color: white;
         margin: 18px 16px;
@@ -378,6 +441,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
     @media (max-width: 48rem) {
         .carousel-stage {
+            --controls-space: 5.5rem;
             padding: 0 2.75rem;
         }
 
@@ -396,6 +460,10 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
 
     @media (max-height: 24rem) {
+        .carousel-stage, .single-page-carousel .carousel-stage {
+            max-width: calc(19rem + var(--controls-space) + 2px);
+        }
+
         .spread-button, .single-page-carousel .spread-button {
             max-width: 19rem;
         }

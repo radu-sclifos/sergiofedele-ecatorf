@@ -1,15 +1,19 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
     title: string;
     description: string;
+    socialImage?: ImageMetadata;
+    socialImageAlt?: string;
 }
 
-const {title, description} = Astro.props;
+const {title, description, socialImage, socialImageAlt} = Astro.props;
 ---
 
-<BaseLayout title={`Sergio Fedele – ${title}`} description={description} overlayNavbar={false}>
+<BaseLayout title={`Sergio Fedele – ${title}`} description={description} overlayNavbar={false}
+            socialImage={socialImage} socialImageAlt={socialImageAlt}>
     <article class="project-page">
         <h1 class="page-title">{title}</h1>
         <slot/>
