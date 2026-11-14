@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
     site: 'https://www.sergiofedele-ecatorf.it',
     trailingSlash: 'always',
+    integrations: [sitemap()],
     vite: {
         plugins: [{
             name: 'compatible-vendor-styles',
