@@ -134,55 +134,117 @@ h1, h2, h3, h4, h5, h6, .heading {
     font-weight: 500;
 }
 
-/* Shared navigation for all PhotoSwipe viewers, including photo galleries. */
-    .pswp .pswp__button--arrow {
-        visibility: visible;
-        width: 48px;
-        height: 64px;
-        margin-top: -32px;
-        color: white;
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 0.25rem;
+@media (prefers-reduced-motion: no-preference) {
+    .pswp .viewer-leave-next {
+        animation: viewer-leave-next 120ms ease-in forwards;
     }
 
-    .pswp .pswp__button--arrow:hover,
-    .pswp .pswp__button--arrow:active,
-    .pswp .pswp__button--arrow:focus {
-        background: #061a40;
-        border: 1px solid white;
+    .pswp .viewer-leave-previous {
+        animation: viewer-leave-previous 120ms ease-in forwards;
+    }
+
+    .pswp .viewer-enter-next {
+        animation: viewer-enter-next 180ms ease-out;
+    }
+
+    .pswp .viewer-enter-previous {
+        animation: viewer-enter-previous 180ms ease-out;
+    }
+}
+
+@keyframes viewer-leave-next {
+    from {
         opacity: 1;
+        margin-left: 0;
     }
+    to {
+        opacity: 0;
+        margin-left: -24px;
+    }
+}
 
-    .pswp .pswp__button--arrow:disabled {
-        background: rgba(6, 26, 64, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        opacity: 0.35;
-        cursor: default;
+@keyframes viewer-leave-previous {
+    from {
+        opacity: 1;
+        margin-left: 0;
     }
+    to {
+        opacity: 0;
+        margin-left: 24px;
+    }
+}
 
-    .pswp .pswp__button--arrow--prev {
-        left: 6px;
+@keyframes viewer-enter-next {
+    from {
+        opacity: 0;
+        margin-left: 24px;
     }
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
 
-    .pswp .pswp__button--arrow--next {
-        right: 6px;
+@keyframes viewer-enter-previous {
+    from {
+        opacity: 0;
+        margin-left: -24px;
     }
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
 
-    .pswp .pswp__button--arrow .pswp__icn {
-        color: white;
-        width: 32px;
-        height: 32px;
-        left: 8px;
-        right: auto;
-        top: 16px;
-        margin-top: 0;
-        fill: none;
-        stroke: white;
-    }
+/* Shared navigation for all PhotoSwipe viewers, including photo galleries. */
+.pswp .pswp__button--arrow {
+    visibility: visible;
+    width: 48px;
+    height: 64px;
+    margin-top: -32px;
+    color: white;
+    background: rgba(6, 26, 64, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0.25rem;
+}
 
-    .pswp .pswp__button--arrow:focus {
-        outline: 2px solid white;
-        outline-offset: -3px;
-    }
+.pswp .pswp__button--arrow:hover,
+.pswp .pswp__button--arrow:active,
+.pswp .pswp__button--arrow:focus {
+    background: #061a40;
+    border: 1px solid white;
+    opacity: 1;
+}
+
+.pswp .pswp__button--arrow:disabled {
+    background: rgba(6, 26, 64, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    opacity: 0.35;
+    cursor: default;
+}
+
+.pswp .pswp__button--arrow--prev {
+    left: 6px;
+}
+
+.pswp .pswp__button--arrow--next {
+    right: 6px;
+}
+
+.pswp .pswp__button--arrow .pswp__icn {
+    color: white;
+    width: 32px;
+    height: 32px;
+    left: 8px;
+    right: auto;
+    top: 16px;
+    margin-top: 0;
+    fill: none;
+    stroke: white;
+}
+
+.pswp .pswp__button--arrow:focus {
+    outline: 2px solid white;
+    outline-offset: -3px;
+}
 

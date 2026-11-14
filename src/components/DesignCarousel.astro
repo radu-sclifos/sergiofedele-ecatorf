@@ -1,7 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
 import ActionIcon from './ActionIcon.astro';
-import ImageSkeleton from './ImageSkeleton.astro';
 
 interface Props {
     pages: { src: ImageMetadata; alt: string }[];
@@ -29,7 +28,6 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                             <span class="carousel-page">
                                 <img src={src.src} width={src.width} height={src.height} alt={alt}
                                      loading="lazy" decoding="async" draggable="false"/>
-                                <ImageSkeleton/>
                             </span>
                     ))}
                 </span>
@@ -57,7 +55,28 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
     import { imageZoomOptions } from '../scripts/photoswipe-options';
+    import { addFullscreenTransitions } from '../scripts/photoswipe-transitions';
     import 'photoswipe/style.css';
+
+    async function loadPreview(image: HTMLImageElement) {
+        if (!image.complete) {
+            await new Promise<void>(resolve => {
+                const finish = () => {
+                    image.removeEventListener('load', finish);
+                    image.removeEventListener('error', finish);
+                    resolve();
+                };
+                image.addEventListener('load', finish);
+                image.addEventListener('error', finish);
+                image.loading = 'eager';
+                if (image.complete) finish();
+            });
+        }
+        if (image.naturalWidth && typeof image.decode === 'function') {
+            await image.decode().catch(() => {
+            });
+        }
+    }
 
     for (const root of document.querySelectorAll<HTMLElement>('[data-design-carousel]')) {
         // Keep keyboard focus visible, including after closing PhotoSwipe,
@@ -72,6 +91,9 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         const singlePage = root.dataset.pagesPerSlide === '1';
         const pageCount = Number(root.dataset.pageCount);
         let current = 0;
+        let requested = 0;
+        let transitionVersion = 0;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const english = () => document.querySelector('.translation')?.getAttribute('aria-pressed') === 'true';
         const pageRange = (index: number) => singlePage ? `${index + 1}` : `${index * 2 + 1}–${Math.min(index * 2 + 2, pageCount)}`;
         const pageLabel = (index: number) => `${english() ? (singlePage ? 'Page' : 'Pages') : (singlePage ? 'Pagina' : 'Pagine')} ${pageRange(index)} ${english() ? 'of' : 'di'} ${pageCount}`;
@@ -79,11 +101,16 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         const nextLabel = () => english() ? (singlePage ? 'Next page' : 'Next pair') : (singlePage ? 'Pagina successiva' : 'Coppia successiva');
 
         function showPair(index: number) {
+            // Immediate updates (initialization/fullscreen) cancel pending fades.
+            transitionVersion++;
             current = Math.max(0, Math.min(index, spreads.length - 1));
+            requested = current;
+            root.removeAttribute('aria-busy');
             if (singlePage) {
                 root.style.setProperty('--frame-width', spreads[current].style.getPropertyValue('--frame-width'));
             }
             spreads.forEach((spread, i) => {
+                spread.classList.remove('preview-leaving', 'preview-entering');
                 spread.hidden = i !== current;
                 spread.setAttribute('aria-label', `${english() ? (singlePage ? 'Enlarge page' : 'Enlarge pages') : (singlePage ? 'Ingrandisci pagina' : 'Ingrandisci pagine')} ${pageRange(i)}`);
             });
@@ -94,6 +121,30 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             next.disabled = current === spreads.length - 1;
         }
 
+        async function navigate(index: number, restoreFocus = false) {
+            requested = Math.max(0, Math.min(index, spreads.length - 1));
+            const destination = requested;
+            const version = ++transitionVersion;
+            spreads[current].classList.remove('preview-leaving');
+            if (destination === current) {
+                root.removeAttribute('aria-busy');
+                return;
+            }
+            root.setAttribute('aria-busy', 'true');
+            // Keep the current page visible while the requested images load.
+            await Promise.all(Array.from(spreads[destination].querySelectorAll('img')).map(loadPreview));
+            if (version !== transitionVersion) return;
+
+            if (!reducedMotion.matches) {
+                spreads[current].classList.add('preview-leaving');
+                await new Promise<void>(resolve => window.setTimeout(resolve, 130));
+                if (version !== transitionVersion) return;
+            }
+            showPair(destination);
+            if (!reducedMotion.matches) spreads[current].classList.add('preview-entering');
+            if (restoreFocus) spreads[current].focus({preventScroll: true});
+        }
+
         // Fullscreen preserves the same page grouping as the preview.
         const slides = spreads.map(spread => {
             // Template contents stay inert: preparing fullscreen markup must
@@ -102,8 +153,6 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             template.innerHTML = spread.querySelector<HTMLElement>('.spread-pages')!.outerHTML;
             const content = template.content.firstElementChild as HTMLElement;
             content.classList.add('pswp__img');
-            // PhotoSwipe manages loading feedback for its fullscreen content
-            content.querySelectorAll('[data-image-skeleton], noscript').forEach(node => node.remove());
             for (const image of content.querySelectorAll('img')) {
                 image.loading = 'eager';
             }
@@ -171,26 +220,27 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
             if (lightbox.pswp) showPair(lightbox.pswp.currIndex);
         });
         lightbox.on('destroy', () => spreads[current].focus({preventScroll: true}));
+        addFullscreenTransitions(lightbox);
         lightbox.init();
 
         spreads.forEach((spread, index) => spread.addEventListener('click', () => lightbox.loadAndOpen(index, slides)));
-        previous.addEventListener('click', () => showPair(current - 1));
-        next.addEventListener('click', () => showPair(current + 1));
+        previous.addEventListener('click', () => navigate(requested - 1));
+        next.addEventListener('click', () => navigate(requested + 1));
         root.addEventListener('keydown', event => {
             if (event.altKey || event.ctrlKey || event.metaKey) {
                 return;
             }
+            const restoreFocus = event.target instanceof HTMLElement && event.target.matches('[data-spread]');
             if (event.key === 'ArrowLeft') {
-                showPair(current - 1);
+                void navigate(requested - 1, restoreFocus);
             } else if (event.key === 'ArrowRight') {
-                showPair(current + 1);
+                void navigate(requested + 1, restoreFocus);
             } else if (event.key === 'Home') {
-                showPair(0);
+                void navigate(0, restoreFocus);
             } else if (event.key === 'End') {
-                showPair(spreads.length - 1);
+                void navigate(spreads.length - 1, restoreFocus);
             } else return;
             event.preventDefault();
-            if (event.target instanceof HTMLElement && event.target.matches('[data-spread]')) spreads[current].focus({preventScroll: true});
         });
         document.addEventListener('ecatorf:languagechange', () => showPair(current));
         previous.hidden = false;
@@ -230,6 +280,29 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
 
     .spread-button:not([hidden]) {
         display: block;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .spread-button {
+            transition: opacity 130ms ease;
+        }
+
+        .spread-button.preview-leaving {
+            opacity: 0;
+        }
+
+        .spread-button.preview-entering {
+            animation: preview-fade-in 180ms ease-out;
+        }
+    }
+
+    @keyframes preview-fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     .spread-button::before {

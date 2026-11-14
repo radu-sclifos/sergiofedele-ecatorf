@@ -34,6 +34,7 @@ const sizes = covers ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 36re
 <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
     import { imageZoomOptions } from '../scripts/photoswipe-options';
+    import { addFullscreenTransitions } from '../scripts/photoswipe-transitions';
     import 'photoswipe/style.css';
 
     const lightbox = new PhotoSwipeLightbox({
@@ -47,6 +48,7 @@ const sizes = covers ? '(max-width: 71.25rem) 100vw, 1040px' : '(max-width: 36re
         arrowNextTitle: 'Fotografia successiva',
         errorMsg: 'Impossibile caricare la fotografia.',
     });
+    addFullscreenTransitions(lightbox);
     lightbox.init();
 </script>
 
