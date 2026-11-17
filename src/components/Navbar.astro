@@ -87,7 +87,6 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
     const menu = document.getElementById('site-menu');
 
     if (toggle && menu) {
-        toggle.classList.add('ready');
         toggle.addEventListener('click', () => {
             const expanded = toggle.getAttribute('aria-expanded') === 'true';
             toggle.setAttribute('aria-expanded', String(!expanded));
@@ -271,11 +270,11 @@ const isCurrent = (href: string) => currentPath === href.replace(/\/$/, '');
             flex-wrap: wrap;
         }
 
-        .toggle.ready {
+        :global(.navigation-js) .toggle {
             display: block;
         }
 
-        .toggle.ready[aria-expanded="false"] + .menu {
+        :global(.navigation-js) .toggle[aria-expanded="false"] + .menu {
             display: none;
         }
 
