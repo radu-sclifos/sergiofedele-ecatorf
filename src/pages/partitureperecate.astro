@@ -6,7 +6,7 @@ import { ecatePages } from '../data/ecate-scores';
 import hero from '../assets/partiture-ecate/paraventi-hero.webp';
 import socialScore from '../assets/partiture-ecate/carosello/1a.webp';
 
-const heroWidths = [480, 768, 1280, 1920].filter(width => width < hero.width).concat(hero.width);
+const heroWidths = [480, 768, 960, 1280, 1440, 1920].filter(width => width < hero.width).concat(hero.width);
 ---
 
 <BaseLayout title="Sergio Fedele – Partiture per Ecate"
@@ -14,7 +14,7 @@ const heroWidths = [480, 768, 1280, 1920].filter(width => width < hero.width).co
             socialImageAlt="Una tavola di Partiture per Ecate di Sergio Fedele"
             description="Partiture per Ecate: paraventi modulari di Sergio Fedele, con telaio in legno laccato e tavole a inchiostro o pastello su carta.">
     <header class="hero">
-        <Image src={hero} widths={heroWidths} sizes="100vw" alt="" format="webp" quality={90} priority/>
+        <Image src={hero} widths={heroWidths} sizes="100vw" alt="" format="webp" quality={75} priority/>
         <h1 class="page-title">Partiture per Ecate</h1>
     </header>
     <article class="ecate" aria-label="Partiture per Ecate">

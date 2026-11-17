@@ -1,6 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import ProjectLayout from '../layouts/ProjectLayout.astro';
 import background from '../assets/contar/cerchio.webp';
+
+// Cover also scales to the panel's height: allow enough source pixels on mobile.
+const backgroundSizes = '(max-width: 48rem) 56rem, 59.375rem';
 
 const links = [
     {label: 'Contar – Runaeditore', page: 'contar_de_la_catastrophe'},
@@ -16,8 +20,10 @@ const links = [
                socialImage={background}
                socialImageAlt="Illustrazione della pagina dedicata a Contar di Sergio Fedele"
                description="Contar di Sergio Fedele: edizioni, testo, interviste, recensioni e prime presentazioni.">
-    <nav class="contar-links" aria-label="Edizioni e approfondimenti su Contar"
-         style={{backgroundImage: `url(${background.src})`}}>
+    <nav class="contar-links" aria-label="Edizioni e approfondimenti su Contar">
+        <Image class="contar-background" src={background} alt="" width={1920}
+               widths={[960, 1440, 1920]} sizes={backgroundSizes}
+               format="webp" quality={75} priority />
         <ul>
             {links.map(({label, continuation, page}) => (
                     <li>
@@ -30,16 +36,27 @@ const links = [
 
 <style>
     .contar-links {
+        position: relative;
         min-height: 31.25rem;
         padding: 2.1875rem 3.75rem;
         background-color: #e4e7ed;
-        background-size: cover;
-        background-position: center;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         font-family: var(--font-body);
     }
 
+    .contar-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        pointer-events: none;
+    }
+
     ul {
+        position: relative;
         list-style: disc;
         padding: 0;
         margin: 0;
