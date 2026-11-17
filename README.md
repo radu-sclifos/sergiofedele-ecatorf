@@ -12,6 +12,15 @@ and overall composition while moving to a static, component-based architecture.
 It brings together Sergio's biography, instrument research, compositions,
 recordings, scores, visual works, writing and documentary film.
 
+## Editorial and visual direction
+
+The site's editorial content and visual direction were chosen by Sergio Fedele,
+including fonts, colors, typography and overall composition. This reconstruction
+deliberately preserves those choices, including where they depart from common
+web design conventions. They reflect Sergio's preferences and artistic direction;
+the developer's role is their technical implementation and the migration to
+Astro, rather than the expression of the developer's own design preferences.
+
 ## From Angular to Astro
 
 The migration focuses on an editorial website with a substantial collection of
