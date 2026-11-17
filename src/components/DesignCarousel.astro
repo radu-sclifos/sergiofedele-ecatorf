@@ -6,13 +6,14 @@ interface Props {
     pages: { src: ImageMetadata; alt: string }[];
     pagesPerSlide?: 1 | 2;
     label?: string;
+    fullWidth?: boolean;
 }
 
-const {pages, pagesPerSlide = 2, label = 'Tavole di progettazione'} = Astro.props;
+const {pages, pagesPerSlide = 2, label = 'Tavole di progettazione', fullWidth = false} = Astro.props;
 const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, index) => pages.slice(index * pagesPerSlide, (index + 1) * pagesPerSlide));
 ---
 
-<div class:list={['design-carousel', {'single-page-carousel': pagesPerSlide === 1}]}
+<div class:list={['design-carousel', {'single-page-carousel': pagesPerSlide === 1, 'full-width-carousel': fullWidth}]}
      data-design-carousel data-pages-per-slide={pagesPerSlide} data-page-count={pages.length} role="region"
      aria-label={label}
      aria-roledescription="carosello">
@@ -467,5 +468,20 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         .spread-button, .single-page-carousel .spread-button {
             max-width: 19rem;
         }
+    }
+    .full-width-carousel .carousel-stage {
+        max-width: none;
+        height: 65vh;
+        min-height: 16rem;
+        max-height: 36rem;
+    }
+
+    .full-width-carousel .spread-button {
+        height: 100%;
+        max-width: none;
+    }
+
+    .full-width-carousel .spread-button::before {
+        display: none;
     }
 </style>
