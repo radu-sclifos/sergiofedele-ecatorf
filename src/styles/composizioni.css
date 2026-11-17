@@ -89,6 +89,13 @@
 .compositions .text-center { text-align: center; }
 .compositions .spirali-score-action { align-self: center; }
 .compositions .description { margin-top: 1.5rem; }
+.compositions .trio-members-scroll { max-width: 100%; overflow-x: auto; }
+.compositions .trio-members-scroll:focus { outline: 2px solid #062e69; outline-offset: 3px; }
+.compositions .trio-members { width: 100%; min-width: 48rem; border-collapse: collapse; text-align: left; }
+.compositions .trio-members th, .compositions .trio-members td { padding: 0 1rem 1rem 0; vertical-align: top; }
+.compositions .trio-members th, .compositions .trio-members td:nth-child(2) { white-space: nowrap; }
+.compositions .trio-members tr:last-child > * { padding-bottom: 0; }
+.compositions .trio-members tr > :last-child { padding-right: 0; }
 .compositions .review + .review {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
