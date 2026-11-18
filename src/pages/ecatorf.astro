@@ -198,7 +198,10 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
                 <ImageSkeleton/>
         </div>
         <div class="video">
-            <YouTubeVideo videoId="IZ7kZjdvGnY" title="Ecatorf a Villa Rossi, Santorso" />
+            <div class="video-frame">
+                <YouTubeVideo videoId="IZ7kZjdvGnY" title="Ecatorf a Villa Rossi, Santorso" />
+            </div>
+            <p class="body-copy video-related"><a href="/composizioni/">Composizioni e registrazioni per Ecatorf</a></p>
         </div>
     </article>
     <section id="progettazione" class="design" aria-labelledby="design-title">
@@ -375,9 +378,20 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
     .video {
         grid-column: 1;
         grid-row: 3;
-        position: relative;
         margin-top: 9.375rem;
+    }
+
+    .video-frame {
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .ecatorf .video-related {
+        margin: 1.25rem 0 0;
+        text-align: center;
+    }
+
+    .video-related a {
+        color: #002364;
     }
 
     .design {
