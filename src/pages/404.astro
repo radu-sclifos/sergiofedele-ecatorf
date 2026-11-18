@@ -1,0 +1,36 @@
+---
+import ProjectLayout from '../layouts/ProjectLayout.astro';
+---
+
+<ProjectLayout title="Pagina non trovata"
+               description="La pagina che cerchi potrebbe essere stata spostata o rimossa.">
+    <div class="body-copy">
+        <p>La pagina che cerchi potrebbe essere stata spostata o rimossa.</p>
+    </div>
+    <div class="page-actions">
+        <a href="/">Torna alla home</a>
+        <a href="/ecatorf/">Scopri l’Ecatorf</a>
+    </div>
+</ProjectLayout>
+
+<style>
+    .body-copy, .page-actions {
+        text-align: center;
+    }
+
+    .page-actions a {
+        display: inline-block;
+        margin: 0.25rem;
+        padding: 0.65rem 1.1rem;
+        border-radius: 2rem;
+        background: #061a40;
+        color: white;
+        font-family: var(--font-ui);
+        text-decoration: none;
+    }
+
+    .page-actions a:hover {
+        background: #173963;
+        color: white;
+    }
+</style>
