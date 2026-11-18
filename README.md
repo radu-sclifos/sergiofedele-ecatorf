@@ -130,9 +130,9 @@ The deployment artifact is `dist/`, produced by `npm run build`.
 and Film routes and the previous sitemap URL. Other hosts require equivalent
 redirect configuration; the local Astro server does not apply this file.
 
-JavaScript and CSS build targets are set to **Chromium 79**, with conservative
-CSS patterns used throughout the site. A standalone browser diagnostics page is
-available at `/verifica-browser.html`. This compatibility target and the
+JavaScript and CSS build targets are set to **Chromium 101**, the engine
+version used by Opera 87 on Sergio's computer. A standalone browser diagnostics
+page is available at `/verifica-browser.html`. This compatibility target and the
 automated checks do not constitute verification in the actual target browser.
 Internet Explorer and pre-Chromium Opera are outside the support target.
 

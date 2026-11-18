@@ -13,15 +13,15 @@ export default defineConfig({
             transform(code, id) {
                 const file = id.replaceAll('\\', '/');
                 if (file.endsWith('/photoswipe/dist/photoswipe.css')) {
-                    // Keep vendor spacing within the project's Chromium 79 CSS baseline
+                    // Keep vendor spacing consistent with the project's physical spacing rules.
                     return code.replaceAll('margin-inline-start:', 'margin-left:');
                 }
             },
         }],
         build: {
             // Conservative Chromium baseline
-            target: 'chrome79',
-            cssTarget: 'chrome79',
+            target: 'chrome101',
+            cssTarget: 'chrome101',
         },
     },
 });

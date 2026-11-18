@@ -5,14 +5,12 @@ import path from 'node:path';
 const forbidden = [
     ['modern viewport units', /\b\d*\.?\d+[sdl]v[wh]\b/i],
     ['relational selectors', /:has\s*\(/i],
-    ['aspect-ratio sizing', /(?:^|[;{])\s*aspect-ratio\s*:/i],
-    ['modern sizing functions', /\b(?:clamp|min|max)\s*\(/i],
+    ['min() and max() sizing functions', /\b(?:min|max)\s*\(/i],
     ['logical spacing properties', /(?:margin|padding|border|inset)-(?:inline|block)[\w-]*\s*:/i],
     ['inset shorthand', /(?:^|[;{])\s*inset\s*:/i],
     ['individual transforms', /(?:^|[;{])\s*(?:translate|rotate|scale)\s*:/i],
     ['range media queries', /@media[^{}]*[<>]/i],
     ['modern focus selector', /:focus-visible\b/i],
-    ['gap shorthand (use grid-gap or margins)', /(?:^|[;{])\s*gap\s*:/i],
 ];
 
 function* files(directory) {

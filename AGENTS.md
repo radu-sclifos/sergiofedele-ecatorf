@@ -73,16 +73,17 @@ for the project overview, architecture, setup and commands.
 
 ## Browser compatibility
 
-Keep a single conservative implementation targeting Chromium 79. Preserve
-`target: 'chrome79'` and `cssTarget: 'chrome79'` in `astro.config.mjs`, including
+Keep a single conservative implementation targeting Chromium 101. Preserve
+`target: 'chrome101'` and `cssTarget: 'chrome101'` in `astro.config.mjs`, including
 through production minification.
 
 - Use `vh`/`vw`, physical spacing (`margin-left`, `padding-right`), `rgba()`,
   traditional `min-width`/`max-width` media queries and `transform`.
-- Bound fluid sizes with media queries instead of `clamp()`, `min()` or `max()`.
-- Use percentage-padding image frames instead of `aspect-ratio`.
-- Grid and Flexbox are available. Use `grid-gap`/`grid-column-gap` for Grid and
-  margins for Flexbox spacing; avoid Flexbox `gap`.
+- Use `clamp()` or media queries to bound fluid sizes. Avoid `min()` and `max()`.
+- `aspect-ratio` is available for image frames.
+- `gap` is available in Grid and Flexbox.
+- Avoid `svh` and `dvh` viewport units, range media queries and individual
+  transform properties such as `translate`.
 - Use explicit classes for state changes instead of `:has()`. Keep keyboard focus
   visible with `:focus`. Do not rely on native `details[name]` group exclusivity.
 - Keep newer browser APIs out of essential behavior unless a supported
@@ -137,5 +138,5 @@ through production minification.
   viewport emulation changes dimensions, not the age of the rendering engine.
 - Browser identification tests are available through
   `node --test scripts/browser-check.test.mjs` when explicitly requested.
-- Report verification limits accurately, especially when Chromium 79 itself has
+- Report verification limits accurately, especially when Chromium 101 itself has
   not been used for testing.
