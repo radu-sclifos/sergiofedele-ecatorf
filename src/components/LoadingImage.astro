@@ -15,7 +15,7 @@ const {src, alt, widths, sizes, loading = 'lazy'} = Astro.props;
 ---
 
 <div class="loading-image" data-loading-image>
-    <div class="image-frame" style={{paddingTop: `${src.height / src.width * 100}%`}}>
+    <div class="image-frame" style={{aspectRatio: `${src.width} / ${src.height}`}}>
         <Image src={src} alt={alt} widths={widths} sizes={sizes} loading={loading} decoding="async"/>
         <ImageSkeleton/>
     </div>
@@ -28,6 +28,7 @@ const {src, alt, widths, sizes, loading = 'lazy'} = Astro.props;
 
     .image-frame {
         position: relative;
+        width: 100%;
         overflow: hidden;
     }
 
