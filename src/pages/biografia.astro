@@ -419,12 +419,15 @@ const albums = [
     }
 
     .choices:not([hidden]) {
+        margin-bottom: 1.5rem;
+    }
+
+    .choices:not(.subject-choices):not([hidden]) {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        margin-left: -0.25rem;
-        margin-right: -0.25rem;
-        margin-bottom: 1.5rem;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
     }
 
     button {
@@ -434,10 +437,6 @@ const albums = [
         background: white;
         color: #061a40;
         cursor: pointer;
-    }
-
-    .choices button {
-        margin: 0.25rem;
     }
 
     button:hover {
@@ -455,15 +454,12 @@ const albums = [
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: var(--notes-gutter);
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .subject-choices button {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0;
     }
 
     .subject-choices button :global(.action-icon) {
