@@ -79,7 +79,7 @@
 .compositions details[open] > summary { border-bottom: 1px solid #d8dee7; }
 .compositions summary h3 { display: inline; margin: 0; font-family: var(--font-ui); font-size: 1.125rem; line-height: 1.5; }
 .compositions .composition-content { padding: 1.5rem 1.25rem; }
-.compositions .row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-gap: 1rem; align-items: start; }
+.compositions .row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; align-items: start; }
 .compositions .row > * { grid-column: span 12; min-width: 0; }
 .compositions .row > .col-md-2 { grid-column: span 2; }
 .compositions .row > .col-md-3 { grid-column: span 3; }
