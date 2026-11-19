@@ -462,9 +462,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
     .full-width-carousel .carousel-stage {
         max-width: none;
-        height: 65vh;
-        min-height: 16rem;
-        max-height: 36rem;
+        height: clamp(16rem, 65vh, 36rem);
     }
 
     .full-width-carousel .spread-button {

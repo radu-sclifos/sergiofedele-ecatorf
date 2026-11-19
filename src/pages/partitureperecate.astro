@@ -43,9 +43,7 @@ const heroWidths = [480, 768, 960, 1280, 1440, 1920].filter(width => width < her
         display: grid;
         align-items: center;
         justify-items: center;
-        height: 60vh;
-        min-height: 17rem;
-        max-height: 32rem;
+        height: clamp(17rem, 60vh, 32rem);
         padding: 4rem 1rem 2rem;
         background: #061a40;
         color: white;

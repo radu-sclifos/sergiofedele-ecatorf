@@ -237,9 +237,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         display: grid;
         align-items: center;
         justify-items: center;
-        height: 60vh;
-        min-height: 17rem;
-        max-height: 32rem;
+        height: clamp(17rem, 60vh, 32rem);
         padding: 4rem 1rem 2rem;
         background: #061a40;
         color: white;
