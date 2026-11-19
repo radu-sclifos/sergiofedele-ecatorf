@@ -199,36 +199,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         grid-template-rows: auto 1fr;
         align-items: start;
-        --overview-gap: 4vw;
-        grid-gap: var(--overview-gap);
+        gap: clamp(1.5rem, 4vw, 4rem);
         max-width: 73rem;
-        padding: 5vw;
+        padding: clamp(1.25rem, 5vw, 4rem);
         margin-left: auto;
         margin-right: auto;
-    }
-
-    @media (min-width: 80rem) {
-        .overview {
-            padding: 4rem;
-        }
-    }
-
-    @media (max-width: 25rem) {
-        .overview {
-            padding: 1.25rem;
-        }
-    }
-
-    @media (min-width: 100rem) {
-        .overview {
-            --overview-gap: 4rem;
-        }
-    }
-
-    @media (max-width: 37.5rem) {
-        .overview {
-            --overview-gap: 1.5rem;
-        }
     }
 
     .overview img {
@@ -243,11 +218,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .portrait-frame, .instrument-frame, .performance-frame {
         position: relative;
         width: 100%;
-    }
-
-    .portrait-frame::before, .instrument-frame::before, .performance-frame::before {
-        content: '';
-        display: block;
     }
 
     .quotation {
@@ -315,16 +285,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         box-shadow: 0 0.65rem 1.4rem rgba(0, 0, 0, 0.27);
     }
 
-    .portrait-frame::before {
-        padding-top: 52.631579%;
+    .portrait-frame {
+        aspect-ratio: 19 / 10;
     }
 
-    .instrument-frame::before {
-        padding-top: 58.139535%;
+    .instrument-frame {
+        aspect-ratio: 43 / 25;
     }
 
-    .performance-frame::before {
-        padding-top: 69.444444%;
+    .performance-frame {
+        aspect-ratio: 36 / 25;
     }
 
     blockquote, figcaption {
@@ -352,7 +322,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             transform: translateX(calc(-1 * 1.5vw));
             padding-left: 0;
             padding-right: 0;
-            grid-column-gap: 2.7vw;
+            column-gap: 2.7vw;
         }
 
         .portrait-frame {
@@ -396,7 +366,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     @media (min-width: 60rem) and (min-width: 83.333333rem) {
         .overview {
-            grid-column-gap: 2.25rem;
+            column-gap: 2.25rem;
         }
     }
 
@@ -405,10 +375,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             display: flex;
             flex-direction: column;
             align-items: stretch;
-        }
-
-        .overview > * + * {
-            margin-top: var(--overview-gap);
         }
     }
 </style>

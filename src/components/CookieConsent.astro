@@ -19,7 +19,7 @@ import ActionIcon from './ActionIcon.astro';
 </aside>
 <button class="cookie-widget" type="button" data-cookie-settings aria-controls="cookie-panel" aria-expanded="false"
         hidden>
-    <ActionIcon name="cookie" size={17} />
+    <ActionIcon name="cookie" size={17} standalone />
     Cookie
 </button>
 
@@ -203,12 +203,12 @@ import ActionIcon from './ActionIcon.astro';
 
     .cookie-actions {
         display: flex;
-        margin: 1rem -0.25rem 0;
+        gap: 0.5rem;
+        margin-top: 1rem;
     }
 
     .cookie-actions button {
         flex: 1;
-        margin: 0 0.25rem;
         padding: 0.625rem 0.5rem;
         border: 1px solid #8798ae;
         border-radius: 0.25rem;
@@ -259,15 +259,12 @@ import ActionIcon from './ActionIcon.astro';
     .cookie-widget {
         display: flex;
         align-items: center;
+        gap: 0.375rem;
         padding: 0.5rem 0.75rem;
         border-radius: 1.5rem;
         font-size: 0.75rem;
         line-height: 1.4;
         cursor: pointer;
-    }
-
-    .cookie-widget :global(.action-icon) {
-        margin-right: 0.375rem;
     }
 
     @media (max-width: 26rem) {

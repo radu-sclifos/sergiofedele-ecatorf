@@ -341,7 +341,7 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
     .ensemble {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        grid-gap: 2rem;
+        gap: 2rem;
         align-items: center;
     }
 
@@ -358,7 +358,7 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
 
     @media (max-width: 48rem) {
         .compositions .language-controls {
-            grid-gap: 0.5rem;
+            gap: 0.5rem;
         }
 
         .compositions .language-controls > .col-md-3 {
@@ -379,7 +379,7 @@ const widths = [320, 480, 768, 1280, 1920].filter(width => width < hero.width).c
 
         .ensemble {
             grid-template-columns: 1fr;
-            grid-gap: 1rem;
+            gap: 1rem;
         }
 
         .people {

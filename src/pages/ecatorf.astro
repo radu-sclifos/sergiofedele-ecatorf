@@ -237,9 +237,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         display: grid;
         align-items: center;
         justify-items: center;
-        height: 60vh;
-        min-height: 17rem;
-        max-height: 32rem;
+        height: clamp(17rem, 60vh, 32rem);
         padding: 4rem 1rem 2rem;
         background: #061a40;
         color: white;
@@ -276,7 +274,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         grid-template-rows: auto auto 1fr;
-        grid-column-gap: 3.75rem;
+        column-gap: 3.75rem;
         align-items: start;
         max-width: 71.25rem;
         margin: 0 auto;
@@ -329,14 +327,10 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
 
     .photo {
         position: relative;
+        width: 100%;
         border-radius: 0.25rem;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         overflow: hidden;
-    }
-
-    .photo::before {
-        content: '';
-        display: block;
     }
 
     .photo img {
@@ -353,17 +347,14 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
         grid-row: 1 / 4;
     }
 
-    .instrument-photo::before {
-        padding-top: 65.686275%;
+    .instrument-photo {
+        aspect-ratio: 102 / 67;
     }
 
     .detail-photo {
         grid-column: 1;
         grid-row: 2;
-    }
-
-    .detail-photo::before {
-        padding-top: 117.647059%;
+        aspect-ratio: 17 / 20;
     }
 
     .technical-description {
@@ -409,7 +400,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
 
     @media (max-width: 62rem) {
         .ecatorf {
-            grid-column-gap: 2rem;
+            column-gap: 2rem;
         }
 
         .structure, .technical-description {
@@ -452,10 +443,7 @@ const widths = (image: ImageMetadata) => [320, 480, 768, 1280, 1920].filter(widt
 
         .detail-photo {
             margin-bottom: 1.5rem;
-        }
-
-        .detail-photo::before {
-            padding-top: 100%;
+            aspect-ratio: 1;
         }
 
         .technical-description {

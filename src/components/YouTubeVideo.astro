@@ -22,14 +22,9 @@ const {videoId, title} = Astro.props;
 <style>
     .youtube-video {
         position: relative;
+        aspect-ratio: 16 / 9;
         background: #f1f3f6;
         color: #1f344e;
-    }
-
-    .youtube-video::before {
-        content: '';
-        display: block;
-        padding-top: 56.25%;
     }
 
     .youtube-placeholder, .youtube-video :global(iframe) {
@@ -88,8 +83,8 @@ const {videoId, title} = Astro.props;
     }
 
     @media (max-width: 26rem) {
-        .youtube-video::before {
-            padding-top: 75%;
+        .youtube-video {
+            aspect-ratio: 4 / 3;
         }
 
         .youtube-placeholder {

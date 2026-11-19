@@ -22,7 +22,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
                 <button class="spread-button" data-spread type="button" hidden={index !== 0}
                         data-height={Math.max(...pair.map(page => page.src.height))}
                         data-width={pagesPerSlide === 1 ? pair[0].src.width : undefined}
-                        style={pagesPerSlide === 1 ? `--frame-padding: ${pair[0].src.height / pair[0].src.width * 100}%; --frame-width: calc(${pair[0].src.width / pair[0].src.height * 100}vh - ${pair[0].src.width / pair[0].src.height * 12}rem)` : undefined}
+                        style={pagesPerSlide === 1 ? `--frame-ratio: ${pair[0].src.width} / ${pair[0].src.height}; --frame-width: calc(${pair[0].src.width / pair[0].src.height * 100}vh - ${pair[0].src.width / pair[0].src.height * 12}rem)` : undefined}
                         aria-label={pagesPerSlide === 1 ? `Ingrandisci pagina ${index + 1}` : `Ingrandisci pagine ${index * 2 + 1}–${index * 2 + 2}`}>
                 <span class:list={['spread-pages', {'single-page': pagesPerSlide === 1}]}>
                     {pair.map(({src, alt}) => (
@@ -272,6 +272,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         position: relative;
         width: 100%;
         max-width: calc(157.575758vh - 18.909091rem);
+        aspect-ratio: var(--frame-ratio, 1040 / 660);
         margin: 0 auto;
         padding: 0;
         border: 0;
@@ -306,18 +307,8 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         }
     }
 
-    .spread-button::before {
-        content: '';
-        display: block;
-        padding-top: 63.461538%;
-    }
-
     .single-page-carousel .spread-button {
         max-width: var(--frame-width);
-    }
-
-    .single-page-carousel .spread-button::before {
-        padding-top: var(--frame-padding);
     }
 
     .spread-pages {
@@ -327,7 +318,7 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: minmax(0, 1fr);
-        grid-column-gap: 7.692308%;
+        column-gap: 7.692308%;
         width: 100%;
         height: 100%;
         background: transparent;
@@ -471,17 +462,11 @@ const pairs = Array.from({length: Math.ceil(pages.length / pagesPerSlide)}, (_, 
     }
     .full-width-carousel .carousel-stage {
         max-width: none;
-        height: 65vh;
-        min-height: 16rem;
-        max-height: 36rem;
+        height: clamp(16rem, 65vh, 36rem);
     }
 
     .full-width-carousel .spread-button {
         height: 100%;
         max-width: none;
-    }
-
-    .full-width-carousel .spread-button::before {
-        display: none;
     }
 </style>
