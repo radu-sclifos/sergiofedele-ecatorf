@@ -199,36 +199,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         grid-template-rows: auto 1fr;
         align-items: start;
-        --overview-gap: 4vw;
-        gap: var(--overview-gap);
+        gap: clamp(1.5rem, 4vw, 4rem);
         max-width: 73rem;
-        padding: 5vw;
+        padding: clamp(1.25rem, 5vw, 4rem);
         margin-left: auto;
         margin-right: auto;
-    }
-
-    @media (min-width: 80rem) {
-        .overview {
-            padding: 4rem;
-        }
-    }
-
-    @media (max-width: 25rem) {
-        .overview {
-            padding: 1.25rem;
-        }
-    }
-
-    @media (min-width: 100rem) {
-        .overview {
-            --overview-gap: 4rem;
-        }
-    }
-
-    @media (max-width: 37.5rem) {
-        .overview {
-            --overview-gap: 1.5rem;
-        }
     }
 
     .overview img {

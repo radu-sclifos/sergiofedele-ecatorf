@@ -411,35 +411,11 @@ const albums = [
     }
 
     .notes {
-        --notes-gutter: 4vw;
+        --notes-gutter: clamp(1rem, 4vw, 2rem);
         border-radius: 0.25rem;
         padding: var(--notes-gutter);
-        padding-top: 2vw;
+        padding-top: clamp(0.5rem, 2vw, 1rem);
         box-shadow: 0 0.25rem 1.2rem rgba(6, 26, 64, 0.14);
-    }
-
-    @media (min-width: 50rem) {
-        .notes {
-            padding-top: 1rem;
-        }
-    }
-
-    @media (max-width: 25rem) {
-        .notes {
-            padding-top: 0.5rem;
-        }
-    }
-
-    @media (min-width: 50rem) {
-        .notes {
-            --notes-gutter: 2rem;
-        }
-    }
-
-    @media (max-width: 25rem) {
-        .notes {
-            --notes-gutter: 1rem;
-        }
     }
 
     .choices:not([hidden]) {
