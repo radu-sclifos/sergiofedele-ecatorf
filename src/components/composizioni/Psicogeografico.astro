@@ -36,7 +36,8 @@ const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => 
                 </div>
 
                 <div class="col-md-12 text-center" data-panel="quartetto" data-value="cd">
-                    <CoverImage src={covers["251.webp"]} alt="Copertina del CD 251 del Quartetto PsicoGeografico" wide skeleton/>
+                    <CoverImage src={covers["251.webp"]} alt="Copertina del CD 251 del Quartetto PsicoGeografico" wide
+                                skeleton/>
                 </div>
 
                 <div class="description body-copy" data-panel="quartetto" data-value="recensioni">
@@ -456,7 +457,7 @@ const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => 
                     </button>
                 </div>
                 <div class="col-md-6 text-center">
-                    <button class="action" type="button" disabled>
+                    <button class="action" type="button" data-select="vortex" data-value="recensioni" hidden>
                         <ActionIcon name="review"/>
                         <span class="button-label">Recensioni</span>
                     </button>
@@ -464,6 +465,223 @@ const covers = Object.fromEntries(Object.entries(images).map(([path, image]) => 
 
                 <div class="col-md-12 text-center" data-panel="vortex" data-value="cd">
                     <CoverImage src={covers["vortex.webp"]} alt="Copertina CD di Vortex" wide skeleton/>
+                </div>
+                <div class="description body-copy" data-panel="vortex" data-value="recensioni">
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source"><b>Ettore Garzia - <a
+                                    href="https://www.percorsimusicali.eu/2026/06/20/architetture-plurali-della-memoria/"
+                                    target="_blank" rel="noopener">Percorsi Musicali</a> (20 Giugno 2026):</b>
+                            </p>
+                        </header>
+                        <p>
+                            Per le formazioni ‘Psicogeografiche’ in casa Setola abbiamo già segnalato come esse si
+                            riferiscano esteticamente all’immaginario situazionista. Ora viene pubblicata una
+                            registrazione di un Sestetto PsicoGeografico composto da Bini, Caimi, Fedele, Negrini,
+                            Martini e Ugo, denominata Vortex, registrazione fatta all’Elfo Studio di Tavernago
+                            (Piacenza) a Settembre del 2025. Per questi musicisti suonare significa mettere insieme
+                            momenti di vita ed evitare logiche commerciali della musica, aspetti che su Percorsi
+                            Musicali abbiamo sempre evidenziato in relazione ai differenti organici dei lavori
+                            dell’ensemble (le registrazioni passate sono state fatte alcune volte in duo o quartetto,
+                            mantenendo comunque il riferimento ‘psicogeografico’). Ogni volta i musicisti si spingono
+                            in musica somatica del momento, ossia sessioni di improvvisazione libera che seguono
+                            un’evoluzione sempre molto apprezzabile, con attenzione implicita sui parametri musicali,
+                            una tensione appropriata per dare il giusto spazio alle qualità di chi suona e allo stesso
+                            tempo contenere le novità. Su quest’ultimo aspetto c’è da considerare l’ecatorf di Fedele,
+                            che fa il suo ingresso nel sestetto per Vortex: è lo strumento a fiato più grave al mondo,
+                            con frequenze sub armoniche fino a 10,9 Hz (sotto la soglia dell’udito umano) e con un
+                            timbro tutto suo che ingloba potenza, moto vibratorio e rumore fisico; per Vortex si poteva
+                            pensare allo studio di una programmazione degli interventi dei musicisti, improvvisazioni
+                            che tenessero conto della mastodontica presenza dell’ecatorf, invece l’ascolto restituisce
+                            altro messaggio, ossia il mantenimento dell’approccio estensivo che caratterizza
+                            l’ensemble che quasi naturalmente riesce ad affiancarsi a quello del nuovo strumento, con
+                            radicalità timbriche che si sommano nello spazio sonoro.<br>
+                            In Vortex si parla di Sequenze, molto probabilmente pensando a Luciano Berio che ne
+                            istituì un significato nuovo, successione di campi armonici che spostano l’attenzione
+                            sull’ottenimento di una polifonia. In Vortex l’uso è identico, solo che deriva da
+                            un’evoluzione non programmata, è frutto di trasformazioni libere in real time.  Nessuno dei
+                            musicisti usa metodi convenzionali, l’ascolto attento fa presumere che ci siano
+                            preparazioni, clusters, multifonici, scansioni ritmiche irregolari e microfrequenziali, dove
+                            alla fine non è tanto l’impatto che conta quanto il cammino dell’improvvisazione.
+                            Nonostante questo Vortex non è un monolite, ha una sua ‘temperatura’ e alterna almeno
+                            tre tipi di stadi: uno ‘sornione’ o guardingo che presuppone circospezione degli strumenti,
+                            uno ‘enarmonico’ o caotico che presuppone momenti di saturazione acustica che
+                            giustificano il titolo della registrazione e uno ‘delicato’ e microscopico che presuppone
+                            momenti di astrazione e fragilità dell’improvvisazione. Tra riverberi, densità e frequenze
+                            particolari non è un caso che si viaggi acusticamente molto bene in Vortex.
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source">
+                                <b>Georges Tonla Briquet - <a
+                                        href="https://www.jazzhalo.be/reviews/cdlpk7-reviews/s/sestetto-psicogeografico-vortex/"
+                                        target="_blank" rel="noopener">Jazz Halo</a> (2026):</b>
+                            </p>
+                            <button class="translation" type="button" data-translate="vortex-review-2" hidden>
+                                <ActionIcon name="language"/>
+                                <span class="button-label">Traduzione</span>
+                            </button>
+                        </header>
+                        <p>
+                            <span data-translation="vortex-review-2" data-original="true">
+                                In vijf sequenties leidt het Italiaanse sextet Sestetto PsicoGeografico de luisteraar
+                                binnen in een vreemdsoortige fantasiewereld. De ongewone samenstelling van het
+                                instrumentarium zorgt voor raadselachtige intriges.<br>
+                                De zes beginnen letterlijk met het aftasten van mogelijkheden door over hun
+                                instrumenten te strijken of te schuren. Op die manier valt het soms moeilijk te
+                                onderscheiden wie wat bespeelt. We kunnen wel vermelden dat er sprake is van onder
+                                meer pianoforte, drums, cello, percussie, contrabas en ecatorf. Dit laatste instrument
+                                belichtten we reeds in  onze special over Sergio Fedele , een van de weinigen die dit
+                                hanteert.<br>
+                                Fedele bevindt zich opnieuw in gezelschap van Andrea Bini, Enrico Caimi en Davide
+                                Negrini met wie hij het Quartetto PsicoGeografico vormt. De twee extra muzikanten zijn
+                                cellist Mariangela Martini en contrabassist Raffaello Ugo. Door hun toevoeging ontstaan
+                                er kleine maar punctueel geplaatste uitvergrotingen en accenten.<br>
+                                Een gedetailleerde beschrijving geven is zoals gewoonlijk bij dergelijk gezelschap
+                                onhaalbaar. Voortdurend introduceren ze ontregelingen en ontsporingen. Vervreemding
+                                en ontwrichting staan centraal in hun speelmethode. Net wanneer je denkt op dezelfde
+                                golflengte te zitten, lassen ze een nieuwe aftakking in door bijvoorbeeld het percussieve te
+                                laten overheersen (‘Sequenza 3’). Toch sluit elk keerpunt op een of andere manier aan bij
+                                wat voorafging en wordt de topografie duidelijker.<br>
+                                Wat fascineert, is vooral dat hier nergens sprake is van excessen in volume. De zes
+                                ontspinnen al kronkelend een uiterst broos web van klankencombinaties. Improvisatie met
+                                verstilling als resultaat, het gebeurt niet al te dikwijls. Traditiegetrouw uitgebracht in
+                                uitvouwbare digipack gesierd met “artwork” van Giustappunto.
+                            </span>
+                            <span data-translation="vortex-review-2" data-original="false" lang="it">
+                                In cinque sequenze, il sestetto italiano Sestetto PsicoGeografico introduce l'ascoltatore a
+                                un singolare mondo di fantasia. L'insolita composizione della strumentazione dà vita a
+                                intriganti enigmi.<br>
+                                I sei iniziano letteralmente tastando il terreno, sfiorando o sfregando i propri strumenti. In
+                                questo modo a volte risulta difficile distinguere chi stia suonando cosa. Possiamo
+                                comunque menzionare la presenza, tra gli altri, di pianoforte, batteria, violoncello,
+                                percussioni, contrabbasso ed ecatorf. Abbiamo già acceso i riflettori su quest'ultimo
+                                strumento nel nostro speciale su Sergio Fedele, uno dei pochi a utilizzarlo.<br>
+                                Fedele si ritrova nuovamente in compagnia di Andrea Bini, Enrico Caimi e Davide
+                                Negrini, insieme ai quali forma il Quartetto PsicoGeografico. I due musicisti aggiuntivi sono
+                                la violoncellista Mariangela Martini e il contrabbassista Raffaello Ugo. Il loro inserimento
+                                crea piccoli ma puntuali ingrandimenti e accenti.<br>
+                                Fornire una descrizione dettagliata è, come al solito con una simile compagnia,
+                                impossibile. Introducono continuamente perturbazioni e deragliamenti. Lo straniamento e
+                                lo scardinamento sono centrali nel loro metodo esecutivo. Proprio quando pensi di essere
+                                sulla stessa lunghezza d'onda, inseriscono una nuova deviazione, ad esempio lasciando
+                                predominare la componente percussiva ("Sequenza 3"). Eppure, ogni punto di svolta si
+                                ricollega in qualche modo a ciò che lo ha preceduto e la topografia si fa più chiara.<br>
+                                Ciò che affascina è soprattutto il fatto che non si riscontrino mai eccessi di volume. I sei
+                                tessono, tra vari meandri, una ragnatela estremamente fragile di combinazioni sonore.
+                                Un'improvvisazione che si traduce in quiete: non succede molto spesso. Pubblicato, come
+                                da tradizione, in un digipack apribile decorato con l'artwork di Giustappunto.
+                            </span>
+                        </p>
+                    </article>
+                    <article class="review">
+                        <header class="review-heading">
+                            <p class="review-source">
+                                <b>Jean-Michel Van Schouwburg - <a
+                                        href="https://orynx-improvandsounds.blogspot.com/2026/08/damon-smith-ivo-perelman-florian.html"
+                                        target="_blank" rel="noopener">Orynx</a> (16 Agosto 2026):</b>
+                            </p>
+                            <button class="translation" type="button" data-translate="vortex-review-3" hidden>
+                                <ActionIcon name="language"/>
+                                <span class="button-label">Traduzione</span>
+                            </button>
+                        </header>
+                        <p>
+                            <span data-translation="vortex-review-3" data-original="true">
+                                Ce n’est pas la première fois que je chronique un album de Sergio Fedele ou
+                                simplement un enregistrement d’un groupe dans le quel il intervient. Il y eut le Duo
+                                PsicoGeografico Iskra Andrea Bini & Sergio Fedele. l’ Ecatorf Trio de Sergio Fedele Piero
+                                Bittolo Bon Francesco Bucci et le premier de la série, Le Melancolie di Tifeo qui nous fit
+                                découvrir cet instrument improbable, l’Ecatorf. Voici mon commentaire à propos de cet
+                                instrument hybride à vent avec tuyaux anches, embouchures de trompes, pavillons,
+                                glissières et clés : disposé sur une armature de soutien, l’Ecatorf est un instrument de
+                                souffle à anche avec plusieurs tuyaux et trois pavillons qui a été conçu pour en
+                                métamorphoser les sons, graves en général, et en exprimer des nuances sonores et des
+                                effets de timbre - glissandi – harmoniques – bourdonnements - etc …. Le CD contient un
+                                livret très explicatif en italien qui s’adresse à ceux qui ont des solides notions
+                                d’organologie et de musicologie. Il y a aussi toute une mythologie qui s’inscrit dans ce
+                                projet, un univers poétique et sémantique original. Bien que j’ai acquis une connaissance
+                                approfondie de l’italien, ce serait tout un travail pour moi d’essayer de traduire et de
+                                décortiquer le contenu des notes fournies par le compositeur instrumentiste, Sergio
+                                Fedele. … Avec un tel instrument, impossible de jouer « vite », car il faut contrôler
+                                l’émission du son dans la colonne d’air par chacun des différents tubes et pavillons avec
+                                les mécanismes. Donc il s’agit d’une musique « lente » où l’auditeur prend son temps pour
+                                écouter ces sonorités se transformer, glisser, grasseyer, siffler, gronder, cracher, trembler
+                                et n’en rater aucune nuance. Comme j’en ai une vision photographique, je ne réalise pas
+                                bien comment cela fonctionne. Mais une chose est certaine, cela fonctionne
+                                merveilleusement pour produire de curieux timbres avec une précision étonnante et des
+                                techniques diversifiées basées essentiellement sur un contrôle minutieux du souffle, en
+                                utilisant les principes sonores de base d’un instrument de souffle à tubes tel qu’on le
+                                connaît depuis la nuit des temps`.<br>
+                                Comme cela vous êtes averti. Vortex est à mon sens un des (ou LE) albums les plus
+                                réussis avec l'Ecatorf, car l’instrument se mêle adroitement à cinq « Sequenze »
+                                improvisées avec un sens aigu du travail collectif, une solide écoute mutuelle et un travail
+                                sur les sons, les timbres, la dynamique, l’interaction. Chaque morceau navigue autour des
+                                dix minutes. Sergio Fedele joue aussi de la clarinette contra alto en sus de l’Ecatorf et est
+                                le seul souffleur du sextet. Andrea Bini joue du piano et du gong, Enrico Caimi de la
+                                batterie, Mariangela Martini du violoncelle Davide Negrini des percussions et Raffaelo
+                                Ugo de la contrebasse, et tous dans une orientation de musique de chambre librement
+                                improvisée relativement pointilliste, détaillée et kaléidoscopique. Au point de vue
+                                percussions – batterie, tout est joué en nuances, voire délicatesse dans le but de créer un
+                                espace sonore où chaque instrument dispose d’assez de « place » dans le champ auditif
+                                pour être entendu clairement dans différents registres. Idem pour le pianiste très «
+                                contemporain » et les deux cordistes. Dans ce contexte ludique, on entend le moindre
+                                détail de chaque instrument et l’ensemble évolue dans différentes configurations ou mises
+                                en tension au niveau de la dynamique et des échanges/ partages avec un sens de la
+                                discrétion individuelle au profit de l’ensemble. C’est de la bonne improvisation libre sujette
+                                à ouvrir la sensibilité et l’appréhension auditive et musicale pour un public curieux et
+                                ouvert. Mission accomplie. Dans la foulée « psico-géographique, on goûte l’apport
+                                mystérieux des sonorités de l’Ecatorf qui interviennent avec des couleurs et des textures
+                                graves mouvantes et très particulières.
+                            </span>
+                            <span data-translation="vortex-review-3" data-original="false" lang="it">
+                                Non è la prima volta che recensisco un album di Sergio Fedele o una registrazione di un
+                                gruppo in cui suona. Ci sono stati Iskra del Duo PsicoGeografico di Andrea Bini e Sergio
+                                Fedele, l’Ecatorf Trio di Sergio Fedele, Piero Bittolo Bon e Francesco Bucci e, primo
+                                della serie, Le Melancolie di Tifeo, che ci ha fatto scoprire quello strumento improbabile
+                                che è l’Ecatorf. Ecco cosa scrivevo di questo strumento a fiato ibrido, con canne, ance, bocchini
+                                da corno, campane, coulisse e chiavi. Montato su una struttura di sostegno, l’Ecatorf è
+                                uno strumento a fiato ad ancia con più canne e tre campane. È stato concepito per metamorfosare
+                                i suoni, generalmente gravi, e ricavarne sfumature sonore ed effetti timbrici come
+                                glissandi, armonici, ronzii e così via. Il CD include un libretto in italiano ricco di
+                                spiegazioni, rivolto a chi ha solide nozioni di organologia e musicologia. Nel progetto
+                                confluisce anche un’intera mitologia, un universo poetico e semantico originale. Pur avendo
+                                acquisito una conoscenza approfondita dell’italiano, tradurre e analizzare a fondo le note del
+                                compositore e strumentista Sergio Fedele sarebbe per me un lavoro impegnativo… Con uno strumento
+                                del genere è impossibile suonare «velocemente», perché bisogna servirsi dei meccanismi
+                                per controllare l’emissione del suono nella colonna d’aria attraverso le diverse canne e
+                                campane. È dunque una musica «lenta», in cui chi ascolta si prende il tempo di sentire
+                                queste sonorità trasformarsi, scivolare, vibrare di gola, fischiare, ruggire, sputare e
+                                tremare, per coglierne ogni sfumatura. Avendolo visto solo in fotografia, non riesco a
+                                capire bene come funzioni. Una cosa però è certa: funziona a meraviglia. Produce timbri
+                                curiosi con una precisione sorprendente e con tecniche diverse, basate soprattutto su
+                                un controllo minuzioso del fiato, sfruttando i principi acustici elementari degli strumenti
+                                a fiato a canne, noti fin dalla notte dei tempi.<br>
+                                Eccovi dunque avvertiti. A mio avviso, Vortex è uno degli album più riusciti con
+                                l’Ecatorf, se non il più riuscito. Lo strumento si inserisce con grande naturalezza
+                                in cinque «Sequenze» improvvisate, animate da uno spiccato senso del lavoro collettivo, da
+                                un attento ascolto reciproco e da una ricerca sui suoni, sui timbri, sulla dinamica e
+                                sull’interazione. Ogni brano dura all’incirca dieci minuti. Sergio Fedele suona anche il
+                                clarinetto contralto, oltre all’Ecatorf, ed è l’unico fiato del sestetto. Andrea Bini
+                                suona il pianoforte e il gong, Enrico Caimi la batteria, Mariangela Martini il
+                                violoncello, Davide Negrini le percussioni e Raffaelo Ugo il contrabbasso. Tutti si
+                                muovono nell’ambito di una musica da camera liberamente improvvisata, piuttosto
+                                puntillista, ricca di dettagli e caleidoscopica. Le percussioni e la batteria sono suonate
+                                con grande attenzione alle sfumature, persino con delicatezza, per creare uno spazio sonoro
+                                in cui ogni strumento abbia abbastanza «posto» per essere udito con chiarezza nei diversi
+                                registri. Lo stesso vale per il pianista, dall’approccio molto «contemporaneo», e per i
+                                due archi. In questo contesto giocoso si sente il minimo dettaglio di ogni strumento.
+                                L’insieme attraversa diverse configurazioni e tensioni, variando le dinamiche e il modo
+                                in cui i musicisti si scambiano e condividono le idee. Ciascuno si muove con discrezione, a
+                                beneficio dell’insieme. È improvvisazione libera di qualità, capace di affinare la
+                                sensibilità di un pubblico curioso e aperto e di ampliare il suo modo di ascoltare e
+                                comprendere la musica. Missione compiuta. Sulla scia «psicogeografica» si assapora il
+                                contributo misterioso dell’Ecatorf, che interviene con colori e tessiture gravi,
+                                mutevoli e inconfondibili.
+                            </span>
+                        </p>
+                    </article>
                 </div>
             </div>
         </div>
