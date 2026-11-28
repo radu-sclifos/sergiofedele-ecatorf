@@ -12,7 +12,7 @@ const links = [
     {label: 'De lo texto de lo nostro Contar', page: 'de_lo_texto_de_lo_nostro_contar'},
     {label: '7 risposte a 7 domande', page: '7_risposte_a_7_domande'},
     {label: 'Recensioni', page: 'altre_recensioni'},
-    {label: 'Prime presentazioni', continuation: 'e prima edizione autoprodotta', page: 'prime_pres'},
+    {label: 'Prime presentazioni', page: 'prime_pres'},
 ];
 ---
 
@@ -25,9 +25,9 @@ const links = [
                widths={[960, 1440, 1920]} sizes={backgroundSizes}
                format="webp" quality={75} priority />
         <ul>
-            {links.map(({label, continuation, page}) => (
+            {links.map(({label, page}) => (
                     <li>
-                        <a href={`https://www.sergiofedele.it/${page}.php?lang=it`}>{label}{continuation && <><br />{continuation}</>}</a>
+                        <a href={`https://www.sergiofedele.it/${page}.php?lang=it`}>{label}</a>
                     </li>
             ))}
         </ul>
