@@ -21,6 +21,7 @@
 :root {
     --page-background: #FAFAF8;
     --header-background: #061a40;
+    --inner-hero-overlay: linear-gradient(rgba(5, 15, 28, 0.70), rgba(3, 10, 18, 0.58));
     --font-body: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
     --font-ui: "Montserrat", "Helvetica Neue", Arial, sans-serif;
     --font-heading: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
