@@ -1,31 +1,29 @@
-# Sergio Fedele · Ecatorf
+# Sergio Fedele - Ecatorf
 
-A personal website documenting the work of Sergio Fedele, musician and inventor
+[![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build/)&nbsp;&nbsp;
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bdde9815-287a-41aa-a656-54b2b0921cbf/deploy-status)](https://app.netlify.com/projects/sergiofedele-ecatorf/deploys)&nbsp;&nbsp;
+[![Code license: MIT](https://img.shields.io/badge/Code%20license-MIT-blue)](LICENSE)
+
+The official website documenting the work of Sergio Fedele, musician and inventor
 of the Ecatorf: an experimental wind instrument that combines elements of the
 clarinet, trombone and other brass instruments.
 
 **Website:** [sergiofedele-ecatorf.it](https://www.sergiofedele-ecatorf.it/)
 
-This repository contains the Astro reconstruction of the existing Angular
-website. The project preserves its Italian editorial content, typography, colors
-and overall composition while moving to a static, component-based architecture.
-It brings together Sergio's biography, instrument research, compositions,
-recordings, scores, visual works, writing and documentary film.
+The site is built with Astro and brings together Sergio's biography, instrument
+research, compositions, recordings, scores, visual works, writing and documentary
+film.
 
 ## Editorial and visual direction
 
-The site's editorial content and visual direction were chosen by Sergio Fedele,
-including fonts, colors, typography and overall composition. This reconstruction
-deliberately preserves those choices, including where they depart from common
-web design conventions. They reflect Sergio's preferences and artistic direction;
-the developer's role is their technical implementation and the migration to
-Astro, rather than the expression of the developer's own design preferences.
+Sergio Fedele chose the site's editorial content and visual direction, including
+its typography, colors and overall composition. The implementation follows his
+artistic direction.
 
-## From Angular to Astro
+## Architecture
 
-The migration focuses on an editorial website with a substantial collection of
-photographs, documents and musical material. Astro generates complete HTML pages
-at build time, with ordinary links between routes and no client-side router.
+Astro generates complete HTML pages at build time, and standard links handle
+navigation between pages.
 JavaScript supports interactions such as galleries, carousels, content selectors
 and video preferences.
 
@@ -125,10 +123,9 @@ The development site is available at [localhost:4321](http://localhost:4321).
 
 ## Deployment and browser support
 
-The deployment artifact is `dist/`, produced by `npm run build`.
-`public/_redirects` provides Netlify redirects for the previous Angular Contar
-and Film routes and the previous sitemap URL. Other hosts require equivalent
-redirect configuration; the local Astro server does not apply this file.
+Netlify publishes the static output in `dist/`, produced by `npm run build`.
+`public/_redirects` keeps old links to the Contar and Film pages and the sitemap
+working on Netlify. These redirects are applied by the hosting platform.
 
 JavaScript and CSS build targets are set to **Chromium 101**, the engine
 version used by Opera 87 on Sergio's computer. A standalone browser diagnostics
